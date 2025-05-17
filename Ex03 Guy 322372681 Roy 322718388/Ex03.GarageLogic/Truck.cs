@@ -2,5 +2,7 @@
 {
     internal class Truck : Vehicle
     {
+        public bool IsHazardousCargoLoaded { get; set; }
+        public float CargoVolume { get; set; }
     }
 }

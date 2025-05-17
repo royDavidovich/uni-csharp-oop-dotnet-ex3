@@ -1,6 +1,7 @@
 ﻿namespace Ex03.GarageLogic
 {
-    internal class ElectricCar : Vehicle
+    internal class ElectricCar : Car
     {
+
     }
 }

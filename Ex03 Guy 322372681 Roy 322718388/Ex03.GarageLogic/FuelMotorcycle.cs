@@ -1,6 +1,7 @@
 ﻿namespace Ex03.GarageLogic
 {
-    internal class FuelMotorcycle : Vehicle
+    internal class FuelMotorcycle : Motorcycle
     {
+
     }
 }
