@@ -2,6 +2,6 @@
 {
     internal class ElectricMotorcycle : Motorcycle
     {
-
+        public ElectricVeichle ElectricVeichle { get; set; }
     }
 }

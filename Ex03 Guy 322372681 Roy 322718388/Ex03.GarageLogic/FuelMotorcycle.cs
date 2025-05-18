@@ -2,6 +2,6 @@
 {
     internal class FuelMotorcycle : Motorcycle
     {
-
+        public FuelVeichle FuelVeichle { get; set; }
     }
 }
