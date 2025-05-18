@@ -5,7 +5,7 @@ namespace Ex03.GarageLogic
 {
     public abstract class Vehicle
     {
-        protected enum eGeneralDataIndicesInFile
+        public enum eGeneralDataIndicesInFile
         {
             VehicleType = 0,
             LicensePlate = 1, 
@@ -23,11 +23,20 @@ namespace Ex03.GarageLogic
         public string Model { get; set; }
         public string RegistrationNumber { get; set; }
         public string EnergyLevels { get; set; }
+
+        public void InitVehicleToGarage(string[] i_VehicleData)
+        {
+            InitVehicleGeneralTypeInformation(i_VehicleData);
+            InitVehicleSpecificInformation(i_VehicleData);
+            InitVehicleGalgalimList(i_VehicleData);
+        }
+
         public void InitVehicleGeneralTypeInformation(string[] i_VehicleData)
         {
             this.RegistrationNumber = i_VehicleData[(int)eGeneralDataIndicesInFile.LicensePlate];
             this.Model = i_VehicleData[(int)eGeneralDataIndicesInFile.ModelName];
             this.EnergyLevels = i_VehicleData[(int)eGeneralDataIndicesInFile.EnergyPercentage];
+
             //this.m_Wheels = i_VehicleData[(int)eGeneralDataIndicesInFile.TierModel];
             //this.m_Wheels = i_VehicleData[(int)eGeneralDataIndicesInFile.CurrAirPressure];
             //this.m_Wheels = i_VehicleData[(int)eGeneralDataIndicesInFile.MaxAirPressure];

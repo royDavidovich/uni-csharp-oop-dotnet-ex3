@@ -2,7 +2,7 @@
 {
     internal struct FuelVehicle
     {
-        private enum eGasType
+        public enum eGasType
         {
             Soler,
             Octan95,
@@ -10,9 +10,9 @@
             Octan98
         }
 
-        private eGasType m_GasType;
+        public eGasType GasType { get; set; }
 
-        private float m_MaxFuelLevel;
+        public float MaxFuelLevel { get; set; }
         public float CurrentFuelLevel { get; set; }
     }
 }
