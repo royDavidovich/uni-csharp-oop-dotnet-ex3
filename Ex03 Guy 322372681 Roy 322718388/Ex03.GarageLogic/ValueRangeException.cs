@@ -8,7 +8,7 @@ namespace Ex03.GarageLogic
         public float MinValue { get; }
         public float MaxValue { get; }
 
-        public ValueRangeException(string message, float i_Min = 0, float i_Max = 0)
+        public ValueRangeException(string i_Message, float i_Min = 0, float i_Max = 0)
         {
             MinValue = i_Min;
             MaxValue = i_Max;

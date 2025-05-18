@@ -42,11 +42,12 @@
     <Compile Include="Car.cs" />
     <Compile Include="ElectricCar.cs" />
     <Compile Include="ElectricMotorcycle.cs" />
-    <Compile Include="ElectricVeichle.cs" />
+    <Compile Include="ElectricVehicle.cs" />
     <Compile Include="FuelCar.cs" />
     <Compile Include="FuelMotorcycle.cs" />
-    <Compile Include="FuelVeichle.cs" />
+    <Compile Include="FuelVehicle.cs" />
     <Compile Include="Garage.cs" />
+    <Compile Include="GarageManager.cs" />
     <Compile Include="Motorcycle.cs" />
     <Compile Include="Truck.cs" />
     <Compile Include="ValueRangeException.cs" />

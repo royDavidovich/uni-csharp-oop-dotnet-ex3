@@ -14,7 +14,10 @@
         protected int m_NumberOfDoors;
         public int NumberOfDoors
         {
-            get { return m_NumberOfDoors; }
+            get
+            {
+                return m_NumberOfDoors;
+            }
             set
             {
                 if (value < 2 || value > 5)

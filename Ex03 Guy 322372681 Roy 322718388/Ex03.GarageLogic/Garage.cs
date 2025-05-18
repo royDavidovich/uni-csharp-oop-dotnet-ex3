@@ -1,15 +1,9 @@
 ﻿using System.Collections.Generic;
+
 namespace Ex03.GarageLogic
 {
     internal class Garage
     {
-        private readonly Dictionary<string, GarageItem> r_GarageItems;
-
-        public Garage()
-        {
-            r_GarageItems = new Dictionary<string, GarageItem>();
-        }
-
         private class GarageItem
         {
             public string OwnerName { get; private set; }
@@ -19,19 +13,26 @@ namespace Ex03.GarageLogic
 
             public enum eStateOfCar
             {
-                repairing,
-                repared,
-                paid
+                Repairing,
+                Repaired,
+                Paid
             }
 
             public GarageItem(string i_OwnerName, string i_OwnerPhoneNumber, Vehicle i_Vehicle)
             {
                 OwnerName = i_OwnerName;
                 OwnerPhoneNumber = i_OwnerPhoneNumber;
-                StateOfCar = eStateOfCar.repairing;
+                StateOfCar = eStateOfCar.Repairing;
                 Vehicle = i_Vehicle;
             }
         }
-    }
 
+        private Dictionary<string, GarageItem> m_GarageVehicles = new Dictionary<string, GarageItem>();
+
+        public void AddGarageEntry(Vehicle i_Vehicle, string i_OwnerName = "", string i_OwnerPhone = "")
+        {
+            GarageItem item = new GarageItem(i_OwnerName, i_OwnerPhone, i_Vehicle);
+            this.m_GarageVehicles.Add(item.Vehicle.RegistrationNumber, item);
+        }
+    }
 }

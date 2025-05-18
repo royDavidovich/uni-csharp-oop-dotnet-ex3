@@ -2,6 +2,12 @@
 {
     internal class ElectricCar : Car
     {
-      public ElectricVeichle ElectricVeichle { get; set; }
+        public ElectricVehicle ElectricVehicle { get; set; }
+
+        public override void InitVehicleSpecificInformation(string[] i_VehicleData)
+        {
+
+
+        }
     }
 }

@@ -4,5 +4,10 @@
     {
         public bool IsHazardousCargoLoaded { get; set; }
         public float CargoVolume { get; set; }
+
+        public override void InitVehicleSpecificInformation(string[] i_VehicleData)
+        {
+
+        }
     }
 }

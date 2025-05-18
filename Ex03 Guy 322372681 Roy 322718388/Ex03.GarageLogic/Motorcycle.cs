@@ -10,7 +10,7 @@
             B2
         }
 
-        protected eRegistration registration;
+        protected eRegistration e_Registration;
         public int EngineVolume { get; set; }
 
     }

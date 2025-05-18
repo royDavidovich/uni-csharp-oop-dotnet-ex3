@@ -1,6 +1,6 @@
 ﻿namespace Ex03.GarageLogic
 {
-    internal class FuelVeichle
+    internal struct FuelVehicle
     {
         private enum eGasType
         {
