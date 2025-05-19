@@ -13,6 +13,10 @@ namespace Ex03.GarageLogic
         {
         }
 
+        protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
+        {
+        }
+
         protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
         {
             string manufacturer = i_GalgalimData[(int)eGeneralDataIndicesInFile.TierModel];

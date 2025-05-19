@@ -1,4 +1,6 @@
-﻿namespace Ex03.GarageLogic
+﻿using System.Collections.Generic;
+
+namespace Ex03.GarageLogic
 {
     internal class Car : Vehicle
     {
@@ -39,7 +41,10 @@
         ///
         protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
         {
-            throw new System.NotImplementedException();
+        }
+
+        protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
+        {
         }
     }
 }
