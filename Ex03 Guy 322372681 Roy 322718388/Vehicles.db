@@ -1,14 +1,13 @@
-FuelMotorcycle,75-321-22,Honda-CB650R,68,Michelin,28,30,Octan98,4.2,A2,750
-FuelMotorcycle,92-715-83,Kawasaki-Z900,32,Pirelli,27,30,Octan98,5.5,AB,900
-ElectricMotorcycle,63-290-54,Zero-SR/F,85,Dunlop,29,30,0,2.9,A,0
-ElectricMotorcycle,11-845-27,LiveWire-One,42,Bridgestone,27,30,0,2.8,B2,0
-FuelCar,48-732-91,Toyota-Corolla,73,Continental,31,32,Octan95,36,Black,4
-FuelCar,56-109-35,Hyundai-i20,27,Goodyear,30,32,Octan95,42,Silver,5
-ElectricCar,87-456-20,Tesla-Model3,64,Michelin,31,32,0,3.8,White,4
-ElectricCar,29-618-74,MG-ZS-EV,59,Pirelli,29,32,0,4.5,Yellow,5
-Truck,64-970-38,Volvo-FH16,81,Hankook,26,27,Soler,95,true,18.5
-Truck,39-582-16,Scania-R450,44,Continental,25,27,Soler,82,false,22.4
-
+FuelMotorcycle,75-321-22,Honda-CB650R,68,Michelin,28,4.2,A2,750
+FuelMotorcycle,92-715-83,Kawasaki-Z900,32,Pirelli,27,5.5,AB,900
+ElectricMotorcycle,63-290-54,Zero-SR/F,85,Dunlop,29,2.9,A,0
+ElectricMotorcycle,11-845-27,LiveWire-One,42,Bridgestone,27,2.8,B2,0
+FuelCar,48-732-91,Toyota-Corolla,73,Continental,31,36,Black,4
+FuelCar,56-109-35,Hyundai-i20,27,Goodyear,30,42,Silver,5
+ElectricCar,87-456-20,Tesla-Model3,64,Michelin,31,3.8,White,4
+ElectricCar,29-618-74,MG-ZS-EV,59,Pirelli,29,32,4.5,Yellow,5
+Truck,64-970-38,Volvo-FH16,81,Hankook,26,95,true,18.5
+Truck,39-582-16,Scania-R450,44,Continental,25,82,false,22.4
 *****
 THE FORMAT IS:
-VehicleType, LicensePlate, ModelName, EnergyPercentage, TierModel, CurrAirPressure, MaxAirPerssure, FuelType, CurrFuelAmount, [SPECIFIC VEHICLE PROPERTIES]
+VehicleType, LicensePlate, ModelName, EnergyPercentage, TierModel, CurrAirPressure, CurrFuelAmount, [SPECIFIC VEHICLE PROPERTIES]
