@@ -20,7 +20,10 @@ namespace Ex03.GarageLogic
 
                 string[] vehicleInformation = line.Split(',');
 
-                Vehicle currentVehicleFromDb = VehicleCreator.CreateVehicle(vehicleInformation[k_VehicleTypeIndex]);
+                Vehicle currentVehicleFromDb = VehicleCreator.CreateVehicle(
+                    vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType],
+                    vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.LicensePlate],
+                    vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.ModelName]);
                 currentVehicleFromDb.InitVehicleToGarage(vehicleInformation);
                 m_MyGarage.AddGarageEntry(currentVehicleFromDb);
             }

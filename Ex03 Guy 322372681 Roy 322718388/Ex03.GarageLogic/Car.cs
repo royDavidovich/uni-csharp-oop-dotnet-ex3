@@ -2,6 +2,10 @@
 {
     internal class Car : Vehicle
     {
+        protected const int k_NumberOfWheels = 5;
+        protected eCarColor m_Color;
+        protected int m_NumberOfDoors;
+
         protected enum eCarColor
         {
             Yellow,
@@ -10,8 +14,11 @@
             Silver
         }
 
-        protected eCarColor m_Color;
-        protected int m_NumberOfDoors;
+        public Car(string i_LicensePlate, string i_ModelName)
+            : base(i_LicensePlate, i_ModelName)
+        {
+        }
+
         public int NumberOfDoors
         {
             get

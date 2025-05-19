@@ -32,7 +32,7 @@ namespace Ex03.GarageLogic
         public void AddGarageEntry(Vehicle i_Vehicle, string i_OwnerName = "", string i_OwnerPhone = "")
         {
             GarageItem item = new GarageItem(i_OwnerName, i_OwnerPhone, i_Vehicle);
-            this.m_GarageVehicles.Add(item.Vehicle.RegistrationNumber, item);
+            this.m_GarageVehicles.Add(item.Vehicle.r_LicensePlate, item);
         }
     }
 }
