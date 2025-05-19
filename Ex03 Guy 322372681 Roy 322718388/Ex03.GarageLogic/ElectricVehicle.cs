@@ -3,7 +3,7 @@ using System;
 
 namespace Ex03.GarageLogic
 {
-    internal class ElectricVehicle
+    internal struct ElectricVehicle
     {
         private readonly float r_MaxBatteryPower;
         public float CurrentBatteryPower { get; set; }

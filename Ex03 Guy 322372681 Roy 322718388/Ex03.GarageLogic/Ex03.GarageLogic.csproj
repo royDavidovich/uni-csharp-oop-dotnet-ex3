@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{80786283-FD62-489F-93F6-7950CABFC843}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Ex03.GarageLogic</RootNamespace>
     <AssemblyName>Ex03.GarageLogic</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>

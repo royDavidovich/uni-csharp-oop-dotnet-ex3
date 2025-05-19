@@ -9,8 +9,8 @@
 
         public ElectricVehicle Battery { get; set; }
 
-        public override void InitVehicleSpecificInformation(string[] i_VehicleData)
-        {
-        }
+        //public override void InitVehicleSpecificInformation(string[] i_VehicleData)
+        //{
+        //}
     }
 }

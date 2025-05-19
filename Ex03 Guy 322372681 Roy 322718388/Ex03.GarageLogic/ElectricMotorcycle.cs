@@ -7,6 +7,7 @@ namespace Ex03.GarageLogic
     {
         private ElectricVehicle m_Battery;
         private const float k_MaxFuelAmount = 3.2f;
+        private const int k_MaxAirPressure = 30;
 
         public ElectricMotorcycle(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)

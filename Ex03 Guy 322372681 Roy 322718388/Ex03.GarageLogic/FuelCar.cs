@@ -9,9 +9,8 @@
         {
         }
 
-        public override void InitVehicleSpecificInformation(string[] i_VehicleData)
-        {
-
-        }
+        //public override void InitVehicleSpecificInformation(string[] i_VehicleData)
+        //{
+        //}
     }
 }

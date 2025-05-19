@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using static Ex03.GarageLogic.FuelVehicle;
 
 namespace Ex03.GarageLogic
@@ -7,6 +8,7 @@ namespace Ex03.GarageLogic
     {
         private FuelVehicle m_Engine;
         private const float k_MaxFuelAmount = 5.8f;
+        private const int k_MaxAirPressure = 30;
         private const string k_GasType = "Octan98";
 
         public FuelMotorcycle(string i_LicensePlate, string i_ModelName)

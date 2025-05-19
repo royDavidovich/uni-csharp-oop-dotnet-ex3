@@ -5,7 +5,7 @@ namespace Ex03.GarageLogic
 {
     public abstract class Vehicle
     {
-        protected enum eGeneralDataIndicesInFile
+        public enum eGeneralDataIndicesInFile
         {
             VehicleType = 0,
             LicensePlate = 1,
@@ -13,15 +13,13 @@ namespace Ex03.GarageLogic
             EnergyPercentage = 3,
             TierModel = 4,
             CurrAirPressure = 5,
-            MaxAirPressure = 6,
-            FuelType = 7,
-            CurrFuelAmount = 8
+            CurrFuelAmount = 6
         }
 
         protected readonly string r_LicensePlate;
         protected readonly string r_ModelName;
         protected float r_EnergyPercentage;
-        private List<Wheel> m_Wheels;
+        private List<Wheel> m_Wheels = new List<Wheel>();
 
         protected Vehicle(string i_LicensePlate, string i_ModelName)
         {
@@ -29,11 +27,15 @@ namespace Ex03.GarageLogic
             this.r_ModelName = i_ModelName;
         }
 
+        public string LicensePlate
+        {
+            get { return r_LicensePlate; }
+        }
+
         public void InitVehicleToGarage(string[] i_VehicleData)
         {
-            //initVehicleGeneralTypeInformation(i_VehicleData);
             InitVehicleSpecificInformation(i_VehicleData);
-            //InitVehicleGalgalimList(i_VehicleData);
+            InitVehicleGalgalimList(i_VehicleData, m_Wheels);
         }
 
         //private void initVehicleGeneralTypeInformation(string[] i_VehicleData)
@@ -49,6 +51,6 @@ namespace Ex03.GarageLogic
 
         protected abstract void InitVehicleSpecificInformation(string[] i_VehicleData);
 
-        //protected abstract void InitVehicleGalgalimList(string[] i_GalgalimData);
+        protected abstract void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels);
     }
 }

@@ -35,5 +35,11 @@
                 m_NumberOfDoors = value;
             }
         }
+
+        ///
+        protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
