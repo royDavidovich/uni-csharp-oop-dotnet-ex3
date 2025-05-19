@@ -1,8 +1,10 @@
-﻿namespace Ex03.GarageLogic
+﻿using System.Collections.Generic;
+
+namespace Ex03.GarageLogic
 {
     internal abstract class Motorcycle : Vehicle
     {
-        protected enum eRegistration
+        protected enum ePermitTypes
         {
             A,
             A2,
@@ -10,8 +12,19 @@
             B2
         }
 
-        protected eRegistration e_Registration;
+        protected enum eSpecificDataIndicesInFile
+        {
+            PermitType = 7,
+            EngineVolume = 8
+        }
+
+        protected const int k_NumberOfWheels = 2;
+        protected ePermitTypes m_PermitType;
         public int EngineVolume { get; set; }
 
+        protected Motorcycle(string i_LicensePlate, string i_ModelName)
+            : base(i_LicensePlate, i_ModelName)
+        {
+        }
     }
 }
