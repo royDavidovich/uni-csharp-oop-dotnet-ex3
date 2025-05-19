@@ -13,15 +13,17 @@ namespace Ex03.GarageLogic
             string[] lines = File.ReadAllLines(i_FilePath);
             foreach (string line in lines)
             {
-                if (string.IsNullOrWhiteSpace(line) || line.StartsWith("*****"))
+                string[] vehicleInformation = line.Split(',');
+                string currentVehicleTypeFromDB = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType];
+
+                if(string.IsNullOrWhiteSpace(line)
+                   || !(VehicleCreator.SupportedTypes.Contains(currentVehicleTypeFromDB)))
                 {
-                    break; // stop when empty lines or format description
+                    continue;       //if empty line or doesn't fit format description, continue
                 }
 
-                string[] vehicleInformation = line.Split(',');
-
                 Vehicle currentVehicleFromDb = VehicleCreator.CreateVehicle(
-                    vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType],
+                    currentVehicleTypeFromDB,
                     vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.LicensePlate],
                     vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.ModelName]);
                 currentVehicleFromDb.InitVehicleToGarage(vehicleInformation);
