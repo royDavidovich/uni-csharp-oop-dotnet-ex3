@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
@@ -11,10 +12,6 @@ namespace Ex03.GarageLogic
 
         public FuelCar(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
-        {
-        }
-
-        protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
         {
         }
 
