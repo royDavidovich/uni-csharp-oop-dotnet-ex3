@@ -26,10 +26,5 @@ namespace Ex03.GarageLogic
             : base(i_LicensePlate, i_ModelName)
         {
         }
-
-        protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
-        {
-
-        }
     }
 }

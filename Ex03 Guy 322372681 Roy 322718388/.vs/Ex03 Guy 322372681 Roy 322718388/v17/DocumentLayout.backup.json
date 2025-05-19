@@ -3,24 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\royda\\onedrive - the academic college of tel-aviv jaffa - mta\\myrepos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\royda\\onedrive - the academic college of tel-aviv jaffa - mta\\myrepos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\truck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\truck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\royda\\onedrive - the academic college of tel-aviv jaffa - mta\\myrepos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\wheel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\wheel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\royda\\onedrive - the academic college of tel-aviv jaffa - mta\\myrepos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\electriccar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\electriccar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\royda\\onedrive - the academic college of tel-aviv jaffa - mta\\myrepos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\motorcycle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\motorcycle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\royda\\onedrive - the academic college of tel-aviv jaffa - mta\\myrepos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\fuelcar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\fuelcar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\royda\\onedrive - the academic college of tel-aviv jaffa - mta\\myrepos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\electricmotorcycle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\electricmotorcycle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\royda\\onedrive - the academic college of tel-aviv jaffa - mta\\myrepos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\fuelmotorcycle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\fuelmotorcycle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\royda\\onedrive - the academic college of tel-aviv jaffa - mta\\myrepos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\electricmotorcycle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\electricmotorcycle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\royda\\onedrive - the academic college of tel-aviv jaffa - mta\\myrepos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\royda\\onedrive - the academic college of tel-aviv jaffa - mta\\myrepos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\fuelvehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\fuelvehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\royda\\onedrive - the academic college of tel-aviv jaffa - mta\\myrepos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\electricvehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,14 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|Solution Items{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Vehicles.db||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|Solution Items{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|solutionrelative:Vehicles.db||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\royda\\onedrive - the academic college of tel-aviv jaffa - mta\\myrepos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\fuelvehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\fuelvehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\royda\\onedrive - the academic college of tel-aviv jaffa - mta\\myrepos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\garage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\garage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\ex03.garagelogic\\garagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -53,8 +53,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 616,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 631,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -72,13 +72,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "Vehicle.cs",
               "DocumentMoniker": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\Vehicle.cs",
               "RelativeDocumentMoniker": "Ex03.GarageLogic\\Vehicle.cs",
               "ToolTip": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\Vehicle.cs",
               "RelativeToolTip": "Ex03.GarageLogic\\Vehicle.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAkwB0AAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAADcAAAAAAAAAAAAUwEYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-19T15:30:44.674Z",
               "IsPinned": true,
@@ -86,7 +86,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "FuelVehicle.cs",
               "DocumentMoniker": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\FuelVehicle.cs",
               "RelativeDocumentMoniker": "Ex03.GarageLogic\\FuelVehicle.cs",
@@ -100,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "ElectricVehicle.cs",
               "DocumentMoniker": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\ElectricVehicle.cs",
               "RelativeDocumentMoniker": "Ex03.GarageLogic\\ElectricVehicle.cs",
@@ -114,73 +114,73 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Wheel.cs",
-              "DocumentMoniker": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\Wheel.cs",
-              "RelativeDocumentMoniker": "Ex03.GarageLogic\\Wheel.cs",
-              "ToolTip": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\Wheel.cs",
-              "RelativeToolTip": "Ex03.GarageLogic\\Wheel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAUAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Truck.cs",
+              "DocumentMoniker": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\Truck.cs",
+              "RelativeDocumentMoniker": "Ex03.GarageLogic\\Truck.cs",
+              "ToolTip": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\Truck.cs",
+              "RelativeToolTip": "Ex03.GarageLogic\\Truck.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T20:26:00.067Z",
+              "WhenOpened": "2025-05-19T21:08:51.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ElectricCar.cs",
+              "DocumentMoniker": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\ElectricCar.cs",
+              "RelativeDocumentMoniker": "Ex03.GarageLogic\\ElectricCar.cs",
+              "ToolTip": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\ElectricCar.cs",
+              "RelativeToolTip": "Ex03.GarageLogic\\ElectricCar.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T21:08:50.625Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Motorcycle.cs",
-              "DocumentMoniker": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\Motorcycle.cs",
-              "RelativeDocumentMoniker": "Ex03.GarageLogic\\Motorcycle.cs",
-              "ToolTip": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\Motorcycle.cs",
-              "RelativeToolTip": "Ex03.GarageLogic\\Motorcycle.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAQwB0AAAA3AAAAAAAAAA==",
+              "Title": "FuelCar.cs",
+              "DocumentMoniker": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\FuelCar.cs",
+              "RelativeDocumentMoniker": "Ex03.GarageLogic\\FuelCar.cs",
+              "ToolTip": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\FuelCar.cs",
+              "RelativeToolTip": "Ex03.GarageLogic\\FuelCar.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T20:08:39.745Z",
+              "WhenOpened": "2025-05-19T21:08:48.988Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "FuelMotorcycle.cs",
               "DocumentMoniker": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\FuelMotorcycle.cs",
               "RelativeDocumentMoniker": "Ex03.GarageLogic\\FuelMotorcycle.cs",
               "ToolTip": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\FuelMotorcycle.cs",
               "RelativeToolTip": "Ex03.GarageLogic\\FuelMotorcycle.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAowDcAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-19T20:13:50.302Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "ElectricMotorcycle.cs",
               "DocumentMoniker": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\ElectricMotorcycle.cs",
               "RelativeDocumentMoniker": "Ex03.GarageLogic\\ElectricMotorcycle.cs",
               "ToolTip": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\ElectricMotorcycle.cs",
               "RelativeToolTip": "Ex03.GarageLogic\\ElectricMotorcycle.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-19T20:13:47.4Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Garage.cs",
-              "DocumentMoniker": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\Garage.cs",
-              "RelativeDocumentMoniker": "Ex03.GarageLogic\\Garage.cs",
-              "ToolTip": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\Garage.cs",
-              "RelativeToolTip": "Ex03.GarageLogic\\Garage.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T19:39:47.457Z",
               "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedWidth": 102,
+          "DockedWidth": 87,
           "SelectedChildIndex": 1,
           "Children": [
             {
@@ -199,7 +199,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Vehicles.db",
               "DocumentMoniker": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Vehicles.db",
               "RelativeDocumentMoniker": "Vehicles.db",

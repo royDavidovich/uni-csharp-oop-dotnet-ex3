@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Security.Permissions;
 
 namespace Ex03.GarageLogic
@@ -38,19 +39,55 @@ namespace Ex03.GarageLogic
             InitVehicleGalgalimList(i_VehicleData, m_Wheels);
         }
 
-        //private void initVehicleGeneralTypeInformation(string[] i_VehicleData)
-        //{
-        //    this.r_LicensePlate = i_VehicleData[(int)eGeneralDataIndicesInFile.LicensePlate];
-        //    this.r_ModelName = i_VehicleData[(int)eGeneralDataIndicesInFile.ModelName];
-        //    this.r_EnergyPercentage = i_VehicleData[(int)eGeneralDataIndicesInFile.EnergyPercentage];
-
-        //    //this.m_Wheels = i_VehicleData[(int)eGeneralDataIndicesInFile.TierModel];
-        //    //this.m_Wheels = i_VehicleData[(int)eGeneralDataIndicesInFile.CurrAirPressure];
-        //    //this.m_Wheels = i_VehicleData[(int)eGeneralDataIndicesInFile.MaxAirPressure];
-        //}
-
         protected abstract void InitVehicleSpecificInformation(string[] i_VehicleData);
 
         protected abstract void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels);
+
+        protected void InitWheelsFromDb(string i_Manufacturer, string i_CurrentAirPressureStr, int i_NumberOfWheels,
+                                        float i_MaxAirPressure, List<Wheel> i_Wheels)
+        {
+            if (!float.TryParse(i_CurrentAirPressureStr, out float currentPressure))
+            {
+                throw new ArgumentException($"Invalid air pressure value: '{i_CurrentAirPressureStr}'", nameof(i_CurrentAirPressureStr));
+            }
+
+            if (currentPressure < 0 || currentPressure > i_MaxAirPressure)
+            {
+                throw new ArgumentException($"Air pressure {currentPressure} must be between 0 and {i_MaxAirPressure}", nameof(i_CurrentAirPressureStr));
+            }
+
+            i_Wheels.Clear();
+
+            for (int i = 0; i < i_NumberOfWheels; i++)
+            {
+                i_Wheels.Add(new Wheel
+                                 {
+                                     Manufacturer = i_Manufacturer,
+                                     MaxAirPressure = i_MaxAirPressure,
+                                     CurrentAirPressure = currentPressure
+                                 });
+            }
+        }
+
+        public void SetIdenticalWheels(int i_NumWheels, Wheel i_Template)
+        {
+            m_Wheels.Clear();
+
+            for (int i = 0; i < i_NumWheels; i++)
+            {
+                m_Wheels.Add(new Wheel
+                                 {
+                                     Manufacturer = i_Template.Manufacturer,
+                                     MaxAirPressure = i_Template.MaxAirPressure,
+                                     CurrentAirPressure = i_Template.CurrentAirPressure
+                                 });
+            }
+        }
+
+        public void SetWheelsIndividually(List<Wheel> i_Wheels)
+        {
+            m_Wheels.Clear();
+            m_Wheels.AddRange(i_Wheels);
+        }
     }
 }
