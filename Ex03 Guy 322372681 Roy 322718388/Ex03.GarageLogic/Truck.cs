@@ -15,15 +15,12 @@ namespace Ex03.GarageLogic
         {
             IsHazardousCargoLoaded = 8,
             CargoVolume = 9
-<<<<<<< HEAD
-=======
         }
 
-        protected Truck(string i_LicensePlate, string i_ModelName)
+        public Truck(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
         {
             m_Engine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
->>>>>>> 7579dc63b1f919879e9ddab0313ba6e483ff06a1
         }
 
         public bool IsHazardousCargoLoaded { get; set; }

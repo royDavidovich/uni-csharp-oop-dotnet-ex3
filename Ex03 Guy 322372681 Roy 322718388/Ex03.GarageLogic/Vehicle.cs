@@ -20,10 +20,9 @@ namespace Ex03.GarageLogic
 
         protected readonly string r_LicensePlate;
         protected readonly string r_ModelName;
-<<<<<<< HEAD
+
         public float EnergyPercentage { get; set; }
-=======
->>>>>>> 7579dc63b1f919879e9ddab0313ba6e483ff06a1
+
         private List<Wheel> m_Wheels = new List<Wheel>();
 
         public string LicensePlate

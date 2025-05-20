@@ -33,8 +33,6 @@ namespace Ex03.GarageLogic
                 m_MyGarage.AddGarageEntry(currentVehicleFromDb);
             }
         }
-<<<<<<< HEAD
-=======
 
         public static int Main()
         {
@@ -45,6 +43,5 @@ namespace Ex03.GarageLogic
 
             return 0;
         }
->>>>>>> 7579dc63b1f919879e9ddab0313ba6e483ff06a1
     }
 }

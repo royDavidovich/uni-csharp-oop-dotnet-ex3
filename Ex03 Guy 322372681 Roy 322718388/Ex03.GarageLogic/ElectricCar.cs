@@ -6,27 +6,34 @@ namespace Ex03.GarageLogic
     internal class ElectricCar : Car
     {
         protected ElectricVehicle m_Battery;
-        protected const float k_MaxFuelAmount = 4.8f;
+        protected const float k_MaxBatteryHours = 4.8f;
         protected const int k_MaxAirPressure = 32;
 
         public ElectricCar(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
         {
-            m_Battery = new ElectricVehicle(k_MaxFuelAmount);
+            m_Battery = new ElectricVehicle(k_MaxBatteryHours);
         }
 
         protected override void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)
         {
             if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
             {
-                throw new ArgumentException(
-                    $"Invalid energy percentage: {i_CurrentPercentageStr}",
-                    i_CurrentPercentageStr);
+                throw new ArgumentException($"Invalid energy percentage: {i_CurrentPercentageStr}", nameof(i_CurrentPercentageStr));
             }
-            
-            float hours = (energyPercentage / 100f * k_MaxFuelAmount);
 
+            float hours = (energyPercentage / 100f * k_MaxBatteryHours);
             m_Battery.CurrentBatteryPower = hours;
+        }
+
+        protected override void SetCurrentEnergyAmount(string i_CurrentAmountStr)
+        {
+            if (!float.TryParse(i_CurrentAmountStr, out float amount))
+            {
+                throw new ArgumentException($"Invalid energy amount: {i_CurrentAmountStr}", nameof(i_CurrentAmountStr));
+            }
+
+            m_Battery.CurrentBatteryPower = amount;
         }
 
         protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
@@ -36,21 +43,5 @@ namespace Ex03.GarageLogic
 
             InitWheelsFromDb(manufacturer, pressureStr, k_NumberOfWheels, k_MaxAirPressure, i_MyWheels);
         }
-<<<<<<< HEAD
-
-        protected override void SetCurrentEnergyAmount(string i_CurrentAmountStr)
-        {
-            if (float.TryParse(i_CurrentAmountStr, out float amount))
-            {
-                m_Battery.CurrentBatteryPower = amount;
-                //TODO HANDLE ENERGY PERCANTAGE
-            }
-            else
-            {
-                throw new ArgumentException($"Invalid fuel amount: {amount}");
-            }
-        }
-=======
->>>>>>> 7579dc63b1f919879e9ddab0313ba6e483ff06a1
     }
 }

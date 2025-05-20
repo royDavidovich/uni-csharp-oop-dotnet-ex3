@@ -36,7 +36,7 @@ namespace Ex03.GarageLogic
             }
             set
             {
-                if (value <= 0)
+                if (value < 0)
                 {
                     throw new ArgumentException(
                         $"Engine volume must be a positive integer; got {value}.");

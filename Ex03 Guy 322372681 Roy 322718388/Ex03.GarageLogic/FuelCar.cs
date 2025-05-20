@@ -8,7 +8,7 @@ namespace Ex03.GarageLogic
         protected FuelVehicle m_Engine;
         protected const float k_MaxFuelAmount = 48f;
         protected const int k_MaxAirPressure = 32;
-        protected const string k_GasType = "Octan95"; //where enum
+        protected const string k_GasType = "Octan95";
 
         public FuelCar(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
@@ -20,23 +20,23 @@ namespace Ex03.GarageLogic
         {
             if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
             {
-<<<<<<< HEAD
-                m_Engine.CurrentFuelLevel = amount;
-                //TODO HANDLE PERCANTAGE
-            }
-            else
-            {
-                throw new ArgumentException($"Invalid fuel amount: {amount}");
-=======
                 throw new ArgumentException(
                     $"Invalid energy percentage: {i_CurrentPercentageStr}",
-                    i_CurrentPercentageStr);
->>>>>>> 7579dc63b1f919879e9ddab0313ba6e483ff06a1
+                    nameof(i_CurrentPercentageStr));
             }
 
             float liters = (energyPercentage / 100f * k_MaxFuelAmount);
-
             m_Engine.CurrentFuelLevel = liters;
+        }
+
+        protected override void SetCurrentEnergyAmount(string i_CurrentAmountStr)
+        {
+            if (!float.TryParse(i_CurrentAmountStr, out float amount))
+            {
+                throw new ArgumentException($"Invalid fuel amount: {i_CurrentAmountStr}", nameof(i_CurrentAmountStr));
+            }
+
+            m_Engine.CurrentFuelLevel = amount;
         }
 
         protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
