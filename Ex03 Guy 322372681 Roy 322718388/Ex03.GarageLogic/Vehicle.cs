@@ -49,18 +49,18 @@ namespace Ex03.GarageLogic
             this.r_ModelName = i_ModelName;
         }
 
-        public void InitVehicleInformation(string[] i_VehicleData, List<string> Galgalim = null)
+        public void InitVehicleInformation(string[] i_VehicleData, List<string> i_Galgalim = null)
         {
             this.OwnerName = i_VehicleData[(int)eGeneralDataIndicesInFile.OwnerName];
             this.OwnerPhone = i_VehicleData[(int)eGeneralDataIndicesInFile.OwnerPhone];
             InitVehicleSpecificInformation(i_VehicleData);
-            if(Galgalim == null)
+            if(i_Galgalim == null)
             {
                 InitVehicleGalgalimList(i_VehicleData, r_Wheels);
             }
             else
             {
-               // InitVehicleGalgalimList(Galgalim, r_Wheels);
+                //InitVehicleGalgalimListIndividually(Galgalim, r_Wheels);
             }
         }
 
@@ -68,26 +68,21 @@ namespace Ex03.GarageLogic
 
         protected abstract void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels);
 
-        protected void InitWheelsFromDb(string i_Manufacturer, string i_CurrentAirPressureStr, int i_NumberOfWheels,
-                                        float i_MaxAirPressure, List<Wheel> i_Wheels)
+        //protected abstract void InitVehicleGalgalimListIndividually(List<string> i_GalgalimData, List<Wheel> i_MyWheels);
+
+        protected void InitIdenticalWheelsFromDB(string i_Manufacturer, string i_CurrentAirPressureStr, int i_NumberOfWheels,
+                                        float i_MaxAirPressure)
         {
             if (!float.TryParse(i_CurrentAirPressureStr, out float currentPressure))
             {
                 throw new FormatException($"Invalid air pressure value: {i_CurrentAirPressureStr}");
             }
 
-            if (currentPressure < 0 || currentPressure > i_MaxAirPressure)
-            {
-                throw new ArgumentException(
-                    $"Air pressure {currentPressure} must be between 0 and {i_MaxAirPressure}",
-                    i_CurrentAirPressureStr);
-            }
-
-            i_Wheels.Clear();
+            r_Wheels.Clear();
 
             for (int i = 0; i < i_NumberOfWheels; i++)
             {
-                i_Wheels.Add(new Wheel
+                r_Wheels.Add(new Wheel
                                  {
                                      Manufacturer = i_Manufacturer,
                                      MaxAirPressure = i_MaxAirPressure,

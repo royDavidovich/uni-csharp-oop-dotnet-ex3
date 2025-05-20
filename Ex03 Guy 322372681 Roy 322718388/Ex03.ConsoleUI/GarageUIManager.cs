@@ -6,7 +6,9 @@ namespace Ex03.ConsoleUI
 {
     public class GarageUIManager
     {
-        private GarageManager m_GarageManager = new GarageManager();
+        private const string k_DBFilePath =
+            "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Vehicles.db";
+        private readonly GarageManager r_GarageManager = new GarageManager();
         public bool UserDecidedToExit { get; set; }
 
         private const int k_CarWheels = 5;
@@ -37,7 +39,7 @@ namespace Ex03.ConsoleUI
                     eUserOptions choice = askForOption();
                     handleUserChoice(choice);
                 }
-                catch (ArgumentException ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine($"Error: {ex.Message}");
                 }
@@ -51,10 +53,10 @@ namespace Ex03.ConsoleUI
             Console.WriteLine(@"Please choose your option:
 1. Load the Vehicles from our DataBase.
 2. Insert a new vehicle to our Garage.
-3. Show all vheicles license plates.
+3. Show all vehicles license plates.
 4. Change the status of a vehicle.
 5. Inflate tires.
-6. Refuel a fuelable vehicle.
+6. Refuel a fuel-able vehicle.
 7. Recharge an electric vehicle.
 8. Show all the data for a specific vehicle.
 9. Exit our Garage.");
@@ -73,7 +75,7 @@ namespace Ex03.ConsoleUI
 
         private void greetUser()
         {
-            Console.WriteLine("Hello, and welcome to Roy & Guy Garage!");
+            Console.WriteLine("Hello, and welcome to \"Roy & Guy\'s\" Garage!");
         }
 
         private void sayGoodbyeToUser()
@@ -112,7 +114,7 @@ namespace Ex03.ConsoleUI
         {
             try
             {
-                m_GarageManager.LoadVehiclesFromDb("C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Vehicles.db");
+                r_GarageManager.LoadVehiclesFromDB(k_DBFilePath);
             }
             catch (Exception ex)
             {
@@ -122,12 +124,12 @@ namespace Ex03.ConsoleUI
 
         private void insertNewVehicle()
         {
-            string[] vehicleData = collectDbFormattedVehicleData(out List<string> wheelData);
+            string[] vehicleData = collectFormattedVehicleData(out List<string> wheelData);
             string vehicleDataStr = string.Join(",", vehicleData);
 
             try
             {
-                m_GarageManager.LoadVehiclesFromUser(vehicleDataStr, wheelData);
+                r_GarageManager.LoadVehiclesFromUser(vehicleDataStr, wheelData);
                 Console.WriteLine("Vehicle added successfully!");
             }
             catch (Exception ex)
@@ -136,7 +138,7 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private string[] collectDbFormattedVehicleData(out List<string> o_Galgalim)
+        private string[] collectFormattedVehicleData(out List<string> o_Galgalim)
         {
             string[] vehicleData = new string[10];
             o_Galgalim = null;
@@ -165,6 +167,7 @@ namespace Ex03.ConsoleUI
 
             string inputType = Console.ReadLine();
 
+            //can use contains on VehicleCreator.SupportedTypes
             foreach (string type in VehicleCreator.SupportedTypes)
             {
                 if (string.Equals(type, inputType, StringComparison.OrdinalIgnoreCase))
@@ -207,7 +210,6 @@ namespace Ex03.ConsoleUI
             {
                 io_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.TierModel] = "0";
                 io_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.CurrAirPressure] = "0";
-
                 o_WheelData = new List<string>();
 
                 for (int i = 0; i < i_NumOfWheels; i++)
