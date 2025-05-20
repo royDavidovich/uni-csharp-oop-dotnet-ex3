@@ -68,14 +68,20 @@ namespace Ex03.GarageLogic
 
         protected abstract void InitVehiclesGalgalimList(string[] i_GalgalimData);
 
-        protected void InitIdenticalWheelsFromDB(string i_Manufacturer, string i_CurrentAirPressureStr, int i_NumberOfWheels,
+        protected void InitAndSetIdenticalWheelsFromDB(string i_Manufacturer, string i_CurrentAirPressureStr, int i_NumberOfWheels,
                                         float i_MaxAirPressure)
         {
             if (!float.TryParse(i_CurrentAirPressureStr, out float currentPressure))
             {
-                throw new FormatException($"Invalid air pressure value: {i_CurrentAirPressureStr}");
+                throw new FormatException($"Invalid current air pressure value: {i_CurrentAirPressureStr}");
             }
 
+            SetIdenticalWheels(i_Manufacturer, currentPressure, i_NumberOfWheels, i_MaxAirPressure);
+        }
+
+        public void SetIdenticalWheels(string i_Manufacturer, float i_CurrentPressure, int i_NumberOfWheels,
+                                       float i_MaxAirPressure)
+        {
             r_Wheels.Clear();
 
             for (int i = 0; i < i_NumberOfWheels; i++)
@@ -84,23 +90,8 @@ namespace Ex03.GarageLogic
                                  {
                                      Manufacturer = i_Manufacturer,
                                      MaxAirPressure = i_MaxAirPressure,
-                                     CurrentAirPressure = currentPressure
-                                 });
-            }
-        }
-
-        public void SetIdenticalWheels(int i_NumWheels, Wheel i_Template)
-        {
-            r_Wheels.Clear();
-
-            for (int i = 0; i < i_NumWheels; i++)
-            {
-                r_Wheels.Add(new Wheel
-                                 {
-                                     Manufacturer = i_Template.Manufacturer,
-                                     MaxAirPressure = i_Template.MaxAirPressure,
-                                     CurrentAirPressure = i_Template.CurrentAirPressure
-                                 });
+                                     CurrentAirPressure = i_CurrentPressure
+                });
             }
         }
 

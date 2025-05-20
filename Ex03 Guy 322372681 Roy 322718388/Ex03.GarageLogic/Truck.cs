@@ -79,7 +79,7 @@ namespace Ex03.GarageLogic
             string manufacturer = i_GalgalimData[(int)eGeneralDataIndicesInFile.TierModel];
             string pressureStr = i_GalgalimData[(int)eGeneralDataIndicesInFile.CurrAirPressure];
 
-            InitIdenticalWheelsFromDB(manufacturer, pressureStr, k_NumberOfWheels, k_MaxAirPressure);
+            InitAndSetIdenticalWheelsFromDB(manufacturer, pressureStr, k_NumberOfWheels, k_MaxAirPressure);
         }
     }
 }
