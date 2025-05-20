@@ -9,7 +9,7 @@ namespace Ex03.GarageLogic
         protected FuelVehicle m_Engine;
         protected const float k_MaxFuelAmount = 5.8f;
         protected const int k_MaxAirPressure = 30;
-        protected const string k_GasType = "Octan98";
+        protected const string k_GasType = "Octan98"; //where enum
 
         public FuelMotorcycle(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
@@ -17,23 +17,24 @@ namespace Ex03.GarageLogic
             m_Engine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
         }
 
-        protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
+        protected override void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)
         {
+<<<<<<< HEAD
             if (float.TryParse(
-                   i_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.CurrFuelAmount],
-                   out float currFuelAmount))
+                   i_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.EnergyPercentage],
+                   out float currEnergyPercentage))
             {
-                m_Engine.CurrentFuelLevel = currFuelAmount;
-                this.r_EnergyPercentage = m_Engine.CalculateEnergyPercentage();
+                m_Engine.CurrentFuelLevel = m_Engine.CalculateCurrentFuelAmount(currEnergyPercentage);
+                EnergyPercentage = currEnergyPercentage;
             }
             else
             {
                 throw new ArgumentException("Invalid fuel amount");
             }
 
-            if (Enum.TryParse(
-                    i_VehicleData[(int)Motorcycle.eSpecificDataIndicesInFile.PermitType],
-                    out Motorcycle.ePermitTypes permitType))
+            string rawPermit = i_VehicleData[(int)Motorcycle.eSpecificDataIndicesInFile.PermitType].Trim();
+
+            if (Enum.TryParse(rawPermit, ignoreCase: true, out Motorcycle.ePermitTypes permitType))
             {
                 this.m_PermitType = permitType;
             }
@@ -41,6 +42,7 @@ namespace Ex03.GarageLogic
             {
                 throw new ArgumentException("Invalid Permit Type");
             }
+
 
             if (int.TryParse(
                     i_VehicleData[(int)Motorcycle.eSpecificDataIndicesInFile.EngineVolume],
@@ -52,6 +54,18 @@ namespace Ex03.GarageLogic
             {
                 throw new ArgumentException("Invalid Engine Volume");
             }
+=======
+            if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
+            {
+                throw new ArgumentException(
+                    $"Invalid energy percentage: {i_CurrentPercentageStr}",
+                    i_CurrentPercentageStr);
+            }
+
+            float liters = (energyPercentage / 100f * k_MaxFuelAmount);
+
+            m_Engine.CurrentFuelLevel = liters;
+>>>>>>> 7579dc63b1f919879e9ddab0313ba6e483ff06a1
         }
 
         protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
