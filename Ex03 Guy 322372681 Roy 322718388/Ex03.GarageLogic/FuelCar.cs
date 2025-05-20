@@ -8,7 +8,7 @@ namespace Ex03.GarageLogic
         protected FuelVehicle m_Engine;
         protected const float k_MaxFuelAmount = 5.8f;
         protected const int k_MaxAirPressure = 32;
-        protected const string k_GasType = "Octan95";
+        protected const string k_GasType = "Octan95"; //where enum
 
         public FuelCar(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)

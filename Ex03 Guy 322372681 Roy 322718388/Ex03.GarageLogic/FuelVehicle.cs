@@ -37,13 +37,13 @@ namespace Ex03.GarageLogic
             Octan98
         }
 
-        public FuelVehicle(float i_MaxFuelLevel, string i_GasType)
+        public FuelVehicle(float i_MaxFuelLevel, string i_GasType) //copilot fix for building only!
         {
-            CurrentFuelLevel = 0;
-            r_MaxFuelLevel = i_MaxFuelLevel;
+            r_MaxFuelLevel = i_MaxFuelLevel; // Assign readonly field first
+            m_CurrentFuelLevel = 0; // Initialize non-readonly field
             if (Enum.TryParse(i_GasType, out eGasType parsedGasType))
             {
-                r_GasType = parsedGasType;
+                r_GasType = parsedGasType; // Assign readonly field
             }
             else
             {

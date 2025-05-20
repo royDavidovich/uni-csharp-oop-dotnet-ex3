@@ -75,7 +75,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException($"Invalid Car Color: {i_CarColorStr}", nameof(i_CarColorStr));
+                throw new ArgumentException($"Invalid Car Color: {i_CarColorStr}", nameof(i_CarColorStr)); 
             }
         }
 

@@ -56,7 +56,7 @@ namespace Ex03.GarageLogic
                 throw new ArgumentException($"Air pressure {currentPressure} must be between 0 and {i_MaxAirPressure}", nameof(i_CurrentAirPressureStr));
             }
 
-            i_Wheels.Clear();
+            i_Wheels.Clear();  //why clear
 
             for (int i = 0; i < i_NumberOfWheels; i++)
             {
@@ -69,7 +69,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void SetIdenticalWheels(int i_NumWheels, Wheel i_Template)
+        public void SetIdenticalWheels(int i_NumWheels, Wheel i_Template)  //TODO: set exception
         {
             m_Wheels.Clear();
 
@@ -84,7 +84,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void SetWheelsIndividually(List<Wheel> i_Wheels)
+        public void SetWheelsIndividually(List<Wheel> i_Wheels) //explanation pls
         {
             m_Wheels.Clear();
             m_Wheels.AddRange(i_Wheels);

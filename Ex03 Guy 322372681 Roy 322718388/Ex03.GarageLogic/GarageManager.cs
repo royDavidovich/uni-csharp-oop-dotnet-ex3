@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Ex03.GarageLogic
 {
-    internal class GarageManager
+    public class GarageManager
     {
         private Garage m_MyGarage = new Garage();
         private const int k_VehicleTypeIndex = 0;
@@ -29,17 +29,6 @@ namespace Ex03.GarageLogic
                 currentVehicleFromDb.InitVehicleToGarage(vehicleInformation);
                 m_MyGarage.AddGarageEntry(currentVehicleFromDb);
             }
-        }
-
-        public static int Main()
-        {
-            GarageManager garageManager = new GarageManager();
-
-            garageManager.LoadVehiclesFromDb(
-                "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Vehicles.db");
-
-
-            return 0;
         }
     }
 }
