@@ -16,49 +16,26 @@ namespace Ex03.GarageLogic
             m_Battery = new ElectricVehicle(k_MaxFuelAmount);
         }
 
-        //protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
-        //{
-        //    if (float.TryParse(
-        //            i_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.CurrFuelAmount],
-        //            out float currentBatteryPower))
-        //    {
-        //        m_Battery.CurrentBatteryPower = currentBatteryPower;
-        //        this.r_EnergyPercentage = m_Battery.CalculateEnergyPercentage();
-        //    }
-        //    else
-        //    {
-        //        throw new ArgumentException("Invalid fuel amount");
-        //    }
-
-        //    if (Enum.TryParse(
-        //            i_VehicleData[(int)Motorcycle.eSpecificDataIndicesInFile.PermitType],
-        //            out Motorcycle.ePermitTypes permitType))
-        //    {
-        //        this.m_PermitType = permitType;
-        //    }
-        //    else
-        //    {
-        //        throw new ArgumentException("Invalid Permit Type");
-        //    }
-
-        //    if (int.TryParse(
-        //            i_VehicleData[(int)Motorcycle.eSpecificDataIndicesInFile.EngineVolume],
-        //            out int engineVolume))
-        //    {
-        //        this.EngineVolume = engineVolume;
-        //    }
-        //    else
-        //    {
-        //        throw new ArgumentException("Invalid Engine Volume");
-        //    }
-        //}
-
         protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
         {
             string manufacturer = i_GalgalimData[(int)eGeneralDataIndicesInFile.TierModel];
             string pressureStr = i_GalgalimData[(int)eGeneralDataIndicesInFile.CurrAirPressure];
 
             InitWheelsFromDb(manufacturer, pressureStr, k_NumberOfWheels, k_MaxAirPressure, i_MyWheels);
+        }
+
+        protected override void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)
+        {
+            if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
+            {
+                throw new ArgumentException(
+                    $"Invalid energy percentage: {i_CurrentPercentageStr}",
+                    i_CurrentPercentageStr);
+            }
+
+            float hours = (energyPercentage / 100f * k_MaxFuelAmount);
+
+            m_Battery.CurrentBatteryPower = hours;
         }
     }
 }

@@ -15,8 +15,11 @@ namespace Ex03.GarageLogic
             {
                 string[] vehicleInformation = line.Split(',');
                 string currentVehicleTypeFromDB = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType];
+                string ownerName = "";
+                string ownerPhone = "";
 
-                if(string.IsNullOrWhiteSpace(line)
+
+                if (string.IsNullOrWhiteSpace(line)
                    || !(VehicleCreator.SupportedTypes.Contains(currentVehicleTypeFromDB)))
                 {
                     continue;       //continue if empty line or doesn't fit format description
@@ -26,7 +29,7 @@ namespace Ex03.GarageLogic
                     currentVehicleTypeFromDB,
                     vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.LicensePlate],
                     vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.ModelName]);
-                currentVehicleFromDb.InitVehicleToGarage(vehicleInformation);
+                currentVehicleFromDb.InitVehicleInformation(vehicleInformation);
                 m_MyGarage.AddGarageEntry(currentVehicleFromDb);
             }
         }

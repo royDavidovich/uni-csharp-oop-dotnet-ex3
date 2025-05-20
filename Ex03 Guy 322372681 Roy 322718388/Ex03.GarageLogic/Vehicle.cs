@@ -14,13 +14,29 @@ namespace Ex03.GarageLogic
             EnergyPercentage = 3,
             TierModel = 4,
             CurrAirPressure = 5,
-            CurrFuelAmount = 6
+            OwnerName = 6,
+            OwnerPhone = 7
         }
 
         protected readonly string r_LicensePlate;
         protected readonly string r_ModelName;
-        protected float r_EnergyPercentage;
         private List<Wheel> m_Wheels = new List<Wheel>();
+
+        public string LicensePlate
+        {
+            get
+            {
+                return r_LicensePlate;
+            }
+        }
+
+        public string ModelName
+        {
+            get
+            {
+                return r_ModelName;
+            }
+        }
 
         protected Vehicle(string i_LicensePlate, string i_ModelName)
         {
@@ -28,12 +44,7 @@ namespace Ex03.GarageLogic
             this.r_ModelName = i_ModelName;
         }
 
-        public string LicensePlate
-        {
-            get { return r_LicensePlate; }
-        }
-
-        public void InitVehicleToGarage(string[] i_VehicleData)
+        public void InitVehicleInformation(string[] i_VehicleData)
         {
             InitVehicleSpecificInformation(i_VehicleData);
             InitVehicleGalgalimList(i_VehicleData, m_Wheels);
@@ -48,12 +59,16 @@ namespace Ex03.GarageLogic
         {
             if (!float.TryParse(i_CurrentAirPressureStr, out float currentPressure))
             {
-                throw new ArgumentException($"Invalid air pressure value: '{i_CurrentAirPressureStr}'", nameof(i_CurrentAirPressureStr));
+                throw new ArgumentException(
+                    $"Invalid air pressure value: '{i_CurrentAirPressureStr}'",
+                    i_CurrentAirPressureStr);
             }
 
             if (currentPressure < 0 || currentPressure > i_MaxAirPressure)
             {
-                throw new ArgumentException($"Air pressure {currentPressure} must be between 0 and {i_MaxAirPressure}", nameof(i_CurrentAirPressureStr));
+                throw new ArgumentException(
+                    $"Air pressure {currentPressure} must be between 0 and {i_MaxAirPressure}",
+                    i_CurrentAirPressureStr);
             }
 
             i_Wheels.Clear();

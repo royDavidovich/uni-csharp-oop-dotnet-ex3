@@ -15,8 +15,8 @@ namespace Ex03.GarageLogic
 
         protected enum eSpecificDataIndicesInFile
         {
-            PermitType = 7,
-            EngineVolume = 8
+            PermitType = 8,
+            EngineVolume = 9
         }
 
         protected const int k_NumberOfWheels = 2;
@@ -30,9 +30,20 @@ namespace Ex03.GarageLogic
 
         protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
         {
-            if (Enum.TryParse(
-                    i_VehicleData[(int)eSpecificDataIndicesInFile.PermitType],
-                    out ePermitTypes permitType))
+            string energyPctStr = i_VehicleData[(int)eGeneralDataIndicesInFile.EnergyPercentage];
+            string permitTypeStr = i_VehicleData[(int)eSpecificDataIndicesInFile.PermitType];
+            string engineVolumeStr = i_VehicleData[(int)eSpecificDataIndicesInFile.EngineVolume];
+
+            SetCurrentEnergyFromPercentage(energyPctStr);
+            parseAndSetPermitType(permitTypeStr);
+            parseAndSetEngineVolume(engineVolumeStr);
+        }
+
+        protected abstract void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr);
+
+        private void parseAndSetPermitType(string i_PermitTypeStr)
+        {
+            if (Enum.TryParse(i_PermitTypeStr, out ePermitTypes permitType))
             {
                 this.m_PermitType = permitType;
             }
@@ -40,10 +51,11 @@ namespace Ex03.GarageLogic
             {
                 throw new ArgumentException($"Invalid Permit Type: {permitType}");
             }
+        }
 
-            if (int.TryParse(
-                    i_VehicleData[(int)eSpecificDataIndicesInFile.EngineVolume],
-                    out int engineVolume))
+        private void parseAndSetEngineVolume(string i_EngineVolumeStr)
+        {
+            if (int.TryParse(i_EngineVolumeStr, out int engineVolume))
             {
                 this.EngineVolume = engineVolume;
             }
