@@ -30,14 +30,14 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public static int Main()
-        {
-            GarageManager garageManager = new GarageManager();
+        //public static int Main()
+        //{
+        //    GarageManager garageManager = new GarageManager();
 
-            garageManager.LoadVehiclesFromDb(
-                "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Vehicles.db");
+        //    garageManager.LoadVehiclesFromDb(
+        //        "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Vehicles.db");
 
-            return 0;
-        }
+        //    return 0;
+        //}
     }
 }
