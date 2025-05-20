@@ -19,7 +19,7 @@ namespace Ex03.GarageLogic
                 if(string.IsNullOrWhiteSpace(line)
                    || !(VehicleCreator.SupportedTypes.Contains(currentVehicleTypeFromDB)))
                 {
-                    continue;       //if empty line or doesn't fit format description, continue
+                    continue;       //continue if empty line or doesn't fit format description
                 }
 
                 Vehicle currentVehicleFromDb = VehicleCreator.CreateVehicle(

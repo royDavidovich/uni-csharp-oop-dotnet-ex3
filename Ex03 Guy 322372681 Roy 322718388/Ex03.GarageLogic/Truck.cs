@@ -28,26 +28,33 @@ namespace Ex03.GarageLogic
 
         protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
         {
-            if (bool.TryParse(
-                    i_VehicleData[(int)eSpecificDataIndicesInFile.IsHazardousCargoLoaded],
-                    out bool isHazardousCargoLoaded))
-            {
-                this.IsHazardousCargoLoaded = isHazardousCargoLoaded;
-            }
-            else
-            {
-                throw new ArgumentException("Invalid Hazardous Cargo Loaded Argument");
-            }
+            string isHazardousCargoLoadedStr = i_VehicleData[(int)eSpecificDataIndicesInFile.IsHazardousCargoLoaded];
+            string cargoVolumeStr = i_VehicleData[(int)eSpecificDataIndicesInFile.CargoVolume];
 
-            if (float.TryParse(
-                    i_VehicleData[(int)eSpecificDataIndicesInFile.CargoVolume],
-                    out float cargoVolume))
+            parseAndSetIsHazardousCargo(isHazardousCargoLoadedStr);
+            parseAndSetCargoVolume(cargoVolumeStr);
+        }
+        private void parseAndSetIsHazardousCargo(string i_IsHazardousStr)
+        {
+            if (bool.TryParse(i_IsHazardousStr, out bool isHazardous))
             {
-                this.CargoVolume = cargoVolume;
+                this.IsHazardousCargoLoaded = isHazardous;
             }
             else
             {
-                throw new ArgumentException("Invalid Cargo Volume");
+                throw new ArgumentException($"Invalid Hazardous Cargo value: {i_IsHazardousStr}", nameof(i_IsHazardousStr));
+            }
+        }
+
+        private void parseAndSetCargoVolume(string i_CargoVolumeStr)
+        {
+            if (float.TryParse(i_CargoVolumeStr, out float volume))
+            {
+                this.CargoVolume = volume;
+            }
+            else
+            {
+                throw new ArgumentException($"Invalid Cargo Volume: {i_CargoVolumeStr}", nameof(i_CargoVolumeStr));
             }
         }
 
