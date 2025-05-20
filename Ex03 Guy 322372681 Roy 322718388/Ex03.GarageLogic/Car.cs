@@ -6,6 +6,8 @@ namespace Ex03.GarageLogic
     internal abstract class Car : Vehicle
     {
         protected const int k_NumberOfWheels = 5;
+        protected const int k_MinNumOfDoors = 2;
+        protected const int k_MaxNumOfDoors = 5;
         protected eCarColor e_Color;
         protected int m_NumberOfDoors;
 
@@ -40,9 +42,12 @@ namespace Ex03.GarageLogic
             }
             set
             {
-                if (value < 2 || value > 5)
+                if (value < k_MinNumOfDoors || value > k_MaxNumOfDoors)
                 {
-                    throw new ValueRangeException("Car door number must be between 2 and 5.");
+                    throw new ValueRangeException(
+                        $"Invalid number of car doors. Must be between {k_MinNumOfDoors} and {k_MaxNumOfDoors}.",
+                        k_MinNumOfDoors,
+                        k_MaxNumOfDoors);
                 }
 
                 m_NumberOfDoors = value;
@@ -51,26 +56,34 @@ namespace Ex03.GarageLogic
 
         protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
         {
-            if (Enum.TryParse(
-                    i_VehicleData[(int)eSpecificDataIndicesInFile.CarColor],
-                    out eCarColor carColor))
+            string carColorStr = i_VehicleData[(int)eSpecificDataIndicesInFile.CarColor];
+            string numberOfDoorsStr = i_VehicleData[(int)eSpecificDataIndicesInFile.NumberOfDoors];
+
+            parseAndSetCarColor(carColorStr);
+            parseAndSetNumberOfDoors(numberOfDoorsStr);
+        }
+
+        private void parseAndSetCarColor(string i_CarColorStr)
+        {
+            if (Enum.TryParse(i_CarColorStr, out eCarColor carColor))
             {
                 this.e_Color = carColor;
             }
             else
             {
-                throw new ArgumentException("Invalid Car Color");
+                throw new ArgumentException($"Invalid Car Color: {i_CarColorStr}", nameof(i_CarColorStr));
             }
+        }
 
-            if (int.TryParse(
-                    i_VehicleData[(int)eSpecificDataIndicesInFile.NumberOfDoors],
-                    out int numberOfDoors))
+        private void parseAndSetNumberOfDoors(string i_NumberOfDoorsStr)
+        {
+            if (int.TryParse(i_NumberOfDoorsStr, out int numDoors))
             {
-                this.NumberOfDoors = numberOfDoors;
+                this.NumberOfDoors = numDoors;
             }
             else
             {
-                throw new ArgumentException("Invalid Number Of Doors");
+                throw new ArgumentException($"Invalid Number Of Doors: {i_NumberOfDoorsStr}", nameof(i_NumberOfDoorsStr));
             }
         }
     }
