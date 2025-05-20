@@ -37,7 +37,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 494,
+          "DockedWidth": 619,
           "SelectedChildIndex": 0,
           "Children": [
             {
@@ -48,7 +48,7 @@
               "RelativeDocumentMoniker": "Ex03.GarageLogic\\GarageManager.cs",
               "ToolTip": "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\GarageManager.cs",
               "RelativeToolTip": "Ex03.GarageLogic\\GarageManager.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAjwCwAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-18T09:29:00.642Z",
               "IsPinned": true,
@@ -97,7 +97,7 @@
           ]
         },
         {
-          "DockedWidth": 224,
+          "DockedWidth": 99,
           "SelectedChildIndex": 2,
           "Children": [
             {

@@ -14,9 +14,6 @@ namespace Ex03.GarageLogic
             {
                 string[] vehicleInformation = line.Split(',');
                 string currentVehicleTypeFromDB = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType];
-                string ownerName = string.Empty;
-                string ownerPhone = string.Empty;
-
 
                 if (string.IsNullOrWhiteSpace(line)
                    || !(VehicleCreator.SupportedTypes.Contains(currentVehicleTypeFromDB)))
