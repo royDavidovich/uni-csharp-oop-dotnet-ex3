@@ -19,7 +19,6 @@ obj/
 *.log
 
 # Ignore database files if generated during runtime or testing
-*.db
 *.mdb
 *.sqlite
 
