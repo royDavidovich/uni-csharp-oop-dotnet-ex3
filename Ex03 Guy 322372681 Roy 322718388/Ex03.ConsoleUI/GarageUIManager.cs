@@ -102,18 +102,12 @@ namespace Ex03.ConsoleUI
 
         private void InsertNewVehicle()
         {
-            string[] data = collectDbFormattedVehicleData();
+            string[] data = collectDbFormattedVehicleData(out List<string> galgalim);
+            string userVehicleData = string.Join(",", data);
 
             try
             {
-                string vehicleType = data[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType];
-                string licensePlate = data[(int)Vehicle.eGeneralDataIndicesInFile.LicensePlate];
-                string modelName = data[(int)Vehicle.eGeneralDataIndicesInFile.ModelName];
-
-                Vehicle vehicle = VehicleCreator.CreateVehicle(vehicleType, licensePlate, modelName);
-                vehicle.InitVehicleInformation(data);
-                
-
+                m_GarageManager.LoadVehiclesFromUser(userVehicleData, galgalim);
                 Console.WriteLine("Vehicle added successfully!");
             }
             catch (Exception ex)
@@ -122,9 +116,11 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private string[] collectDbFormattedVehicleData()
+
+        private string[] collectDbFormattedVehicleData(out List<string> o_Galgalim)
         {
             string[] data = new string[10];
+            o_Galgalim = null;
 
             Console.WriteLine("Enter vehicle type:");
             foreach (string type in VehicleCreator.SupportedTypes)
@@ -162,24 +158,40 @@ namespace Ex03.ConsoleUI
             data[(int)Vehicle.eGeneralDataIndicesInFile.OwnerPhone] = Console.ReadLine();
 
             Console.Write("Do you want to enter the same wheel info for all wheels? (yes/no): ");
-            string answer = Console.ReadLine()?.ToLower();
+            string answer = Console.ReadLine()?.Trim().ToLower();
 
             if (answer == "yes")
             {
                 Console.Write("Enter wheel manufacturer: ");
                 data[(int)Vehicle.eGeneralDataIndicesInFile.TierModel] = Console.ReadLine();
-
                 Console.Write("Enter current air pressure: ");
                 data[(int)Vehicle.eGeneralDataIndicesInFile.CurrAirPressure] = Console.ReadLine();
             }
             else
             {
-                Console.WriteLine("Note: Our system only supports one wheel data for DB-style input.");
-                Console.WriteLine("We'll collect the first wheel info as representative.");
-                Console.Write("Enter wheel manufacturer for first wheel: ");
-                data[(int)Vehicle.eGeneralDataIndicesInFile.TierModel] = Console.ReadLine();
-                Console.Write("Enter air pressure for first wheel: ");
-                data[(int)Vehicle.eGeneralDataIndicesInFile.CurrAirPressure] = Console.ReadLine();
+                data[(int)Vehicle.eGeneralDataIndicesInFile.TierModel] = "0";
+                data[(int)Vehicle.eGeneralDataIndicesInFile.CurrAirPressure] = "0";
+
+                o_Galgalim = new List<string>();
+
+                Console.Write("How many wheels does this vehicle have? ");
+                string wheelsCountStr = Console.ReadLine();
+                if (!int.TryParse(wheelsCountStr, out int numWheels) || numWheels <= 0)
+                {
+                    throw new ArgumentException("Invalid number of wheels.");
+                }
+
+                for (int i = 0; i < numWheels; i++)
+                {
+                    Console.WriteLine($"Wheel {i + 1}:");
+                    Console.Write("Enter manufacturer: ");
+                    string manufacturer = Console.ReadLine();
+                    Console.Write("Enter current air pressure: ");
+                    string pressure = Console.ReadLine();
+
+                    o_Galgalim.Add(manufacturer);
+                    o_Galgalim.Add(pressure);
+                }
             }
 
             if (normalizedType == "FuelCar" || normalizedType == "ElectricCar")
@@ -206,5 +218,6 @@ namespace Ex03.ConsoleUI
 
             return data;
         }
+
     }
 }
