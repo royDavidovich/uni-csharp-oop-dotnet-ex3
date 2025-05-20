@@ -76,8 +76,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException($"Invalid Car Color: {i_CarColorStr}", 
-                    (i_CarColorStr));
+                throw new FormatException($"Invalid Car Color: {i_CarColorStr}");
             }
         }
 
@@ -89,7 +88,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException($"Invalid Number Of Doors: {i_NumberOfDoorsStr}");
+                throw new FormatException($"Invalid Number Of Doors: {i_NumberOfDoorsStr}");
             }
         }
     }

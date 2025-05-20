@@ -42,9 +42,7 @@ namespace Ex03.GarageLogic
         {
             if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
             {
-                throw new ArgumentException(
-                    $"Invalid energy percentage: {i_CurrentPercentageStr}",
-                    i_CurrentPercentageStr);
+                throw new FormatException($"Invalid energy percentage: {i_CurrentPercentageStr}");
             }
 
             float liters = (energyPercentage / 100f * k_MaxFuelAmount);
@@ -60,7 +58,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException($"Invalid Hazardous Cargo value: {i_IsHazardousStr}");
+                throw new FormatException($"Invalid Hazardous Cargo value: {i_IsHazardousStr}");
             }
         }
 
@@ -72,7 +70,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException($"Invalid Cargo Volume: {i_CargoVolumeStr}");
+                throw new FormatException($"Invalid Cargo Volume: {i_CargoVolumeStr}");
             }
         }
 

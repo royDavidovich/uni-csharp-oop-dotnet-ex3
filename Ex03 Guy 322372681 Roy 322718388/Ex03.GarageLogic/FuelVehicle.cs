@@ -27,7 +27,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException("Invalid gas type");
+                throw new FormatException("Invalid gas type");
             }
         }
 

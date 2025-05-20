@@ -65,9 +65,7 @@ namespace Ex03.GarageLogic
         {
             if (!float.TryParse(i_CurrentAirPressureStr, out float currentPressure))
             {
-                throw new ArgumentException(
-                    $"Invalid air pressure value: '{i_CurrentAirPressureStr}'",
-                    i_CurrentAirPressureStr);
+                throw new FormatException($"Invalid air pressure value: {i_CurrentAirPressureStr}");
             }
 
             if (currentPressure < 0 || currentPressure > i_MaxAirPressure)

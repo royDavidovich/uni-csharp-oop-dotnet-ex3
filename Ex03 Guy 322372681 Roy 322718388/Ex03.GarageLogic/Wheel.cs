@@ -28,6 +28,7 @@ namespace Ex03.GarageLogic
         }
 
         public string Manufacturer { get; set; }
+
         public float MaxAirPressure { get; set; }
 
         public void InflateWheel(float i_AirAmountToInflate)
