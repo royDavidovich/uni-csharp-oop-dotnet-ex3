@@ -60,7 +60,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                InitVehicleGalgalimList(Galgalim, r_Wheels);
+               // InitVehicleGalgalimList(Galgalim, r_Wheels);
             }
         }
 

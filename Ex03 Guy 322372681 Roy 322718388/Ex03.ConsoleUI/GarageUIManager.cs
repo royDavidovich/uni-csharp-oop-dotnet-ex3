@@ -1,7 +1,6 @@
 ﻿using Ex03.GarageLogic;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 
 namespace Ex03.ConsoleUI
 {
@@ -9,6 +8,10 @@ namespace Ex03.ConsoleUI
     {
         private GarageManager m_GarageManager = new GarageManager();
         public bool UserDecidedToExit { get; set; }
+
+        private const int k_CarWheels = 5;
+        private const int k_MotorcycleWheels = 2;
+        private const int k_TruckWheels = 12;
 
         private enum eUserOptions
         {
@@ -26,18 +29,20 @@ namespace Ex03.ConsoleUI
         public void Run()
         {
             greetUser();
+
             while (!UserDecidedToExit)
             {
                 try
                 {
                     eUserOptions choice = askForOption();
-                    handleChoice(choice);
+                    handleUserChoice(choice);
                 }
                 catch (ArgumentException ex)
                 {
                     Console.WriteLine($"Error: {ex.Message}");
                 }
             }
+
             sayGoodbyeToUser();
         }
 
@@ -54,9 +59,9 @@ namespace Ex03.ConsoleUI
 8. Show all the data for a specific vehicle.
 9. Exit our Garage.");
 
-            string input = Console.ReadLine();
+            string userInput = Console.ReadLine();
 
-            if (Enum.TryParse(input, out eUserOptions option) && Enum.IsDefined(typeof(eUserOptions), option))
+            if (Enum.TryParse(userInput, out eUserOptions option) && Enum.IsDefined(typeof(eUserOptions), option))
             {
                 return option;
             }
@@ -66,23 +71,26 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private void greetUser() => Console.WriteLine("Hello, and welcome to Roy & Guy Garage!");
-        private void sayGoodbyeToUser() => Console.WriteLine("Thank you for using our Garage, have a good day.");
-
-        private void handleChoice(eUserOptions i_choice)
+        private void greetUser()
         {
-            switch (i_choice)
+            Console.WriteLine("Hello, and welcome to Roy & Guy Garage!");
+        }
+
+        private void sayGoodbyeToUser()
+        {
+            Console.WriteLine("Thank you for using our Garage, have a good day.");
+        }
+
+        private void handleUserChoice(eUserOptions i_Choice)
+        {
+            switch (i_Choice)
             {
                 case eUserOptions.LoadVehiclesFromDb:
-                    try
-                    {
-                        m_GarageManager.LoadVehiclesFromDb("C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Vehicles.db");
-                    }
-                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                    loadVehiclesFromDatabase();
                     break;
 
                 case eUserOptions.InsertNewVehicle:
-                    InsertNewVehicle();
+                    insertNewVehicle();
                     break;
 
                 case eUserOptions.ShowLicensePlates:
@@ -100,20 +108,26 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private void InsertNewVehicle()
+        private void loadVehiclesFromDatabase()
         {
-            string[] data = collectDbFormattedVehicleData();
+            try
+            {
+                m_GarageManager.LoadVehiclesFromDb("C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Vehicles.db");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void insertNewVehicle()
+        {
+            string[] vehicleData = collectDbFormattedVehicleData(out List<string> wheelData);
+            string vehicleDataStr = string.Join(",", vehicleData);
 
             try
             {
-                string vehicleType = data[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType];
-                string licensePlate = data[(int)Vehicle.eGeneralDataIndicesInFile.LicensePlate];
-                string modelName = data[(int)Vehicle.eGeneralDataIndicesInFile.ModelName];
-
-                Vehicle vehicle = VehicleCreator.CreateVehicle(vehicleType, licensePlate, modelName);
-                vehicle.InitVehicleInformation(data);
-                
-
+                m_GarageManager.LoadVehiclesFromUser(vehicleDataStr, wheelData);
                 Console.WriteLine("Vehicle added successfully!");
             }
             catch (Exception ex)
@@ -122,89 +136,131 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private string[] collectDbFormattedVehicleData()
+        private string[] collectDbFormattedVehicleData(out List<string> o_Galgalim)
         {
-            string[] data = new string[10];
+            string[] vehicleData = new string[10];
+            o_Galgalim = null;
 
+            string vehicleType = askForVehicleType();
+            vehicleData[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType] = vehicleType;
+
+            collectBasicVehicleInfo(vehicleData);
+
+            int wheelCount = getWheelCountForType(vehicleType);
+            collectWheelInfo(vehicleData, out o_Galgalim, wheelCount);
+
+            collectTypeSpecificData(vehicleData, vehicleType);
+
+            return vehicleData;
+        }
+
+        private string askForVehicleType()
+        {
             Console.WriteLine("Enter vehicle type:");
+
             foreach (string type in VehicleCreator.SupportedTypes)
             {
                 Console.WriteLine("- " + type);
             }
 
             string inputType = Console.ReadLine();
-            string normalizedType = null;
+
             foreach (string type in VehicleCreator.SupportedTypes)
             {
                 if (string.Equals(type, inputType, StringComparison.OrdinalIgnoreCase))
                 {
-                    normalizedType = type;
-                    break;
+                    return type;
                 }
             }
 
-            if (normalizedType == null)
-            {
-                throw new ArgumentException("Invalid vehicle type.");
-            }
+            throw new ArgumentException("Invalid vehicle type.");
+        }
 
-            data[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType] = normalizedType;
-
+        private void collectBasicVehicleInfo(string[] io_VehicleData)
+        {
             Console.Write("Enter license plate: ");
-            data[(int)Vehicle.eGeneralDataIndicesInFile.LicensePlate] = Console.ReadLine();
+            io_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.LicensePlate] = Console.ReadLine();
             Console.Write("Enter model name: ");
-            data[(int)Vehicle.eGeneralDataIndicesInFile.ModelName] = Console.ReadLine();
+            io_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.ModelName] = Console.ReadLine();
             Console.Write("Enter energy percentage (0-100): ");
-            data[(int)Vehicle.eGeneralDataIndicesInFile.EnergyPercentage] = Console.ReadLine();
+            io_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.EnergyPercentage] = Console.ReadLine();
             Console.Write("Enter owner name: ");
-            data[(int)Vehicle.eGeneralDataIndicesInFile.OwnerName] = Console.ReadLine();
+            io_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.OwnerName] = Console.ReadLine();
             Console.Write("Enter owner phone: ");
-            data[(int)Vehicle.eGeneralDataIndicesInFile.OwnerPhone] = Console.ReadLine();
+            io_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.OwnerPhone] = Console.ReadLine();
+        }
 
+        private void collectWheelInfo(string[] io_VehicleData, out List<string> o_WheelData, int i_NumOfWheels)
+        {
+            o_WheelData = null;
             Console.Write("Do you want to enter the same wheel info for all wheels? (yes/no): ");
-            string answer = Console.ReadLine()?.ToLower();
+            string answer = Console.ReadLine()?.Trim().ToLower();
 
             if (answer == "yes")
             {
                 Console.Write("Enter wheel manufacturer: ");
-                data[(int)Vehicle.eGeneralDataIndicesInFile.TierModel] = Console.ReadLine();
-
+                io_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.TierModel] = Console.ReadLine();
                 Console.Write("Enter current air pressure: ");
-                data[(int)Vehicle.eGeneralDataIndicesInFile.CurrAirPressure] = Console.ReadLine();
+                io_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.CurrAirPressure] = Console.ReadLine();
             }
             else
             {
-                Console.WriteLine("Note: Our system only supports one wheel data for DB-style input.");
-                Console.WriteLine("We'll collect the first wheel info as representative.");
-                Console.Write("Enter wheel manufacturer for first wheel: ");
-                data[(int)Vehicle.eGeneralDataIndicesInFile.TierModel] = Console.ReadLine();
-                Console.Write("Enter air pressure for first wheel: ");
-                data[(int)Vehicle.eGeneralDataIndicesInFile.CurrAirPressure] = Console.ReadLine();
-            }
+                io_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.TierModel] = "0";
+                io_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.CurrAirPressure] = "0";
 
-            if (normalizedType == "FuelCar" || normalizedType == "ElectricCar")
+                o_WheelData = new List<string>();
+
+                for (int i = 0; i < i_NumOfWheels; i++)
+                {
+                    Console.WriteLine($"Wheel {i + 1}:");
+                    Console.Write("Enter manufacturer: ");
+                    o_WheelData.Add(Console.ReadLine());
+                    Console.Write("Enter current air pressure: ");
+                    o_WheelData.Add(Console.ReadLine());
+                }
+            }
+        }
+
+        private int getWheelCountForType(string i_Type)
+        {
+            switch (i_Type)
+            {
+                case "Truck":
+                    return k_TruckWheels;
+                case "FuelCar":
+                case "ElectricCar":
+                    return k_CarWheels;
+                case "FuelMotorcycle":
+                case "ElectricMotorcycle":
+                    return k_MotorcycleWheels;
+                default:
+                    return 0;
+            }
+        }
+
+        private void collectTypeSpecificData(string[] io_VehicleData, string i_Type)
+        {
+            if (i_Type == "FuelCar" || i_Type == "ElectricCar")
             {
                 Console.Write("Enter car color (Yellow, Black, White, Silver): ");
-                data[8] = Console.ReadLine();
+                io_VehicleData[8] = Console.ReadLine();
                 Console.Write("Enter number of doors (2–5): ");
-                data[9] = Console.ReadLine();
+                io_VehicleData[9] = Console.ReadLine();
             }
-            else if (normalizedType == "FuelMotorcycle" || normalizedType == "ElectricMotorcycle")
+            else if (i_Type == "FuelMotorcycle" || i_Type == "ElectricMotorcycle")
             {
                 Console.Write("Enter permit type (A, A2, AB, B2): ");
-                data[8] = Console.ReadLine();
+                io_VehicleData[8] = Console.ReadLine();
                 Console.Write("Enter engine volume: ");
-                data[9] = Console.ReadLine();
+                io_VehicleData[9] = Console.ReadLine();
             }
-            else if (normalizedType == "Truck")
+            else if (i_Type == "Truck")
             {
                 Console.Write("Is hazardous cargo loaded? (true/false): ");
-                data[8] = Console.ReadLine();
+                io_VehicleData[8] = Console.ReadLine();
                 Console.Write("Enter cargo volume: ");
-                data[9] = Console.ReadLine();
+                io_VehicleData[9] = Console.ReadLine();
             }
-
-            return data;
         }
     }
 }
