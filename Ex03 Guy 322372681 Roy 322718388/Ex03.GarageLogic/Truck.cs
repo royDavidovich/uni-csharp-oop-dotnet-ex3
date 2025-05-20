@@ -17,14 +17,15 @@ namespace Ex03.GarageLogic
             CargoVolume = 9
         }
 
-        public bool IsHazardousCargoLoaded { get; set; }
-        public float CargoVolume { get; set; }
-
-        public Truck(string i_LicensePlate, string i_ModelName)
+        protected Truck(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
         {
             m_Engine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
         }
+
+        public bool IsHazardousCargoLoaded { get; set; }
+
+        public float CargoVolume { get; set; }
 
         protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
         {
@@ -35,37 +36,6 @@ namespace Ex03.GarageLogic
             SetCurrentEnergyFromPercentage(energyPctStr);
             parseAndSetIsHazardousCargo(isHazardousCargoLoadedStr);
             parseAndSetCargoVolume(cargoVolumeStr);
-        }
-        private void parseAndSetIsHazardousCargo(string i_IsHazardousStr)
-        {
-            if (bool.TryParse(i_IsHazardousStr, out bool isHazardous))
-            {
-                this.IsHazardousCargoLoaded = isHazardous;
-            }
-            else
-            {
-                throw new ArgumentException($"Invalid Hazardous Cargo value: {i_IsHazardousStr}", nameof(i_IsHazardousStr));
-            }
-        }
-
-        private void parseAndSetCargoVolume(string i_CargoVolumeStr)
-        {
-            if (float.TryParse(i_CargoVolumeStr, out float volume))
-            {
-                this.CargoVolume = volume;
-            }
-            else
-            {
-                throw new ArgumentException($"Invalid Cargo Volume: {i_CargoVolumeStr}", nameof(i_CargoVolumeStr));
-            }
-        }
-
-        protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
-        {
-            string manufacturer = i_GalgalimData[(int)eGeneralDataIndicesInFile.TierModel];
-            string pressureStr = i_GalgalimData[(int)eGeneralDataIndicesInFile.CurrAirPressure];
-
-            InitWheelsFromDb(manufacturer, pressureStr, k_NumberOfWheels, k_MaxAirPressure, i_MyWheels);
         }
 
         protected void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)
@@ -80,6 +50,38 @@ namespace Ex03.GarageLogic
             float liters = (energyPercentage / 100f * k_MaxFuelAmount);
 
             m_Engine.CurrentFuelLevel = liters;
+        }
+
+        private void parseAndSetIsHazardousCargo(string i_IsHazardousStr)
+        {
+            if (bool.TryParse(i_IsHazardousStr, out bool isHazardous))
+            {
+                this.IsHazardousCargoLoaded = isHazardous;
+            }
+            else
+            {
+                throw new ArgumentException($"Invalid Hazardous Cargo value: {i_IsHazardousStr}");
+            }
+        }
+
+        private void parseAndSetCargoVolume(string i_CargoVolumeStr)
+        {
+            if (float.TryParse(i_CargoVolumeStr, out float volume))
+            {
+                this.CargoVolume = volume;
+            }
+            else
+            {
+                throw new ArgumentException($"Invalid Cargo Volume: {i_CargoVolumeStr}");
+            }
+        }
+
+        protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
+        {
+            string manufacturer = i_GalgalimData[(int)eGeneralDataIndicesInFile.TierModel];
+            string pressureStr = i_GalgalimData[(int)eGeneralDataIndicesInFile.CurrAirPressure];
+
+            InitWheelsFromDb(manufacturer, pressureStr, k_NumberOfWheels, k_MaxAirPressure, i_MyWheels);
         }
     }
 }

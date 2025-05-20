@@ -5,6 +5,10 @@ namespace Ex03.GarageLogic
 {
     internal abstract class Motorcycle : Vehicle
     {
+        protected const int k_NumberOfWheels = 2;
+        private int m_EngineVolume;
+        protected ePermitTypes m_PermitType;
+
         protected enum ePermitTypes
         {
             A,
@@ -19,13 +23,27 @@ namespace Ex03.GarageLogic
             EngineVolume = 9
         }
 
-        protected const int k_NumberOfWheels = 2;
-        protected ePermitTypes m_PermitType;
-        public int EngineVolume { get; set; }
-
         protected Motorcycle(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
         {
+        }
+
+        public int EngineVolume
+        {
+            get
+            {
+                return m_EngineVolume;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException(
+                        $"Engine volume must be a positive integer; got {value}.");
+                }
+
+                m_EngineVolume = value;
+            }
         }
 
         protected override void InitVehicleSpecificInformation(string[] i_VehicleData)

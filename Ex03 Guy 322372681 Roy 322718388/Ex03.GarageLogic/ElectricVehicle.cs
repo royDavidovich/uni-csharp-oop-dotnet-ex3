@@ -9,6 +9,12 @@ namespace Ex03.GarageLogic
         private float m_CurrentBatteryPower;
         private readonly float r_MaxBatteryPower;
 
+        public ElectricVehicle(float i_MaxBatteryPower)
+        {
+            m_CurrentBatteryPower = k_MinBatteryPower;
+            r_MaxBatteryPower = i_MaxBatteryPower;
+        }
+
         public float CurrentBatteryPower
         {
             get
@@ -37,12 +43,6 @@ namespace Ex03.GarageLogic
             {
                 return ((CurrentBatteryPower / r_MaxBatteryPower) * 100);
             }
-        }
-
-        public ElectricVehicle(float i_MaxBatteryPower)
-        {
-            m_CurrentBatteryPower = 0;
-            r_MaxBatteryPower = i_MaxBatteryPower;
         }
     }
 }

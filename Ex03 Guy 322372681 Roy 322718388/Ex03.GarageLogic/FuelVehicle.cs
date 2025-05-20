@@ -9,6 +9,28 @@ namespace Ex03.GarageLogic
         private readonly float r_MaxFuelLevel;
         private readonly eGasType r_GasType;
 
+        public enum eGasType
+        {
+            Soler,
+            Octan95,
+            Octan96,
+            Octan98
+        }
+
+        public FuelVehicle(float i_MaxFuelLevel, string i_GasType)
+        {
+            m_CurrentFuelLevel = 0;
+            r_MaxFuelLevel = i_MaxFuelLevel;
+            if (Enum.TryParse(i_GasType, out eGasType parsedGasType))
+            {
+                r_GasType = parsedGasType;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid gas type");
+            }
+        }
+
         public float CurrentFuelLevel
         {
             get
@@ -37,26 +59,6 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public enum eGasType
-        {
-            Soler,
-            Octan95,
-            Octan96,
-            Octan98
-        }
 
-        public FuelVehicle(float i_MaxFuelLevel, string i_GasType)
-        {
-            m_CurrentFuelLevel = 0;
-            r_MaxFuelLevel = i_MaxFuelLevel;
-            if (Enum.TryParse(i_GasType, out eGasType parsedGasType))
-            {
-                r_GasType = parsedGasType;
-            }
-            else
-            {
-                throw new ArgumentException("Invalid gas type", nameof(i_GasType));
-            }
-        }
     }
 }

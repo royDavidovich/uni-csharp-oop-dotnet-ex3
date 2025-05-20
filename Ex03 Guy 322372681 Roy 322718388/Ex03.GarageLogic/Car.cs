@@ -18,20 +18,16 @@ namespace Ex03.GarageLogic
             White,
             Silver
         }
+
         protected enum eSpecificDataIndicesInFile
         {
             CarColor = 8,
             NumberOfDoors = 9
         }
 
-        public Car(string i_LicensePlate, string i_ModelName)
+        protected Car(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
         {
-        }
-
-        protected eCarColor Color
-        {
-            get { return e_Color; }
         }
 
         public int NumberOfDoors
@@ -52,6 +48,11 @@ namespace Ex03.GarageLogic
 
                 m_NumberOfDoors = value;
             }
+        }
+
+        protected eCarColor Color
+        {
+            get { return e_Color; }
         }
 
         protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
@@ -75,7 +76,8 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException($"Invalid Car Color: {i_CarColorStr}", nameof(i_CarColorStr));
+                throw new ArgumentException($"Invalid Car Color: {i_CarColorStr}", 
+                    (i_CarColorStr));
             }
         }
 
@@ -87,7 +89,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException($"Invalid Number Of Doors: {i_NumberOfDoorsStr}", nameof(i_NumberOfDoorsStr));
+                throw new ArgumentException($"Invalid Number Of Doors: {i_NumberOfDoorsStr}");
             }
         }
     }

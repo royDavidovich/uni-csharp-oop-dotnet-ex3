@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
     internal class FuelCar : Car
     {
         protected FuelVehicle m_Engine;
-        protected const float k_MaxFuelAmount = 45f;
+        protected const float k_MaxFuelAmount = 48f;
         protected const int k_MaxAirPressure = 32;
         protected const string k_GasType = "Octan95";
 
