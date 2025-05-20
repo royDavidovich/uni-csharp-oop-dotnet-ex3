@@ -3,19 +3,23 @@
   "WorkspaceRootPath": "C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\ex03.garagelogic\\garagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\garagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7478269-C54F-4D28-B552-80D993D45B52}|Ex03.ConsoleUI\\Ex03.ConsoleUI.csproj|C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\ex03.consoleui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7478269-C54F-4D28-B552-80D993D45B52}|Ex03.ConsoleUI\\Ex03.ConsoleUI.csproj|solutionrelative:ex03.consoleui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\ex03.garagelogic\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E7478269-C54F-4D28-B552-80D993D45B52}|Ex03.ConsoleUI\\Ex03.ConsoleUI.csproj|c:\\users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.consoleui\\garageuimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E7478269-C54F-4D28-B552-80D993D45B52}|Ex03.ConsoleUI\\Ex03.ConsoleUI.csproj|solutionrelative:ex03.consoleui\\garageuimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\garagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\garagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\wheel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\ex03.garagelogic\\wheel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\wheel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -31,15 +35,11 @@
       "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\vehiclecreator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E7478269-C54F-4D28-B552-80D993D45B52}|Ex03.ConsoleUI\\Ex03.ConsoleUI.csproj|C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\ex03.consoleui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E7478269-C54F-4D28-B552-80D993D45B52}|Ex03.ConsoleUI\\Ex03.ConsoleUI.csproj|solutionrelative:ex03.consoleui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\ex03.garagelogic\\fuelcar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\fuelcar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|c:\\users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\ex03 guy 322372681 roy 322718388\\ex03.garagelogic\\electricmotorcycle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\ex03.garagelogic\\electricmotorcycle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{80786283-FD62-489F-93F6-7950CABFC843}|Ex03.GarageLogic\\Ex03.GarageLogic.csproj|solutionrelative:ex03.garagelogic\\electricmotorcycle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -58,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 109,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
@@ -71,7 +71,19 @@
               "ViewState": "AgIAABEAAAAAAAAAAAAQwB4AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-19T17:12:43.288Z",
-              "IsPinned": true,
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GarageUIManager.cs",
+              "DocumentMoniker": "C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.ConsoleUI\\GarageUIManager.cs",
+              "RelativeDocumentMoniker": "Ex03.ConsoleUI\\GarageUIManager.cs",
+              "ToolTip": "C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.ConsoleUI\\GarageUIManager.cs",
+              "RelativeToolTip": "Ex03.ConsoleUI\\GarageUIManager.cs",
+              "ViewState": "AgIAAJ4AAAAAAAAAAAAAANIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T17:18:29.236Z",
               "EditorCaption": ""
             },
             {
@@ -92,7 +104,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Wheel.cs",
               "DocumentMoniker": "C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\Wheel.cs",
               "RelativeDocumentMoniker": "Ex03.GarageLogic\\Wheel.cs",
@@ -100,18 +112,17 @@
               "RelativeToolTip": "Ex03.GarageLogic\\Wheel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T18:18:00.441Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T18:18:00.441Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "GarageManager.cs",
               "DocumentMoniker": "C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\GarageManager.cs",
               "RelativeDocumentMoniker": "Ex03.GarageLogic\\GarageManager.cs",
-              "ToolTip": "C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\GarageManager.cs",
-              "RelativeToolTip": "Ex03.GarageLogic\\GarageManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAgAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\GarageManager.cs*",
+              "RelativeToolTip": "Ex03.GarageLogic\\GarageManager.cs*",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAEUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-20T17:51:27.652Z",
               "EditorCaption": ""
@@ -124,7 +135,7 @@
               "RelativeDocumentMoniker": "Ex03.GarageLogic\\Vehicle.cs",
               "ToolTip": "C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\Vehicle.cs",
               "RelativeToolTip": "Ex03.GarageLogic\\Vehicle.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAYwFwAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAIwD4AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-20T17:39:42.532Z",
               "EditorCaption": ""
@@ -139,12 +150,11 @@
               "RelativeToolTip": "Ex03.GarageLogic\\ElectricMotorcycle.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T17:37:03.225Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T17:37:03.225Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "VehicleCreator.cs",
               "DocumentMoniker": "C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\VehicleCreator.cs",
               "RelativeDocumentMoniker": "Ex03.GarageLogic\\VehicleCreator.cs",
@@ -152,8 +162,7 @@
               "RelativeToolTip": "Ex03.GarageLogic\\VehicleCreator.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T16:09:28.462Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T16:09:28.462Z"
             },
             {
               "$type": "Document",
@@ -165,12 +174,11 @@
               "RelativeToolTip": "Ex03.GarageLogic\\FuelCar.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T16:07:15.31Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T16:07:15.31Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Truck.cs",
               "DocumentMoniker": "C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\Truck.cs",
               "RelativeDocumentMoniker": "Ex03.GarageLogic\\Truck.cs",
@@ -178,12 +186,11 @@
               "RelativeToolTip": "Ex03.GarageLogic\\Truck.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAQwCMAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T15:55:54.049Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T15:55:54.049Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.ConsoleUI\\Program.cs",
               "RelativeDocumentMoniker": "Ex03.ConsoleUI\\Program.cs",
@@ -196,7 +203,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ElectricCar.cs",
               "DocumentMoniker": "C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.GarageLogic\\ElectricCar.cs",
               "RelativeDocumentMoniker": "Ex03.GarageLogic\\ElectricCar.cs",
@@ -204,8 +211,7 @@
               "RelativeToolTip": "Ex03.GarageLogic\\ElectricCar.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAlwCIAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T09:00:18.85Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T09:00:18.85Z"
             },
             {
               "$type": "Document",
@@ -217,21 +223,7 @@
               "RelativeToolTip": "Ex03.GarageLogic\\Car.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T08:38:09.071Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GarageUIManager.cs",
-              "DocumentMoniker": "C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.ConsoleUI\\GarageUIManager.cs",
-              "RelativeDocumentMoniker": "Ex03.ConsoleUI\\GarageUIManager.cs",
-              "ToolTip": "C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Ex03.ConsoleUI\\GarageUIManager.cs*",
-              "RelativeToolTip": "Ex03.ConsoleUI\\GarageUIManager.cs*",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAAAHIAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T17:18:29.236Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T08:38:09.071Z"
             }
           ]
         }
