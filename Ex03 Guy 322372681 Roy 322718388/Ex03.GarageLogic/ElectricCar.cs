@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
@@ -33,6 +33,19 @@ namespace Ex03.GarageLogic
             string pressureStr = i_GalgalimData[(int)eGeneralDataIndicesInFile.CurrAirPressure];
 
             InitWheelsFromDb(manufacturer, pressureStr, k_NumberOfWheels, k_MaxAirPressure, i_MyWheels);
+        }
+
+        protected override void SetCurrentEnergyAmount(string i_CurrentAmountStr)
+        {
+            if (float.TryParse(i_CurrentAmountStr, out float amount))
+            {
+                m_Battery.CurrentBatteryPower = amount;
+                //TODO HANDLE ENERGY PERCANTAGE
+            }
+            else
+            {
+                throw new ArgumentException($"Invalid fuel amount: {amount}");
+            }
         }
     }
 }

@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Ex03.GarageLogic
 {
-    internal class GarageManager
+    public class GarageManager
     {
         private readonly Garage r_MyGarage = new Garage();
 

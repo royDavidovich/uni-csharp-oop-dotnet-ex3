@@ -75,7 +75,7 @@ namespace Ex03.GarageLogic
                     i_CurrentAirPressureStr);
             }
 
-            i_Wheels.Clear();
+            i_Wheels.Clear();  //why clear
 
             for (int i = 0; i < i_NumberOfWheels; i++)
             {
@@ -88,7 +88,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void SetIdenticalWheels(int i_NumWheels, Wheel i_Template)
+        public void SetIdenticalWheels(int i_NumWheels, Wheel i_Template)  //TODO: set exception
         {
             r_Wheels.Clear();
 
@@ -103,7 +103,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void SetWheelsIndividually(List<Wheel> i_Wheels)
+        public void SetWheelsIndividually(List<Wheel> i_Wheels) //explanation pls
         {
             r_Wheels.Clear();
             r_Wheels.AddRange(i_Wheels);
