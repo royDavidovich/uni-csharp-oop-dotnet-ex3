@@ -5,8 +5,7 @@ namespace Ex03.GarageLogic
 {
     internal class GarageManager
     {
-        private Garage m_MyGarage = new Garage();
-        private const int k_VehicleTypeIndex = 0;
+        private readonly Garage r_MyGarage = new Garage();
 
         public void LoadVehiclesFromDb(string i_FilePath)
         {
@@ -15,8 +14,8 @@ namespace Ex03.GarageLogic
             {
                 string[] vehicleInformation = line.Split(',');
                 string currentVehicleTypeFromDB = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType];
-                string ownerName = "";
-                string ownerPhone = "";
+                string ownerName = string.Empty;
+                string ownerPhone = string.Empty;
 
 
                 if (string.IsNullOrWhiteSpace(line)
@@ -30,7 +29,7 @@ namespace Ex03.GarageLogic
                     vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.LicensePlate],
                     vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.ModelName]);
                 currentVehicleFromDb.InitVehicleInformation(vehicleInformation);
-                m_MyGarage.AddGarageEntry(currentVehicleFromDb);
+                r_MyGarage.AddGarageEntry(currentVehicleFromDb);
             }
         }
 

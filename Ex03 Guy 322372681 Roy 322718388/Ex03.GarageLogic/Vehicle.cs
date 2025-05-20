@@ -20,7 +20,11 @@ namespace Ex03.GarageLogic
 
         protected readonly string r_LicensePlate;
         protected readonly string r_ModelName;
-        private List<Wheel> m_Wheels = new List<Wheel>();
+        private readonly List<Wheel> r_Wheels = new List<Wheel>();
+
+        protected string OwnerName { get; set; }
+
+        protected string OwnerPhone { get; set; }
 
         public string LicensePlate
         {
@@ -30,7 +34,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public string ModelName
+        protected string ModelName
         {
             get
             {
@@ -46,8 +50,10 @@ namespace Ex03.GarageLogic
 
         public void InitVehicleInformation(string[] i_VehicleData)
         {
+            this.OwnerName = i_VehicleData[(int)eGeneralDataIndicesInFile.OwnerName];
+            this.OwnerPhone = i_VehicleData[(int)eGeneralDataIndicesInFile.OwnerPhone];
             InitVehicleSpecificInformation(i_VehicleData);
-            InitVehicleGalgalimList(i_VehicleData, m_Wheels);
+            InitVehicleGalgalimList(i_VehicleData, r_Wheels);
         }
 
         protected abstract void InitVehicleSpecificInformation(string[] i_VehicleData);
@@ -86,11 +92,11 @@ namespace Ex03.GarageLogic
 
         public void SetIdenticalWheels(int i_NumWheels, Wheel i_Template)
         {
-            m_Wheels.Clear();
+            r_Wheels.Clear();
 
             for (int i = 0; i < i_NumWheels; i++)
             {
-                m_Wheels.Add(new Wheel
+                r_Wheels.Add(new Wheel
                                  {
                                      Manufacturer = i_Template.Manufacturer,
                                      MaxAirPressure = i_Template.MaxAirPressure,
@@ -101,8 +107,8 @@ namespace Ex03.GarageLogic
 
         public void SetWheelsIndividually(List<Wheel> i_Wheels)
         {
-            m_Wheels.Clear();
-            m_Wheels.AddRange(i_Wheels);
+            r_Wheels.Clear();
+            r_Wheels.AddRange(i_Wheels);
         }
     }
 }

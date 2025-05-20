@@ -17,7 +17,7 @@ namespace Ex03.GarageLogic
             CargoVolume = 9
         }
 
-        protected Truck(string i_LicensePlate, string i_ModelName)
+        public Truck(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
         {
             m_Engine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
