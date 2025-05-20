@@ -10,7 +10,6 @@ namespace Ex03.GarageLogic
         protected const float k_MaxFuelAmount = 135f;
         protected const int k_MaxAirPressure = 27;
         protected const string k_GasType = "Soler";
-        protected int m_NumberOfDoors;
 
         protected enum eSpecificDataIndicesInFile
         {
@@ -18,22 +17,41 @@ namespace Ex03.GarageLogic
             CargoVolume = 9
         }
 
-        public bool IsHazardousCargoLoaded { get; set; }
-        public float CargoVolume { get; set; }
-
         public Truck(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
         {
+            m_Engine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
         }
+
+        public bool IsHazardousCargoLoaded { get; set; }
+
+        public float CargoVolume { get; set; }
 
         protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
         {
+            string energyPctStr = i_VehicleData[(int)eGeneralDataIndicesInFile.EnergyPercentage];
             string isHazardousCargoLoadedStr = i_VehicleData[(int)eSpecificDataIndicesInFile.IsHazardousCargoLoaded];
             string cargoVolumeStr = i_VehicleData[(int)eSpecificDataIndicesInFile.CargoVolume];
 
+            SetCurrentEnergyFromPercentage(energyPctStr);
             parseAndSetIsHazardousCargo(isHazardousCargoLoadedStr);
             parseAndSetCargoVolume(cargoVolumeStr);
         }
+
+        protected void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)
+        {
+            if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
+            {
+                throw new ArgumentException(
+                    $"Invalid energy percentage: {i_CurrentPercentageStr}",
+                    i_CurrentPercentageStr);
+            }
+
+            float liters = (energyPercentage / 100f * k_MaxFuelAmount);
+
+            m_Engine.CurrentFuelLevel = liters;
+        }
+
         private void parseAndSetIsHazardousCargo(string i_IsHazardousStr)
         {
             if (bool.TryParse(i_IsHazardousStr, out bool isHazardous))
@@ -42,7 +60,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException($"Invalid Hazardous Cargo value: {i_IsHazardousStr}", nameof(i_IsHazardousStr));
+                throw new ArgumentException($"Invalid Hazardous Cargo value: {i_IsHazardousStr}");
             }
         }
 
@@ -54,7 +72,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException($"Invalid Cargo Volume: {i_CargoVolumeStr}", nameof(i_CargoVolumeStr));
+                throw new ArgumentException($"Invalid Cargo Volume: {i_CargoVolumeStr}");
             }
         }
 

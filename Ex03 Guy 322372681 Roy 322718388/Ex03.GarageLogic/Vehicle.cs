@@ -20,8 +20,32 @@ namespace Ex03.GarageLogic
 
         protected readonly string r_LicensePlate;
         protected readonly string r_ModelName;
+<<<<<<< HEAD
         public float EnergyPercentage { get; set; }
         private List<Wheel> m_Wheels = new List<Wheel>();
+=======
+        private readonly List<Wheel> r_Wheels = new List<Wheel>();
+
+        protected string OwnerName { get; set; }
+
+        protected string OwnerPhone { get; set; }
+
+        public string LicensePlate
+        {
+            get
+            {
+                return r_LicensePlate;
+            }
+        }
+
+        protected string ModelName
+        {
+            get
+            {
+                return r_ModelName;
+            }
+        }
+>>>>>>> fcd71e67382da8bcd7f113f382d73d623846ab99
 
         protected Vehicle(string i_LicensePlate, string i_ModelName)
         {
@@ -29,15 +53,12 @@ namespace Ex03.GarageLogic
             this.r_ModelName = i_ModelName;
         }
 
-        public string LicensePlate
+        public void InitVehicleInformation(string[] i_VehicleData)
         {
-            get { return r_LicensePlate; }
-        }
-
-        public void InitVehicleToGarage(string[] i_VehicleData)
-        {
+            this.OwnerName = i_VehicleData[(int)eGeneralDataIndicesInFile.OwnerName];
+            this.OwnerPhone = i_VehicleData[(int)eGeneralDataIndicesInFile.OwnerPhone];
             InitVehicleSpecificInformation(i_VehicleData);
-            InitVehicleGalgalimList(i_VehicleData, m_Wheels);
+            InitVehicleGalgalimList(i_VehicleData, r_Wheels);
         }
 
         protected abstract void InitVehicleSpecificInformation(string[] i_VehicleData);
@@ -49,12 +70,16 @@ namespace Ex03.GarageLogic
         {
             if (!float.TryParse(i_CurrentAirPressureStr, out float currentPressure))
             {
-                throw new ArgumentException($"Invalid air pressure value: '{i_CurrentAirPressureStr}'", nameof(i_CurrentAirPressureStr));
+                throw new ArgumentException(
+                    $"Invalid air pressure value: '{i_CurrentAirPressureStr}'",
+                    i_CurrentAirPressureStr);
             }
 
             if (currentPressure < 0 || currentPressure > i_MaxAirPressure)
             {
-                throw new ArgumentException($"Air pressure {currentPressure} must be between 0 and {i_MaxAirPressure}", nameof(i_CurrentAirPressureStr));
+                throw new ArgumentException(
+                    $"Air pressure {currentPressure} must be between 0 and {i_MaxAirPressure}",
+                    i_CurrentAirPressureStr);
             }
 
             i_Wheels.Clear();  //why clear
@@ -72,11 +97,11 @@ namespace Ex03.GarageLogic
 
         public void SetIdenticalWheels(int i_NumWheels, Wheel i_Template)  //TODO: set exception
         {
-            m_Wheels.Clear();
+            r_Wheels.Clear();
 
             for (int i = 0; i < i_NumWheels; i++)
             {
-                m_Wheels.Add(new Wheel
+                r_Wheels.Add(new Wheel
                                  {
                                      Manufacturer = i_Template.Manufacturer,
                                      MaxAirPressure = i_Template.MaxAirPressure,
@@ -87,8 +112,8 @@ namespace Ex03.GarageLogic
 
         public void SetWheelsIndividually(List<Wheel> i_Wheels) //explanation pls
         {
-            m_Wheels.Clear();
-            m_Wheels.AddRange(i_Wheels);
+            r_Wheels.Clear();
+            r_Wheels.AddRange(i_Wheels);
         }
     }
 }

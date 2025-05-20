@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using static Ex03.GarageLogic.FuelVehicle;
 
@@ -17,42 +17,18 @@ namespace Ex03.GarageLogic
             m_Engine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
         }
 
-        protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
+        protected override void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)
         {
-            if (float.TryParse(
-                   i_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.EnergyPercentage],
-                   out float currEnergyPercentage))
+            if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
             {
-                m_Engine.CurrentFuelLevel = m_Engine.CalculateCurrentFuelAmount(currEnergyPercentage);
-                EnergyPercentage = currEnergyPercentage;
-            }
-            else
-            {
-                throw new ArgumentException("Invalid fuel amount");
+                throw new ArgumentException(
+                    $"Invalid energy percentage: {i_CurrentPercentageStr}",
+                    i_CurrentPercentageStr);
             }
 
-            string rawPermit = i_VehicleData[(int)Motorcycle.eSpecificDataIndicesInFile.PermitType].Trim();
+            float liters = (energyPercentage / 100f * k_MaxFuelAmount);
 
-            if (Enum.TryParse(rawPermit, ignoreCase: true, out Motorcycle.ePermitTypes permitType))
-            {
-                this.m_PermitType = permitType;
-            }
-            else
-            {
-                throw new ArgumentException("Invalid Permit Type");
-            }
-
-
-            if (int.TryParse(
-                    i_VehicleData[(int)Motorcycle.eSpecificDataIndicesInFile.EngineVolume],
-                    out int engineVolume))
-            {
-                this.EngineVolume = engineVolume;
-            }
-            else
-            {
-                throw new ArgumentException("Invalid Engine Volume");
-            }
+            m_Engine.CurrentFuelLevel = liters;
         }
 
         protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
