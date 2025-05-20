@@ -20,9 +20,7 @@ namespace Ex03.GarageLogic
         {
             if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
             {
-                throw new ArgumentException(
-                    $"Invalid energy percentage: {i_CurrentPercentageStr}",
-                    i_CurrentPercentageStr);
+                throw new FormatException($"Invalid energy percentage: {i_CurrentPercentageStr}");
             }
 
             float hours = (energyPercentage / 100f * k_MaxFuelAmount);

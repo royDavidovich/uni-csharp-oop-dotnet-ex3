@@ -67,7 +67,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException($"Invalid Permit Type: {permitType}");
+                throw new FormatException($"Invalid Permit Type: {permitType}");
             }
         }
 
@@ -79,7 +79,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException($"Invalid Engine Volume: {engineVolume}");
+                throw new FormatException($"Invalid Engine Volume: {engineVolume}");
             }
         }
     }

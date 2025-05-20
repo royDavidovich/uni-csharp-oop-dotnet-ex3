@@ -32,7 +32,10 @@ namespace Ex03.GarageLogic
 
         public int NumberOfDoors
         {
-            get => m_NumberOfDoors;
+            get
+            {
+                return m_NumberOfDoors;
+            }
             set
             {
                 if (value < k_MinNumOfDoors || value > k_MaxNumOfDoors)
@@ -47,7 +50,10 @@ namespace Ex03.GarageLogic
             }
         }
 
-        protected eCarColor Color => e_Color;
+        protected eCarColor Color
+        {
+            get { return e_Color; }
+        }
 
         protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
         {
@@ -61,7 +67,6 @@ namespace Ex03.GarageLogic
         }
 
         protected abstract void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr);
-        protected abstract void SetCurrentEnergyAmount(string i_CurrentAmountStr);
 
         private void parseAndSetCarColor(string i_CarColorStr)
         {
@@ -71,7 +76,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException($"Invalid Car Color: {i_CarColorStr}", nameof(i_CarColorStr));
+                throw new FormatException($"Invalid Car Color: {i_CarColorStr}");
             }
         }
 
@@ -83,7 +88,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException($"Invalid Number Of Doors: {i_NumberOfDoorsStr}");
+                throw new FormatException($"Invalid Number Of Doors: {i_NumberOfDoorsStr}");
             }
         }
     }
