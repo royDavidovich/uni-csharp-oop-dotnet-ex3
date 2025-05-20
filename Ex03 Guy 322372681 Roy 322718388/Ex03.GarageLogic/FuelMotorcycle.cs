@@ -17,8 +17,9 @@ namespace Ex03.GarageLogic
             m_Engine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
         }
 
-        protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
+        protected override void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)
         {
+<<<<<<< HEAD
             if (float.TryParse(
                    i_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.EnergyPercentage],
                    out float currEnergyPercentage))
@@ -53,6 +54,18 @@ namespace Ex03.GarageLogic
             {
                 throw new ArgumentException("Invalid Engine Volume");
             }
+=======
+            if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
+            {
+                throw new ArgumentException(
+                    $"Invalid energy percentage: {i_CurrentPercentageStr}",
+                    i_CurrentPercentageStr);
+            }
+
+            float liters = (energyPercentage / 100f * k_MaxFuelAmount);
+
+            m_Engine.CurrentFuelLevel = liters;
+>>>>>>> 7579dc63b1f919879e9ddab0313ba6e483ff06a1
         }
 
         protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)

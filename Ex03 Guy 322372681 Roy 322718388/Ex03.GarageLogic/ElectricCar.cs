@@ -12,6 +12,21 @@ namespace Ex03.GarageLogic
         public ElectricCar(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
         {
+            m_Battery = new ElectricVehicle(k_MaxFuelAmount);
+        }
+
+        protected override void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)
+        {
+            if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
+            {
+                throw new ArgumentException(
+                    $"Invalid energy percentage: {i_CurrentPercentageStr}",
+                    i_CurrentPercentageStr);
+            }
+            
+            float hours = (energyPercentage / 100f * k_MaxFuelAmount);
+
+            m_Battery.CurrentBatteryPower = hours;
         }
 
         protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
@@ -21,6 +36,7 @@ namespace Ex03.GarageLogic
 
             InitWheelsFromDb(manufacturer, pressureStr, k_NumberOfWheels, k_MaxAirPressure, i_MyWheels);
         }
+<<<<<<< HEAD
 
         protected override void SetCurrentEnergyAmount(string i_CurrentAmountStr)
         {
@@ -34,5 +50,7 @@ namespace Ex03.GarageLogic
                 throw new ArgumentException($"Invalid fuel amount: {amount}");
             }
         }
+=======
+>>>>>>> 7579dc63b1f919879e9ddab0313ba6e483ff06a1
     }
 }

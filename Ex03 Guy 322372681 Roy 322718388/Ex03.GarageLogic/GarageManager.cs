@@ -15,8 +15,11 @@ namespace Ex03.GarageLogic
             {
                 string[] vehicleInformation = line.Split(',');
                 string currentVehicleTypeFromDB = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType];
+                string ownerName = "";
+                string ownerPhone = "";
 
-                if(string.IsNullOrWhiteSpace(line)
+
+                if (string.IsNullOrWhiteSpace(line)
                    || !(VehicleCreator.SupportedTypes.Contains(currentVehicleTypeFromDB)))
                 {
                     continue;       //continue if empty line or doesn't fit format description
@@ -26,9 +29,22 @@ namespace Ex03.GarageLogic
                     currentVehicleTypeFromDB,
                     vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.LicensePlate],
                     vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.ModelName]);
-                currentVehicleFromDb.InitVehicleToGarage(vehicleInformation);
+                currentVehicleFromDb.InitVehicleInformation(vehicleInformation);
                 m_MyGarage.AddGarageEntry(currentVehicleFromDb);
             }
         }
+<<<<<<< HEAD
+=======
+
+        public static int Main()
+        {
+            GarageManager garageManager = new GarageManager();
+
+            garageManager.LoadVehiclesFromDb(
+                "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Vehicles.db");
+
+            return 0;
+        }
+>>>>>>> 7579dc63b1f919879e9ddab0313ba6e483ff06a1
     }
 }

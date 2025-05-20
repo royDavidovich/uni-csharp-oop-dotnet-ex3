@@ -5,11 +5,33 @@ namespace Ex03.GarageLogic
     internal struct FuelVehicle
     {
         private const float k_MinFuelLevel = 0;
-        private readonly float r_MaxFuelLevel;
         private float m_CurrentFuelLevel;
+        private readonly float r_MaxFuelLevel;
         private readonly eGasType r_GasType;
         private const float k_PercentageMultiplier = 100f;
 
+
+        public enum eGasType
+        {
+            Soler,
+            Octan95,
+            Octan96,
+            Octan98
+        }
+
+        public FuelVehicle(float i_MaxFuelLevel, string i_GasType)
+        {
+            m_CurrentFuelLevel = 0;
+            r_MaxFuelLevel = i_MaxFuelLevel;
+            if (Enum.TryParse(i_GasType, out eGasType parsedGasType))
+            {
+                r_GasType = parsedGasType;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid gas type");
+            }
+        }
 
         public float CurrentFuelLevel
         {
@@ -31,8 +53,9 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public enum eGasType
+        public float EnergyPercentage
         {
+<<<<<<< HEAD
             Soler,
             Octan95,
             Octan96,
@@ -57,6 +80,14 @@ namespace Ex03.GarageLogic
         {
             return (i_Percentage / k_PercentageMultiplier) * r_MaxFuelLevel;
         }
+=======
+            get
+            {
+                return ((m_CurrentFuelLevel / r_MaxFuelLevel) * 100);
+            }
+        }
+
+>>>>>>> 7579dc63b1f919879e9ddab0313ba6e483ff06a1
 
     }
 }

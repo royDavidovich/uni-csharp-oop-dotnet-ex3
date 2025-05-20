@@ -18,20 +18,16 @@ namespace Ex03.GarageLogic
             White,
             Silver
         }
+
         protected enum eSpecificDataIndicesInFile
         {
             CarColor = 8,
             NumberOfDoors = 9
         }
 
-        public Car(string i_LicensePlate, string i_ModelName)
+        protected Car(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
         {
-        }
-
-        protected eCarColor Color
-        {
-            get { return e_Color; }
         }
 
         public int NumberOfDoors
@@ -54,17 +50,30 @@ namespace Ex03.GarageLogic
             }
         }
 
+        protected eCarColor Color
+        {
+            get { return e_Color; }
+        }
+
         protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
         {
+<<<<<<< HEAD
             string carColorStr = i_VehicleData[(int)eSpecificDataIndicesInFile.CarColor];
             string numberOfDoorsStr = i_VehicleData[(int)eSpecificDataIndicesInFile.NumberOfDoors];
 
             //SetCurrentEnergyAmount(); TODO - FIX
+=======
+            string energyPctStr = i_VehicleData[(int)eGeneralDataIndicesInFile.EnergyPercentage];
+            string carColorStr = i_VehicleData[(int)eSpecificDataIndicesInFile.CarColor];
+            string numberOfDoorsStr = i_VehicleData[(int)eSpecificDataIndicesInFile.NumberOfDoors];
+
+            SetCurrentEnergyFromPercentage(energyPctStr);
+>>>>>>> 7579dc63b1f919879e9ddab0313ba6e483ff06a1
             parseAndSetCarColor(carColorStr);
             parseAndSetNumberOfDoors(numberOfDoorsStr);
         }
 
-        protected abstract void SetCurrentEnergyAmount(string i_CurrentAmountStr);
+        protected abstract void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr);
 
         private void parseAndSetCarColor(string i_CarColorStr)
         {
@@ -74,7 +83,12 @@ namespace Ex03.GarageLogic
             }
             else
             {
+<<<<<<< HEAD
                 throw new ArgumentException($"Invalid Car Color: {i_CarColorStr}", nameof(i_CarColorStr)); 
+=======
+                throw new ArgumentException($"Invalid Car Color: {i_CarColorStr}", 
+                    (i_CarColorStr));
+>>>>>>> 7579dc63b1f919879e9ddab0313ba6e483ff06a1
             }
         }
 
@@ -86,7 +100,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException($"Invalid Number Of Doors: {i_NumberOfDoorsStr}", nameof(i_NumberOfDoorsStr));
+                throw new ArgumentException($"Invalid Number Of Doors: {i_NumberOfDoorsStr}");
             }
         }
     }

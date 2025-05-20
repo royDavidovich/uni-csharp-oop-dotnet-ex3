@@ -16,42 +16,19 @@ namespace Ex03.GarageLogic
             m_Battery = new ElectricVehicle(k_MaxFuelAmount);
         }
 
-        //protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
-        //{
-        //    if (float.TryParse(
-        //            i_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.CurrFuelAmount],
-        //            out float currentBatteryPower))
-        //    {
-        //        m_Battery.CurrentBatteryPower = currentBatteryPower;
-        //        this.r_EnergyPercentage = m_Battery.CalculateEnergyPercentage();
-        //    }
-        //    else
-        //    {
-        //        throw new ArgumentException("Invalid fuel amount");
-        //    }
+        protected override void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)
+        {
+            if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
+            {
+                throw new ArgumentException(
+                    $"Invalid energy percentage: {i_CurrentPercentageStr}",
+                    i_CurrentPercentageStr);
+            }
 
-        //    if (Enum.TryParse(
-        //            i_VehicleData[(int)Motorcycle.eSpecificDataIndicesInFile.PermitType],
-        //            out Motorcycle.ePermitTypes permitType))
-        //    {
-        //        this.m_PermitType = permitType;
-        //    }
-        //    else
-        //    {
-        //        throw new ArgumentException("Invalid Permit Type");
-        //    }
+            float hours = (energyPercentage / 100f * k_MaxFuelAmount);
 
-        //    if (int.TryParse(
-        //            i_VehicleData[(int)Motorcycle.eSpecificDataIndicesInFile.EngineVolume],
-        //            out int engineVolume))
-        //    {
-        //        this.EngineVolume = engineVolume;
-        //    }
-        //    else
-        //    {
-        //        throw new ArgumentException("Invalid Engine Volume");
-        //    }
-        //}
+            m_Battery.CurrentBatteryPower = hours;
+        }
 
         protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
         {
