@@ -1,5 +1,4 @@
-﻿
-using Ex03.GarageLogic;
+﻿using Ex03.GarageLogic;
 using System;
 
 namespace Ex03.ConsoleUI
@@ -92,7 +91,14 @@ namespace Ex03.ConsoleUI
             switch (i_choice)
             {
                 case eUserOptions.LoadVehiclesFromDb:
-                    //TODO
+                    try
+                    {
+                        m_GarageManager.LoadVehiclesFromDb("C:\\Users\\guyfi\\source\\repos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Vehicles.db");
+                    }
+                    catch(Exception ex) 
+                    {
+                        Console.WriteLine(ex.Message); 
+                    }
                     break;
 
                 case eUserOptions.InsertNewVehicle:
