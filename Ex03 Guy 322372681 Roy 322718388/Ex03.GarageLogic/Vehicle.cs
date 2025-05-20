@@ -20,10 +20,11 @@ namespace Ex03.GarageLogic
 
         protected readonly string r_LicensePlate;
         protected readonly string r_ModelName;
+        private readonly List<Wheel> r_Wheels = new List<Wheel>();
 
-        public float EnergyPercentage { get; set; }
+        protected string OwnerName { get; set; }
 
-        private List<Wheel> m_Wheels = new List<Wheel>();
+        protected string OwnerPhone { get; set; }
 
         public string LicensePlate
         {
@@ -33,7 +34,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public string ModelName
+        protected string ModelName
         {
             get
             {
@@ -49,8 +50,10 @@ namespace Ex03.GarageLogic
 
         public void InitVehicleInformation(string[] i_VehicleData)
         {
+            this.OwnerName = i_VehicleData[(int)eGeneralDataIndicesInFile.OwnerName];
+            this.OwnerPhone = i_VehicleData[(int)eGeneralDataIndicesInFile.OwnerPhone];
             InitVehicleSpecificInformation(i_VehicleData);
-            InitVehicleGalgalimList(i_VehicleData, m_Wheels);
+            InitVehicleGalgalimList(i_VehicleData, r_Wheels);
         }
 
         protected abstract void InitVehicleSpecificInformation(string[] i_VehicleData);
@@ -62,9 +65,7 @@ namespace Ex03.GarageLogic
         {
             if (!float.TryParse(i_CurrentAirPressureStr, out float currentPressure))
             {
-                throw new ArgumentException(
-                    $"Invalid air pressure value: '{i_CurrentAirPressureStr}'",
-                    i_CurrentAirPressureStr);
+                throw new FormatException($"Invalid air pressure value: {i_CurrentAirPressureStr}");
             }
 
             if (currentPressure < 0 || currentPressure > i_MaxAirPressure)
@@ -74,7 +75,7 @@ namespace Ex03.GarageLogic
                     i_CurrentAirPressureStr);
             }
 
-            i_Wheels.Clear();  //why clear
+            i_Wheels.Clear();
 
             for (int i = 0; i < i_NumberOfWheels; i++)
             {
@@ -87,13 +88,13 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void SetIdenticalWheels(int i_NumWheels, Wheel i_Template)  //TODO: set exception
+        public void SetIdenticalWheels(int i_NumWheels, Wheel i_Template)
         {
-            m_Wheels.Clear();
+            r_Wheels.Clear();
 
             for (int i = 0; i < i_NumWheels; i++)
             {
-                m_Wheels.Add(new Wheel
+                r_Wheels.Add(new Wheel
                                  {
                                      Manufacturer = i_Template.Manufacturer,
                                      MaxAirPressure = i_Template.MaxAirPressure,
@@ -102,10 +103,10 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void SetWheelsIndividually(List<Wheel> i_Wheels) //explanation pls
+        public void SetWheelsIndividually(List<Wheel> i_Wheels)
         {
-            m_Wheels.Clear();
-            m_Wheels.AddRange(i_Wheels);
+            r_Wheels.Clear();
+            r_Wheels.AddRange(i_Wheels);
         }
     }
 }

@@ -20,23 +20,12 @@ namespace Ex03.GarageLogic
         {
             if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
             {
-                throw new ArgumentException(
-                    $"Invalid energy percentage: {i_CurrentPercentageStr}",
-                    nameof(i_CurrentPercentageStr));
+                throw new FormatException($"Invalid energy percentage: {i_CurrentPercentageStr}");
             }
 
             float liters = (energyPercentage / 100f * k_MaxFuelAmount);
+
             m_Engine.CurrentFuelLevel = liters;
-        }
-
-        protected override void SetCurrentEnergyAmount(string i_CurrentAmountStr)
-        {
-            if (!float.TryParse(i_CurrentAmountStr, out float amount))
-            {
-                throw new ArgumentException($"Invalid fuel amount: {i_CurrentAmountStr}", nameof(i_CurrentAmountStr));
-            }
-
-            m_Engine.CurrentFuelLevel = amount;
         }
 
         protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
