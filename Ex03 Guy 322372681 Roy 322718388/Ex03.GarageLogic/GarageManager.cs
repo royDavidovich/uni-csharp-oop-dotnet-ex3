@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Ex03.GarageLogic
@@ -30,14 +31,40 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public static int Main()
+        public void LoadVehiclesFromUser(string i_CurrentUserVehicleData, List<string> Galgalim = null)
         {
-            GarageManager garageManager = new GarageManager();
+            string[] vehicleInformation = i_CurrentUserVehicleData.Split(',');
+            string currentVehicleTypeFromDB = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType];
 
-            garageManager.LoadVehiclesFromDb(
-                "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Vehicles.db");
+            if (string.IsNullOrWhiteSpace(i_CurrentUserVehicleData)
+                || !(VehicleCreator.SupportedTypes.Contains(currentVehicleTypeFromDB)))
+            {
+                throw new ArgumentException(
+                    $"Unknown fuel type: {currentVehicleTypeFromDB}",
+                    currentVehicleTypeFromDB);
+            }
 
-            return 0;
+            Vehicle currentVehicleFromDb = VehicleCreator.CreateVehicle(
+                currentVehicleTypeFromDB,
+                vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.LicensePlate],
+                vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.ModelName]);
+            currentVehicleFromDb.InitVehicleInformation(vehicleInformation, Galgalim);
+            AddUsersGarageEntry(currentVehicleFromDb);
         }
+
+        public void AddUsersGarageEntry(Vehicle i_CurrentUserVehicle)
+        {
+            r_MyGarage.AddGarageEntry(i_CurrentUserVehicle);
+        }
+
+        //public static int Main()
+        //{
+        //    GarageManager garageManager = new GarageManager();
+
+        //    garageManager.LoadVehiclesFromDb(
+        //        "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Vehicles.db");
+
+        //    return 0;
+        //}
     }
 }

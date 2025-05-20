@@ -39,7 +39,7 @@ namespace Ex03.GarageLogic
                 if (value < 0)
                 {
                     throw new ArgumentException(
-                        $"Engine volume must be a positive integer; got {value}.");
+                        $"Engine volume must be a positive integer; you entered {value}.");
                 }
 
                 m_EngineVolume = value;
