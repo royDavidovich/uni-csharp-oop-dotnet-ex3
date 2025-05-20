@@ -14,12 +14,13 @@ namespace Ex03.GarageLogic
             EnergyPercentage = 3,
             TierModel = 4,
             CurrAirPressure = 5,
-            CurrFuelAmount = 6
+            OwnerName = 6,
+            OwnerPhone = 7
         }
 
         protected readonly string r_LicensePlate;
         protected readonly string r_ModelName;
-        protected float r_EnergyPercentage;
+        public float EnergyPercentage { get; set; }
         private List<Wheel> m_Wheels = new List<Wheel>();
 
         protected Vehicle(string i_LicensePlate, string i_ModelName)

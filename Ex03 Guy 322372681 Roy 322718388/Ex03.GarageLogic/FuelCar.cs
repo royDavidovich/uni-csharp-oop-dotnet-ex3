@@ -20,7 +20,7 @@ namespace Ex03.GarageLogic
             if (float.TryParse(i_CurrentAmountStr, out float amount))
             {
                 m_Engine.CurrentFuelLevel = amount;
-                this.r_EnergyPercentage = m_Engine.CalculateEnergyPercentage();
+                //TODO HANDLE PERCANTAGE
             }
             else
             {

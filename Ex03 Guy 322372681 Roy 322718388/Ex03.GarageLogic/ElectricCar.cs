@@ -27,7 +27,7 @@ namespace Ex03.GarageLogic
             if (float.TryParse(i_CurrentAmountStr, out float amount))
             {
                 m_Battery.CurrentBatteryPower = amount;
-                this.r_EnergyPercentage = m_Battery.CalculateEnergyPercentage();
+                //TODO HANDLE ENERGY PERCANTAGE
             }
             else
             {

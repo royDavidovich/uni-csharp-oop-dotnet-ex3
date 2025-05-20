@@ -8,6 +8,8 @@ namespace Ex03.GarageLogic
         private readonly float r_MaxFuelLevel;
         private float m_CurrentFuelLevel;
         private readonly eGasType r_GasType;
+        private const float k_PercentageMultiplier = 100f;
+
 
         public float CurrentFuelLevel
         {
@@ -51,9 +53,10 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public float CalculateEnergyPercentage()
+        public float CalculateCurrentFuelAmount(float i_Percentage)
         {
-            return (CurrentFuelLevel / r_MaxFuelLevel) * 100;
+            return (i_Percentage / k_PercentageMultiplier) * r_MaxFuelLevel;
         }
+
     }
 }

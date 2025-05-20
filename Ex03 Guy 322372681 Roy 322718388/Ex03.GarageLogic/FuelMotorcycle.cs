@@ -20,20 +20,20 @@ namespace Ex03.GarageLogic
         protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
         {
             if (float.TryParse(
-                   i_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.CurrFuelAmount],
-                   out float currFuelAmount))
+                   i_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.EnergyPercentage],
+                   out float currEnergyPercentage))
             {
-                m_Engine.CurrentFuelLevel = currFuelAmount;
-                this.r_EnergyPercentage = m_Engine.CalculateEnergyPercentage();
+                m_Engine.CurrentFuelLevel = m_Engine.CalculateCurrentFuelAmount(currEnergyPercentage);
+                EnergyPercentage = currEnergyPercentage;
             }
             else
             {
                 throw new ArgumentException("Invalid fuel amount");
             }
 
-            if (Enum.TryParse(
-                    i_VehicleData[(int)Motorcycle.eSpecificDataIndicesInFile.PermitType],
-                    out Motorcycle.ePermitTypes permitType))
+            string rawPermit = i_VehicleData[(int)Motorcycle.eSpecificDataIndicesInFile.PermitType].Trim();
+
+            if (Enum.TryParse(rawPermit, ignoreCase: true, out Motorcycle.ePermitTypes permitType))
             {
                 this.m_PermitType = permitType;
             }
@@ -41,6 +41,7 @@ namespace Ex03.GarageLogic
             {
                 throw new ArgumentException("Invalid Permit Type");
             }
+
 
             if (int.TryParse(
                     i_VehicleData[(int)Motorcycle.eSpecificDataIndicesInFile.EngineVolume],

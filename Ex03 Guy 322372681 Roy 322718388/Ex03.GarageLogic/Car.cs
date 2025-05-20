@@ -20,8 +20,8 @@ namespace Ex03.GarageLogic
         }
         protected enum eSpecificDataIndicesInFile
         {
-            CarColor = 7,
-            NumberOfDoors = 8
+            CarColor = 8,
+            NumberOfDoors = 9
         }
 
         public Car(string i_LicensePlate, string i_ModelName)
@@ -56,11 +56,10 @@ namespace Ex03.GarageLogic
 
         protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
         {
-            string currFuelAmount = i_VehicleData[(int)eGeneralDataIndicesInFile.CurrFuelAmount];
             string carColorStr = i_VehicleData[(int)eSpecificDataIndicesInFile.CarColor];
             string numberOfDoorsStr = i_VehicleData[(int)eSpecificDataIndicesInFile.NumberOfDoors];
 
-            SetCurrentEnergyAmount(currFuelAmount);
+            //SetCurrentEnergyAmount(); TODO - FIX
             parseAndSetCarColor(carColorStr);
             parseAndSetNumberOfDoors(numberOfDoorsStr);
         }

@@ -14,8 +14,8 @@ namespace Ex03.GarageLogic
 
         protected enum eSpecificDataIndicesInFile
         {
-            IsHazardousCargoLoaded = 7,
-            CargoVolume = 8
+            IsHazardousCargoLoaded = 8,
+            CargoVolume = 9
         }
 
         public bool IsHazardousCargoLoaded { get; set; }

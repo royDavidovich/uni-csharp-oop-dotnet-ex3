@@ -15,8 +15,8 @@ namespace Ex03.GarageLogic
 
         protected enum eSpecificDataIndicesInFile
         {
-            PermitType = 7,
-            EngineVolume = 8
+            PermitType = 8,
+            EngineVolume = 9
         }
 
         protected const int k_NumberOfWheels = 2;
