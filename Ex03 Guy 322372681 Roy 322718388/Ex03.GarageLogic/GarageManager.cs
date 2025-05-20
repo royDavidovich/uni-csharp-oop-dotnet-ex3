@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Ex03.GarageLogic
@@ -28,6 +29,32 @@ namespace Ex03.GarageLogic
                 currentVehicleFromDb.InitVehicleInformation(vehicleInformation);
                 r_MyGarage.AddGarageEntry(currentVehicleFromDb);
             }
+        }
+
+        public void LoadVehiclesFromUser(string i_CurrentUserVehicleData, List<string> Galgalim = null)
+        {
+            string[] vehicleInformation = i_CurrentUserVehicleData.Split(',');
+            string currentVehicleTypeFromDB = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType];
+
+            if (string.IsNullOrWhiteSpace(i_CurrentUserVehicleData)
+                || !(VehicleCreator.SupportedTypes.Contains(currentVehicleTypeFromDB)))
+            {
+                throw new ArgumentException(
+                    $"Unknown fuel type: {currentVehicleTypeFromDB}",
+                    currentVehicleTypeFromDB);
+            }
+
+            Vehicle currentVehicleFromDb = VehicleCreator.CreateVehicle(
+                currentVehicleTypeFromDB,
+                vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.LicensePlate],
+                vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.ModelName]);
+            currentVehicleFromDb.InitVehicleInformation(vehicleInformation, Galgalim);
+            AddUsersGarageEntry(currentVehicleFromDb);
+        }
+
+        public void AddUsersGarageEntry(Vehicle i_CurrentUserVehicle)
+        {
+            r_MyGarage.AddGarageEntry(i_CurrentUserVehicle);
         }
 
         //public static int Main()
