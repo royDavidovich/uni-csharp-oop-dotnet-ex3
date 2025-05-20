@@ -56,12 +56,16 @@ namespace Ex03.GarageLogic
 
         protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
         {
+            string currFuelAmount = i_VehicleData[(int)eGeneralDataIndicesInFile.CurrFuelAmount];
             string carColorStr = i_VehicleData[(int)eSpecificDataIndicesInFile.CarColor];
             string numberOfDoorsStr = i_VehicleData[(int)eSpecificDataIndicesInFile.NumberOfDoors];
 
+            SetCurrentEnergyAmount(currFuelAmount);
             parseAndSetCarColor(carColorStr);
             parseAndSetNumberOfDoors(numberOfDoorsStr);
         }
+
+        protected abstract void SetCurrentEnergyAmount(string i_CurrentAmountStr);
 
         private void parseAndSetCarColor(string i_CarColorStr)
         {

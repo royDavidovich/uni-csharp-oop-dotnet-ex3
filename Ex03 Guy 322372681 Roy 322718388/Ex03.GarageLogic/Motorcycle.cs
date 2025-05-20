@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
@@ -25,6 +26,31 @@ namespace Ex03.GarageLogic
         protected Motorcycle(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
         {
+        }
+
+        protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
+        {
+            if (Enum.TryParse(
+                    i_VehicleData[(int)eSpecificDataIndicesInFile.PermitType],
+                    out ePermitTypes permitType))
+            {
+                this.m_PermitType = permitType;
+            }
+            else
+            {
+                throw new ArgumentException($"Invalid Permit Type: {permitType}");
+            }
+
+            if (int.TryParse(
+                    i_VehicleData[(int)eSpecificDataIndicesInFile.EngineVolume],
+                    out int engineVolume))
+            {
+                this.EngineVolume = engineVolume;
+            }
+            else
+            {
+                throw new ArgumentException($"Invalid Engine Volume: {engineVolume}");
+            }
         }
     }
 }

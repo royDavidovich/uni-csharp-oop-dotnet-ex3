@@ -15,6 +15,19 @@ namespace Ex03.GarageLogic
         {
         }
 
+        protected override void SetCurrentEnergyAmount(string i_CurrentAmountStr)
+        {
+            if (float.TryParse(i_CurrentAmountStr, out float amount))
+            {
+                m_Engine.CurrentFuelLevel = amount;
+                this.r_EnergyPercentage = m_Engine.CalculateEnergyPercentage();
+            }
+            else
+            {
+                throw new ArgumentException($"Invalid fuel amount: {amount}");
+            }
+        }
+
         protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
         {
             string manufacturer = i_GalgalimData[(int)eGeneralDataIndicesInFile.TierModel];
