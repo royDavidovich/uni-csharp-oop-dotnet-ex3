@@ -56,7 +56,7 @@ namespace Ex03.GarageLogic
             InitVehicleSpecificInformation(i_VehicleData);
             if(i_Galgalim == null)
             {
-                InitVehicleGalgalimList(i_VehicleData, r_Wheels);
+                InitVehiclesGalgalimList(i_VehicleData);
             }
             else
             {
@@ -66,9 +66,7 @@ namespace Ex03.GarageLogic
 
         protected abstract void InitVehicleSpecificInformation(string[] i_VehicleData);
 
-        protected abstract void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels);
-
-        //protected abstract void InitVehicleGalgalimListIndividually(List<string> i_GalgalimData, List<Wheel> i_MyWheels);
+        protected abstract void InitVehiclesGalgalimList(string[] i_GalgalimData);
 
         protected void InitIdenticalWheelsFromDB(string i_Manufacturer, string i_CurrentAirPressureStr, int i_NumberOfWheels,
                                         float i_MaxAirPressure)

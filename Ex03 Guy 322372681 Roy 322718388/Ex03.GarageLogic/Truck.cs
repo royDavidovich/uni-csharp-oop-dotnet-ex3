@@ -74,7 +74,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
+        protected override void InitVehiclesGalgalimList(string[] i_GalgalimData)
         {
             string manufacturer = i_GalgalimData[(int)eGeneralDataIndicesInFile.TierModel];
             string pressureStr = i_GalgalimData[(int)eGeneralDataIndicesInFile.CurrAirPressure];
