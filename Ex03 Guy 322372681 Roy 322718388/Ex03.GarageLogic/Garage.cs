@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic
         {
             public string OwnerName { get; private set; }
             public string OwnerPhoneNumber { get; private set; }
-            public eStateOfCar StateOfCar { get; private set; }
+            public eStateOfCar StateOfCar { get; set; }
             public Vehicle Vehicle { get; private set; }
 
             public enum eStateOfCar
@@ -55,7 +55,7 @@ namespace Ex03.GarageLogic
 
         private void getVehiclesInGarageLicensePlatesByState(List<string> i_LicensePlates, string i_VehiclesState)
         {
-            if (!Enum.TryParse(i_VehiclesState, true, out GarageItem.eStateOfCar stateOfCar))
+            if (!Enum.TryParse(i_VehiclesState, true, out GarageItem.eStateOfCar stateOfVehicle))
             {
                 throw new ArgumentException($"Unknown vehicle state: {i_VehiclesState}", nameof(i_VehiclesState));
             }
@@ -63,11 +63,28 @@ namespace Ex03.GarageLogic
             i_LicensePlates.Clear();
             foreach (KeyValuePair<string, GarageItem> keyValuePair in m_GarageVehicles)
             {
-                if (keyValuePair.Value.StateOfCar == stateOfCar)
+                if (keyValuePair.Value.StateOfCar == stateOfVehicle)
                 {
                     i_LicensePlates.Add(keyValuePair.Key);
                 }
             }
+        }
+
+        public void UpdateVehicleStateInGarage(string i_VehicleLicensePlate, string i_NewVehicleState)
+        {
+            if (!Enum.TryParse(i_NewVehicleState, true, out GarageItem.eStateOfCar newStateOfVehicle))
+            {
+                throw new ArgumentException($"Unknown vehicle state: {i_NewVehicleState}", i_NewVehicleState);
+            }
+
+            if(!m_GarageVehicles.TryGetValue(i_VehicleLicensePlate, out GarageItem vehicleToUpdate))
+            {
+                throw new ArgumentException(
+                    $"Unknown license plate or vehicle isn't in garage: {i_VehicleLicensePlate}",
+                    i_VehicleLicensePlate);
+            }
+
+            vehicleToUpdate.StateOfCar = newStateOfVehicle;
         }
     }
 }
