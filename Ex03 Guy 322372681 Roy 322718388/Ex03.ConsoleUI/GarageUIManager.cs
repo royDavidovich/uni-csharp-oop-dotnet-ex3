@@ -14,8 +14,8 @@ namespace Ex03.ConsoleUI
         private const int k_CarWheels = 5;
         private const int k_MotorcycleWheels = 2;
         private const int k_TruckWheels = 12;
-        private const int k_FirstSpecielIndexInData = 8;
-        private const int k_SecondSpecielIndexInData = 9;
+        private const int k_FirstSpecialIndexInData = 8;
+        private const int k_SecondSpecialIndexInData = 9;
 
         private enum eUserOptions
         {
@@ -38,7 +38,7 @@ namespace Ex03.ConsoleUI
             {
                 try
                 {
-                    eUserOptions choice = getUserChoceOfAction();
+                    eUserOptions choice = getUserChoiceOfAction();
                     handleUserChoice(choice);
                 }
                 catch (Exception ex)
@@ -50,7 +50,7 @@ namespace Ex03.ConsoleUI
             sayGoodbyeToUser();
         }
 
-        private eUserOptions getUserChoceOfAction()
+        private eUserOptions getUserChoiceOfAction()
         {
             Console.WriteLine(@"Please choose your option:
 1. Load the Vehicles from our DataBase.
@@ -201,7 +201,7 @@ Soler");
         private void changeVehicleStatus() 
         {
             string providedPlateNumber;
-            string prvoidedNewState;
+            string providedNewState;
 
             Console.WriteLine(k_ProvidePlateNumberMsg);
             providedPlateNumber = Console.ReadLine();
@@ -209,11 +209,11 @@ Soler");
 in repair
 repaired
 paid");
-            prvoidedNewState = Console.ReadLine();
+            providedNewState = Console.ReadLine();
             try
             {
-                r_GarageManager.r_MyGarage.UpdateVehicleStateInGarage(providedPlateNumber, prvoidedNewState);
-                Console.WriteLine("Vehicle number {0} state was changed to {1} state!", providedPlateNumber, prvoidedNewState);
+                r_GarageManager.r_MyGarage.UpdateVehicleStateInGarage(providedPlateNumber, providedNewState);
+                Console.WriteLine("Vehicle number {0} state was changed to {1} state!", providedPlateNumber, providedNewState);
             }
             catch (Exception e)
             { 
@@ -372,23 +372,23 @@ paid");
             if (i_Type == "FuelCar" || i_Type == "ElectricCar")
             {
                 Console.Write("Enter car color (Yellow, Black, White, Silver): ");
-                io_VehicleData[k_FirstSpecielIndexInData] = Console.ReadLine();
+                io_VehicleData[k_FirstSpecialIndexInData] = Console.ReadLine();
                 Console.Write("Enter number of doors (2–5): ");
-                io_VehicleData[k_SecondSpecielIndexInData] = Console.ReadLine();
+                io_VehicleData[k_SecondSpecialIndexInData] = Console.ReadLine();
             }
             else if (i_Type == "FuelMotorcycle" || i_Type == "ElectricMotorcycle")
             {
                 Console.Write("Enter permit type (A, A2, AB, B2): ");
-                io_VehicleData[k_FirstSpecielIndexInData] = Console.ReadLine();
+                io_VehicleData[k_FirstSpecialIndexInData] = Console.ReadLine();
                 Console.Write("Enter engine volume: ");
-                io_VehicleData[k_SecondSpecielIndexInData] = Console.ReadLine();
+                io_VehicleData[k_SecondSpecialIndexInData] = Console.ReadLine();
             }
             else if (i_Type == "Truck")
             {
                 Console.Write("Is hazardous cargo loaded? (true/false): ");
-                io_VehicleData[k_FirstSpecielIndexInData] = Console.ReadLine();
+                io_VehicleData[k_FirstSpecialIndexInData] = Console.ReadLine();
                 Console.Write("Enter cargo volume: ");
-                io_VehicleData[k_SecondSpecielIndexInData] = Console.ReadLine();
+                io_VehicleData[k_SecondSpecialIndexInData] = Console.ReadLine();
             }
         }
     }
