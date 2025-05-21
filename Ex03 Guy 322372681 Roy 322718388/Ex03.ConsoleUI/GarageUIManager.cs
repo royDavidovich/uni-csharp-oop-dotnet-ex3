@@ -13,6 +13,8 @@ namespace Ex03.ConsoleUI
         private const int k_CarWheels = 5;
         private const int k_MotorcycleWheels = 2;
         private const int k_TruckWheels = 12;
+        private const int k_FirstSpecielIndexInData = 8;
+        private const int k_SecondSpecielIndexInData = 9;
 
         private enum eUserOptions
         {
@@ -96,6 +98,8 @@ namespace Ex03.ConsoleUI
 
                 case eUserOptions.ShowLicensePlates:
                 case eUserOptions.ChangeVehicleStatus:
+                    changeVehicleStatus();
+                    break;
                 case eUserOptions.InflateTiresToMax:
                 case eUserOptions.RefuelFuelVehicle:
                 case eUserOptions.RechargeElectricVehicle:
@@ -108,6 +112,28 @@ namespace Ex03.ConsoleUI
                     break;
             }
         }
+
+        private void changeVehicleStatus()
+        {
+            string providedPlateNumber
+            Console.WriteLine("Please provide your wanted vehicle plate number: ");
+            string providedPlateNumber = Console.ReadLine();
+
+            Console.WriteLine(@"Please provide your wanted state - 
+in repair
+repaired
+paid");
+            string prvoidedNewState = Console.ReadLine();
+
+            try
+            {
+                r_GarageManager.r_MyGarage.UpdateVehicleStateInGarage(providedPlateNumber, prvoidedNewState);
+            }
+            catch (Exception e)
+            { 
+                Console.WriteLine(e); 
+            }        }
+
 
         private void loadVehiclesFromDatabase()
         {
@@ -166,16 +192,15 @@ namespace Ex03.ConsoleUI
 
             string inputType = Console.ReadLine();
 
-            //can use contains on VehicleCreator.SupportedTypes
-            foreach (string type in VehicleCreator.SupportedTypes)
+            if(VehicleCreator.SupportedTypes.Contains(inputType))
             {
-                if (string.Equals(type, inputType, StringComparison.OrdinalIgnoreCase))
-                {
-                    return type;
-                }
+                return inputType;
             }
-
-            throw new ArgumentException("Invalid vehicle type.");
+            else
+            {
+                throw new ArgumentException("Invalid vehicle type.");
+            }
+               
         }
 
         private void collectBasicVehicleInfo(string[] io_VehicleData)
@@ -255,23 +280,23 @@ namespace Ex03.ConsoleUI
             if (i_Type == "FuelCar" || i_Type == "ElectricCar")
             {
                 Console.Write("Enter car color (Yellow, Black, White, Silver): ");
-                io_VehicleData[8] = Console.ReadLine();
+                io_VehicleData[k_FirstSpecielIndexInData] = Console.ReadLine();
                 Console.Write("Enter number of doors (2–5): ");
-                io_VehicleData[9] = Console.ReadLine();
+                io_VehicleData[k_SecondSpecielIndexInData] = Console.ReadLine();
             }
             else if (i_Type == "FuelMotorcycle" || i_Type == "ElectricMotorcycle")
             {
                 Console.Write("Enter permit type (A, A2, AB, B2): ");
-                io_VehicleData[8] = Console.ReadLine();
+                io_VehicleData[k_FirstSpecielIndexInData] = Console.ReadLine();
                 Console.Write("Enter engine volume: ");
-                io_VehicleData[9] = Console.ReadLine();
+                io_VehicleData[k_SecondSpecielIndexInData] = Console.ReadLine();
             }
             else if (i_Type == "Truck")
             {
                 Console.Write("Is hazardous cargo loaded? (true/false): ");
-                io_VehicleData[8] = Console.ReadLine();
+                io_VehicleData[k_FirstSpecielIndexInData] = Console.ReadLine();
                 Console.Write("Enter cargo volume: ");
-                io_VehicleData[9] = Console.ReadLine();
+                io_VehicleData[k_SecondSpecielIndexInData] = Console.ReadLine();
             }
         }
     }
