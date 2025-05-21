@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 
@@ -50,13 +51,13 @@ namespace Ex03.GarageLogic
             this.OwnerName = i_VehicleData[(int)eGeneralDataIndicesInFile.OwnerName];
             this.OwnerPhone = i_VehicleData[(int)eGeneralDataIndicesInFile.OwnerPhone];
             InitVehicleSpecificInformation(i_VehicleData);
-            if(i_Galgalim == null)
+            if(i_Galgalim != null && i_Galgalim.Any())
             {
-                InitVehiclesGalgalimListCollectively(i_VehicleData);
+                InitVehicleGalgalimListIndividually(i_Galgalim);
             }
             else
             {
-                InitVehicleGalgalimListIndividually(i_Galgalim);
+                InitVehiclesGalgalimListCollectively(i_VehicleData);
             }
         }
 
