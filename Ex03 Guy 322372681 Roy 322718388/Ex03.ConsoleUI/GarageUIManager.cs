@@ -1,4 +1,4 @@
-﻿using Ex03.GarageLogic;
+using Ex03.GarageLogic;
 using System;
 using System.Collections.Generic;
 
@@ -225,19 +225,24 @@ namespace Ex03.ConsoleUI
 
         private int getWheelCountForType(string i_Type)
         {
+            int wheelsCount;
             switch (i_Type)
             {
                 case "Truck":
-                    return k_TruckWheels;
+                    wheelsCount = k_TruckWheels;
                 case "FuelCar":
+                    wheelsCount = k_CarWheels;
                 case "ElectricCar":
-                    return k_CarWheels;
+                    wheelsCount = k_CarWheels;
                 case "FuelMotorcycle":
+                    wheelsCount = k_MotorcycleWheels;
                 case "ElectricMotorcycle":
-                    return k_MotorcycleWheels;
+                    wheelsCount = k_MotorcycleWheels;
                 default:
-                    return 0;
+                    wheelsCount = 0;
             }
+            
+            return wheelsCount;
         }
 
         private void collectTypeSpecificData(string[] io_VehicleData, string i_Type)
