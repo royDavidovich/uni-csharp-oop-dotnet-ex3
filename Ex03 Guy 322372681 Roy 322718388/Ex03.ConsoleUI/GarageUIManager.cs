@@ -7,6 +7,7 @@ namespace Ex03.ConsoleUI
     public class GarageUIManager
     {
         private const string k_DBFilePath = "Vehicles.db";
+        private const string k_ProvidePlateNumberMsg = "Please provide your wanted vehicle plate number: ";
         private readonly GarageManager r_GarageManager = new GarageManager();
         public bool UserDecidedToExit { get; set; }
 
@@ -97,12 +98,18 @@ namespace Ex03.ConsoleUI
                     break;
 
                 case eUserOptions.ShowLicensePlates:
+                    showLicensePlates();
+                    break;
                 case eUserOptions.ChangeVehicleStatus:
                     changeVehicleStatus();
                     break;
                 case eUserOptions.InflateTiresToMax:
                 case eUserOptions.RefuelFuelVehicle:
+                    refuelFuelVehicle();
+                    break;
                 case eUserOptions.RechargeElectricVehicle:
+                    reChargeElectricVehicle();
+                    break;
                 case eUserOptions.ShowFullVehicleData:
                     Console.WriteLine("This feature is under construction.");
                     break;
@@ -113,26 +120,66 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private void changeVehicleStatus()
+        private void showLicensePlates()
         {
-            string providedPlateNumber
-            Console.WriteLine("Please provide your wanted vehicle plate number: ");
-            string providedPlateNumber = Console.ReadLine();
+            
+        }
 
+        private void reChargeElectricVehicle()
+        {
+            string userProvidedPlateNumber;
+            string userProvidedAmountToChargeInMinutes;
+
+            Console.WriteLine(k_ProvidePlateNumberMsg);
+            userProvidedPlateNumber = Console.ReadLine();
+            Console.WriteLine("Please provide your amount of minutes to be charge into the vehicle: ");
+            userProvidedAmountToChargeInMinutes = Console.ReadLine();
+
+            //TODO RECHARGE METHOD IN GARAGE
+        }
+
+        private void refuelFuelVehicle()
+        {
+            string userProvidedPlateNumber;
+            string userProvidedFuelType;
+            string userProvidedAmountToFuel;
+            Console.WriteLine(k_ProvidePlateNumberMsg);
+            userProvidedPlateNumber = Console.ReadLine();
+            Console.WriteLine(@"Please provide your fuel type:
+Octan 95
+Octan 96
+Octan 98
+Soler");
+            userProvidedFuelType = Console.ReadLine();
+            Console.WriteLine(@"Please provide your chosen amount to be fueled: ");
+            userProvidedAmountToFuel = Console.ReadLine();
+
+            //TODO - FUEL METHOD IN GARAGE
+
+        }
+
+        private void changeVehicleStatus() //TODO: get vehicle name from the backend
+        {
+            string providedPlateNumber;
+            string prvoidedNewState;
+
+            Console.WriteLine(k_ProvidePlateNumberMsg);
+            providedPlateNumber = Console.ReadLine();
             Console.WriteLine(@"Please provide your wanted state - 
 in repair
 repaired
 paid");
-            string prvoidedNewState = Console.ReadLine();
-
+            prvoidedNewState = Console.ReadLine();
             try
             {
                 r_GarageManager.r_MyGarage.UpdateVehicleStateInGarage(providedPlateNumber, prvoidedNewState);
+                Console.WriteLine("Vehicle number {0} state was changed to {1} state!", providedPlateNumber, prvoidedNewState);
             }
             catch (Exception e)
             { 
                 Console.WriteLine(e); 
-            }        }
+            }       
+        }
 
 
         private void loadVehiclesFromDatabase()
