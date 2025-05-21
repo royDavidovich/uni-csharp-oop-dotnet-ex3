@@ -333,33 +333,39 @@ paid");
             }
         }
 
-        private int getWheelCountForType(string i_Type)
+        //private int getWheelCountForType(string i_Type)
+        //{
+        //    int wheelsCount;
+        //    switch (i_Type)
+        //    {
+        //        case "Truck":
+        //            wheelsCount = k_TruckWheels;
+        //            break;
+        //        case "FuelCar":
+        //            wheelsCount = k_CarWheels;
+        //            break;
+        //        case "ElectricCar":
+        //            wheelsCount = k_CarWheels;
+        //            break;
+        //        case "FuelMotorcycle":
+        //            wheelsCount = k_MotorcycleWheels;
+        //            break;
+        //        case "ElectricMotorcycle":
+        //            wheelsCount = k_MotorcycleWheels;
+        //            break;
+        //        default:
+        //            wheelsCount = 0;
+        //            break;
+        //    }
+
+        //    return wheelsCount;
+        //}
+        private int getWheelCountForType(string i_Type, string i_LicensePlate = "temp", string i_ModelName = "temp")
         {
-            int wheelsCount;
-            switch (i_Type)
-            {
-                case "Truck":
-                    wheelsCount = k_TruckWheels;
-                    break;
-                case "FuelCar":
-                    wheelsCount = k_CarWheels;
-                    break;
-                case "ElectricCar":
-                    wheelsCount = k_CarWheels;
-                    break;
-                case "FuelMotorcycle":
-                    wheelsCount = k_MotorcycleWheels;
-                    break;
-                case "ElectricMotorcycle":
-                    wheelsCount = k_MotorcycleWheels;
-                    break;
-                default:
-                    wheelsCount = 0;
-                    break;
-            }
-            
-            return wheelsCount;
+            Vehicle tempVehicle = VehicleCreator.CreateVehicle(i_Type, i_LicensePlate, i_ModelName);
+            return tempVehicle == null ? 0 : tempVehicle.GetNumberOfWheels();
         }
+
 
         private void collectTypeSpecificData(string[] io_VehicleData, string i_Type)
         {

@@ -131,5 +131,11 @@ namespace Ex03.GarageLogic
                 wheel.InflateWheel(inflateDelta);
             }
         }
+
+        //GUY ADDED!!!!!!
+        public int GetNumberOfWheels()
+        {
+            return this.NumberOfWheels;
+        }
     }
 }
