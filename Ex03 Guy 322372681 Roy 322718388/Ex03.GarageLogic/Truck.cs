@@ -8,7 +8,7 @@ namespace Ex03.GarageLogic
         protected FuelVehicle m_Engine;
         protected const int k_NumberOfWheels = 12;
         protected const float k_MaxFuelAmount = 135f;
-        protected const int k_MaxAirPressure = 27;
+        protected const float k_MaxAirPressure = 27f;
         protected const string k_GasType = "Soler";
 
         protected enum eSpecificDataIndicesInFile
@@ -21,6 +21,22 @@ namespace Ex03.GarageLogic
             : base(i_LicensePlate, i_ModelName)
         {
             m_Engine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
+        }
+
+        protected override int NumberOfWheels
+        {
+            get
+            {
+                return k_NumberOfWheels;
+            }
+        }
+
+        protected override float MaxAirPressure
+        {
+            get
+            {
+                return k_MaxAirPressure;
+            }
         }
 
         public bool IsHazardousCargoLoaded { get; set; }
@@ -72,14 +88,6 @@ namespace Ex03.GarageLogic
             {
                 throw new FormatException($"Invalid Cargo Volume: {i_CargoVolumeStr}");
             }
-        }
-
-        protected override void InitVehicleGalgalimList(string[] i_GalgalimData, List<Wheel> i_MyWheels)
-        {
-            string manufacturer = i_GalgalimData[(int)eGeneralDataIndicesInFile.TierModel];
-            string pressureStr = i_GalgalimData[(int)eGeneralDataIndicesInFile.CurrAirPressure];
-
-            InitWheelsFromDb(manufacturer, pressureStr, k_NumberOfWheels, k_MaxAirPressure, i_MyWheels);
         }
     }
 }
