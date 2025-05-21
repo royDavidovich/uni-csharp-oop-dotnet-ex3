@@ -27,7 +27,7 @@ namespace Ex03.GarageLogic
                 if (value < k_MinBatteryPower || value > r_MaxBatteryPower)
                 {
                     throw new ValueRangeException(
-                        $"Battery charge must be between 0 and {r_MaxBatteryPower}.",
+                        $"Battery charge must be between {k_MinBatteryPower} and {r_MaxBatteryPower}.",
                         k_MinBatteryPower,
                         r_MaxBatteryPower);
                 }
@@ -43,6 +43,11 @@ namespace Ex03.GarageLogic
             {
                 return ((CurrentBatteryPower / r_MaxBatteryPower) * 100);
             }
+        }
+
+        public void Recharge(float i_AmountToAdd)
+        {
+            CurrentBatteryPower += i_AmountToAdd;
         }
     }
 }

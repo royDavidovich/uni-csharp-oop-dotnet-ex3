@@ -1,4 +1,6 @@
-﻿using System.Dynamic;
+﻿using System;
+using System.Collections.Generic;
+using System.Dynamic;
 
 namespace Ex03.GarageLogic
 {
@@ -33,17 +35,7 @@ namespace Ex03.GarageLogic
 
         public void InflateWheel(float i_AirAmountToInflate)
         {
-            float newAirPressure = m_CurrentAirPressure + i_AirAmountToInflate;
-            
-            if (newAirPressure > MaxAirPressure)
-            {
-                throw new ValueRangeException(
-                    $"Air pressure must be between {k_MinAirPressure} and {MaxAirPressure}.",
-                    k_MinAirPressure,
-                    MaxAirPressure);
-            }
-
-            m_CurrentAirPressure = newAirPressure;
+            m_CurrentAirPressure += i_AirAmountToInflate;
         }
     }
 }

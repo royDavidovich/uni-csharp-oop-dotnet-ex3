@@ -42,7 +42,7 @@ namespace Ex03.GarageLogic
                 if (value < k_MinFuelLevel || value > r_MaxFuelLevel)
                 {
                     throw new ValueRangeException(
-                        $"Fuel amount must be between 0 and {r_MaxFuelLevel}.",
+                        $"Fuel amount must be between {k_MinFuelLevel} and {r_MaxFuelLevel}.",
                         k_MinFuelLevel,
                         r_MaxFuelLevel);
                 }
@@ -61,25 +61,19 @@ namespace Ex03.GarageLogic
 
         public void Refuel(float i_AmountToAdd, string i_FuelTypeStr)
         {
-            // 1) Parse the fuel‐type the user passed
             if (!Enum.TryParse(i_FuelTypeStr, out eGasType requestedType))
             {
-                throw new ArgumentException(
-                    $"Unknown fuel type: '{i_FuelTypeStr}'",
-                    nameof(i_FuelTypeStr));
+                throw new ArgumentException($"Unknown fuel type: {i_FuelTypeStr}", i_FuelTypeStr);
             }
 
-            // 2) Check that it matches this engine’s fuel type
             if (requestedType != r_GasType)
             {
                 throw new ArgumentException(
                     $"Cannot fill with {requestedType}; this engine requires {r_GasType}.",
-                    nameof(i_FuelTypeStr));
+                    i_FuelTypeStr);
             }
 
-            // 3) Delegate amount‐range validation to the CurrentFuelLevel setter
-            float newLevel = CurrentFuelLevel + i_AmountToAdd;
-            CurrentFuelLevel = newLevel;  // will throw ValueRangeException if out of bounds
+            CurrentFuelLevel += i_AmountToAdd;
         }
     }
 }

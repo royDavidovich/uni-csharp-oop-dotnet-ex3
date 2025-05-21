@@ -71,7 +71,7 @@ namespace Ex03.GarageLogic
             InitAndSetWheelsCollectively(manufacturer, currentAirPressureStr, NumberOfWheels, MaxAirPressure);
         }
 
-        protected void InitAndSetWheelsCollectively(string i_Manufacturer, string i_CurrentAirPressureStr, int i_NumberOfWheels,
+        private void InitAndSetWheelsCollectively(string i_Manufacturer, string i_CurrentAirPressureStr, int i_NumberOfWheels,
                                         float i_MaxAirPressure)
         {
             r_Wheels.Clear();
@@ -101,7 +101,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        protected void InitAndSetWheelsIndividually(string i_Manufacturer, string i_CurrentAirPressureStr, int i_NumberOfWheels,
+        private void InitAndSetWheelsIndividually(string i_Manufacturer, string i_CurrentAirPressureStr, int i_NumberOfWheels,
                                                     float i_MaxAirPressure)
         {
             if (!float.TryParse(i_CurrentAirPressureStr, out float currentPressure))
@@ -116,6 +116,20 @@ namespace Ex03.GarageLogic
                         MaxAirPressure = i_MaxAirPressure,
                         CurrentAirPressure = currentPressure
                     });
+        }
+
+        protected void InflateAllWheelsToMaxAirPressure()
+        {
+            if (r_Wheels.Count == 0)
+            {
+                throw new ArgumentException($"No wheels found for vehicle! Please init vehicle's galgalim list");
+            }
+
+            foreach(Wheel wheel in r_Wheels)
+            {
+                float inflateDelta = (MaxAirPressure - wheel.CurrentAirPressure);
+                wheel.InflateWheel(inflateDelta);
+            }
         }
     }
 }
