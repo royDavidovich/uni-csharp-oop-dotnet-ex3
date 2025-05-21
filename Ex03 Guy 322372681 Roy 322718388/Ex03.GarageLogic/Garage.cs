@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using static Ex03.GarageLogic.FuelVehicle;
 
 namespace Ex03.GarageLogic
 {
-    internal class Garage
+    public class Garage
     {
         private class GarageItem
         {

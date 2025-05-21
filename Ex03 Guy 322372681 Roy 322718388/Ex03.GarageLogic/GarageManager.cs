@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     public class GarageManager
     {
-        private readonly Garage r_MyGarage = new Garage();
+        public readonly Garage r_MyGarage = new Garage();
 
         public void LoadVehiclesFromDB(string i_FilePath)
         {
