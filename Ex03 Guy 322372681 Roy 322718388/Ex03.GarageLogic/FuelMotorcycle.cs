@@ -4,9 +4,9 @@ using static Ex03.GarageLogic.FuelVehicle;
 
 namespace Ex03.GarageLogic
 {
-    internal class FuelMotorcycle : Motorcycle
+    internal class FuelMotorcycle : Motorcycle, IFuelable
     {
-        protected FuelVehicle m_Engine;
+        public FuelVehicle m_FuelEngine;
         protected const float k_MaxFuelAmount = 5.8f;
         protected const float k_MaxAirPressure = 30f;
         protected const string k_GasType = "Octan98";
@@ -14,7 +14,7 @@ namespace Ex03.GarageLogic
         public FuelMotorcycle(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
         {
-            m_Engine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
+            m_FuelEngine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
         }
 
         protected override float MaxAirPressure
@@ -34,7 +34,12 @@ namespace Ex03.GarageLogic
 
             float liters = (energyPercentage / 100f * k_MaxFuelAmount);
 
-            m_Engine.CurrentFuelLevel = liters;
+            m_FuelEngine.CurrentFuelLevel = liters;
+        }
+
+        public void Refuel(float amountToAdd, string fuelType)
+        {
+            m_FuelEngine.Refuel(amountToAdd, fuelType);
         }
     }
 }

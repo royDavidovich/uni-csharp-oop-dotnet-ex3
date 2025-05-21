@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     public class Garage
     {
-        private class GarageItem
+        public class GarageItem // Changed from private to public
         {
             public string OwnerName { get; private set; }
             public string OwnerPhoneNumber { get; private set; }
@@ -31,16 +31,21 @@ namespace Ex03.GarageLogic
 
         private Dictionary<string, GarageItem> m_GarageVehicles = new Dictionary<string, GarageItem>();
 
+        public Dictionary<string, GarageItem> LocalGarage
+        {
+            get { return m_GarageVehicles; }
+        }
+
         public void AddGarageEntry(Vehicle i_Vehicle, string i_OwnerName = "", string i_OwnerPhone = "")
         {
             GarageItem newVehicle = new GarageItem(i_OwnerName, i_OwnerPhone, i_Vehicle);
             this.m_GarageVehicles.Add(newVehicle.Vehicle.LicensePlate, newVehicle);
         }
 
-        public List<string> GetVehiclesInGarageLicensePlates(string i_SpecificVehiclesState = null)
+        public List<string> GetLicensePlates(string i_SpecificVehiclesState = null)
         {
             List<string> licensePlates = new List<string>(this.m_GarageVehicles.Count);
-            
+
             if (i_SpecificVehiclesState == null)
             {
                 licensePlates.AddRange(m_GarageVehicles.Keys);
@@ -77,7 +82,7 @@ namespace Ex03.GarageLogic
                 throw new ArgumentException($"Unknown vehicle state: {i_NewVehicleState}", i_NewVehicleState);
             }
 
-            if(!m_GarageVehicles.TryGetValue(i_VehicleLicensePlate, out GarageItem vehicleToUpdate))
+            if (!m_GarageVehicles.TryGetValue(i_VehicleLicensePlate, out GarageItem vehicleToUpdate))
             {
                 throw new ArgumentException(
                     $"Unknown license plate or vehicle isn't in garage: {i_VehicleLicensePlate}",

@@ -29,7 +29,7 @@ namespace Ex03.GarageLogic
             {
                 throw new FormatException($"Invalid energy percentage: {i_CurrentPercentageStr}");
             }
-            
+
             float hours = (energyPercentage / 100f * k_MaxFuelAmount);
 
             m_Battery.CurrentBatteryPower = hours;

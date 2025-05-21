@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    internal class Truck : Vehicle
+    internal class Truck : Vehicle, IFuelable
     {
-        protected FuelVehicle m_Engine;
+        public FuelVehicle m_FuelEngine;
         protected const int k_NumberOfWheels = 12;
         protected const float k_MaxFuelAmount = 135f;
         protected const float k_MaxAirPressure = 27f;
@@ -20,7 +20,7 @@ namespace Ex03.GarageLogic
         public Truck(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
         {
-            m_Engine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
+            m_FuelEngine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
         }
 
         protected override int NumberOfWheels
@@ -63,7 +63,7 @@ namespace Ex03.GarageLogic
 
             float liters = (energyPercentage / 100f * k_MaxFuelAmount);
 
-            m_Engine.CurrentFuelLevel = liters;
+            m_FuelEngine.CurrentFuelLevel = liters;
         }
 
         private void parseAndSetIsHazardousCargo(string i_IsHazardousStr)
@@ -88,6 +88,11 @@ namespace Ex03.GarageLogic
             {
                 throw new FormatException($"Invalid Cargo Volume: {i_CargoVolumeStr}");
             }
+        }
+
+        public void Refuel(float amountToAdd, string fuelType)
+        {
+            m_FuelEngine.Refuel(amountToAdd, fuelType);
         }
     }
 }

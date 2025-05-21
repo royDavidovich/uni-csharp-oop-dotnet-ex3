@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     public class GarageManager
     {
-        public readonly Garage r_MyGarage = new Garage();
+        private readonly Garage r_MyGarage = new Garage();
 
         public void LoadVehiclesFromDB(string i_FilePath)
         {
@@ -59,14 +59,43 @@ namespace Ex03.GarageLogic
             r_MyGarage.AddGarageEntry(i_CurrentUserVehicle);
         }
 
-       // public static int Main()
-       // {
-       //     GarageManager garageManager = new GarageManager();
+        public List<string> GetVehiclesInGarageLicensePlates(string i_SpecificVehiclesState = null)
+        {
+            return r_MyGarage.GetLicensePlates(i_SpecificVehiclesState);
+        }
 
-        //   garageManager.LoadVehiclesFromDB(
-        //        "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Vehicles.db");
+        public bool IsRefuelable(string i_LicensePlate)
 
-        //    return 0;
-        //}
+        {
+            if (!r_MyGarage.LocalGarage.ContainsKey(i_LicensePlate))
+            {
+                throw new ArgumentException(
+                    $"Unknown license plate: {i_LicensePlate}",
+                    nameof(i_LicensePlate));
+            }
+
+            Vehicle targetVehicle = r_MyGarage.LocalGarage[i_LicensePlate].Vehicle;
+
+            return targetVehicle is FuelCar
+                || targetVehicle is FuelMotorcycle
+                || targetVehicle is Truck;
+        }
+
+        public void RefuelVehicle(string i_LicensePlate, string i_AmountToAddStr, string i_FuelTypeStr)
+        {
+            if (!r_MyGarage.LocalGarage.ContainsKey(i_LicensePlate))
+            {
+                throw new ArgumentException(
+                    $"Unknown license plate: {i_LicensePlate}",
+                    nameof(i_LicensePlate));
+            }
+            if (!float.TryParse(i_AmountToAddStr, out float amountToAdd))
+            {
+                throw new FormatException($"Invalid energy percentage: {i_AmountToAddStr}");
+            }
+
+            (r_MyGarage.LocalGarage[i_LicensePlate].Vehicle as IFuelable).Refuel(amountToAdd, i_FuelTypeStr);       
+        }
+
     }
 }

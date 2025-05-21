@@ -2,7 +2,12 @@
 
 namespace Ex03.GarageLogic
 {
-    internal struct FuelVehicle
+    internal interface IFuelable
+    {
+        void Refuel(float amountToAdd, string fuelType);
+    }
+
+    internal class FuelVehicle
     {
         private const float k_MinFuelLevel = 0;
         private float m_CurrentFuelLevel;

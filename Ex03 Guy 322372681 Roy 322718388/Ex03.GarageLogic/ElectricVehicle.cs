@@ -3,7 +3,7 @@ using System;
 
 namespace Ex03.GarageLogic
 {
-    internal struct ElectricVehicle
+    internal class ElectricVehicle
     {
         private const float k_MinBatteryPower = 0;
         private float m_CurrentBatteryPower;

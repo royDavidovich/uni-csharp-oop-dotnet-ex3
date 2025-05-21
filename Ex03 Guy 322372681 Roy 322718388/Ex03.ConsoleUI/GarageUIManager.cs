@@ -32,7 +32,7 @@ namespace Ex03.ConsoleUI
 
         public void Run()
         {
-            greetUser();
+            Console.WriteLine("Hello, and welcome to \"Roy & Guy\'s\" Garage!");
 
             while (!UserDecidedToExit)
             {
@@ -47,7 +47,7 @@ namespace Ex03.ConsoleUI
                 }
             }
 
-            sayGoodbyeToUser();
+            Console.WriteLine("Thank you for using our Garage, have a good day.");
         }
 
         private eUserOptions getUserChoiceOfAction()
@@ -63,27 +63,28 @@ namespace Ex03.ConsoleUI
 8. Show all the data for a specific vehicle.
 9. Exit our Garage.");
 
-            string userInput = Console.ReadLine();
+            eUserOptions userOption;
+            bool isChoiceGood;
 
-            if (Enum.TryParse(userInput, out eUserOptions userOption) && Enum.IsDefined(typeof(eUserOptions), userOption))
+            do
             {
-                return userOption;
-            }
-            else
-            {
-                throw new ArgumentException("Invalid option selected. Please enter a number between 1 and 9.");
-            }
+                string userInput = Console.ReadLine();
+
+                if (Enum.TryParse(userInput, out userOption) && Enum.IsDefined(typeof(eUserOptions), userOption))
+                {
+                    isChoiceGood = true;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid option. Please enter a number between 1 and 9.");
+                    isChoiceGood = false;
+                }
+
+            } while (!isChoiceGood);
+
+            return userOption;
         }
 
-        private void greetUser()
-        {
-            Console.WriteLine("Hello, and welcome to \"Roy & Guy\'s\" Garage!");
-        }
-
-        private void sayGoodbyeToUser()
-        {
-            Console.WriteLine("Thank you for using our Garage, have a good day.");
-        }
 
         private void handleUserChoice(eUserOptions i_Choice) //SPACES BETWEEN CASES?
         {
@@ -105,7 +106,7 @@ namespace Ex03.ConsoleUI
                     inflateTiresToMax();
                     break;
                 case eUserOptions.RefuelFuelVehicle: //TODO
-                    refuelFuelVehicle();
+                    refuelVehicle();
                     break;
                 case eUserOptions.RechargeElectricVehicle: //TODO 
                     reChargeElectricVehicle();
@@ -144,7 +145,7 @@ namespace Ex03.ConsoleUI
 
             try
             {
-                List<string> licensePlates = r_GarageManager.r_MyGarage.GetVehiclesInGarageLicensePlates(stateFilter);
+                List<string> licensePlates = r_GarageManager.GetVehiclesInGarageLicensePlates(stateFilter);
 
                 if (licensePlates.Count == 0)
                 {
@@ -170,22 +171,45 @@ namespace Ex03.ConsoleUI
             string userProvidedPlateNumber;
             string userProvidedAmountToChargeInMinutes;
 
-            Console.WriteLine(k_ProvidePlateNumberMsg);
-            userProvidedPlateNumber = Console.ReadLine();
+            bool vehicleIsChargeable;
+            do
+            {
+
+                Console.WriteLine(k_ProvidePlateNumberMsg);
+                try
+                {
+                    userProvidedPlateNumber = Console.ReadLine();
+                    vehicleIsChargeable = r_GarageManager.IsRefuelable(userProvidedPlateNumber) ? true : false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine();
+                    vehicleIsChargeable = false;
+                }
+            }
+            while (!vehicleIsChargeable);
+
             Console.WriteLine("Please provide your amount of minutes to be charge into the vehicle: ");
             userProvidedAmountToChargeInMinutes = Console.ReadLine();
 
             //TODO RECHARGE METHOD IN GARAGE
         }
 
-        private void refuelFuelVehicle()
+        private void refuelVehicle()
         {
             string userProvidedPlateNumber;
             string userProvidedFuelType;
             string userProvidedAmountToFuel;
+            bool vehicleIsRefuelable;
+            do
+            {
+                Console.WriteLine(k_ProvidePlateNumberMsg);
+                userProvidedPlateNumber = Console.ReadLine();
+                vehicleIsRefuelable = r_GarageManager.IsRefuelable(userProvidedPlateNumber) ? true : false;
+            }
+            while (!vehicleIsRefuelable);
 
-            Console.WriteLine(k_ProvidePlateNumberMsg);
-            userProvidedPlateNumber = Console.ReadLine();
             Console.WriteLine(@"Please provide your fuel type:
 Octan 95
 Octan 96
@@ -194,8 +218,15 @@ Soler");
             userProvidedFuelType = Console.ReadLine();
             Console.WriteLine(@"Please provide your chosen amount to be fueled: ");
             userProvidedAmountToFuel = Console.ReadLine();
-
-            //TODO - FUEL METHOD IN GARAGE
+            try
+            {
+                r_GarageManager.RefuelVehicle(userProvidedPlateNumber, userProvidedAmountToFuel, userProvidedFuelType);
+                Console.WriteLine("SUCCESS"); //TODO PROVIDE MORE DETAILS LATER
+            }
+            catch (Exception e) 
+            {
+                Console.WriteLine(e.Message);
+            }   
         }
 
         private void changeVehicleStatus() 
@@ -212,13 +243,15 @@ paid");
             providedNewState = Console.ReadLine();
             try
             {
-                r_GarageManager.r_MyGarage.UpdateVehicleStateInGarage(providedPlateNumber, providedNewState);
+              //  r_GarageManager.UpdateVehicleStateInGarage(providedPlateNumber, providedNewState);
                 Console.WriteLine("Vehicle number {0} state was changed to {1} state!", providedPlateNumber, providedNewState);
             }
             catch (Exception e)
             { 
                 Console.WriteLine(e); 
-            }       
+            }
+            
+            Console.WriteLine();
         }
 
         private void loadVehiclesFromDatabase()
@@ -333,39 +366,12 @@ paid");
             }
         }
 
-        //private int getWheelCountForType(string i_Type)
-        //{
-        //    int wheelsCount;
-        //    switch (i_Type)
-        //    {
-        //        case "Truck":
-        //            wheelsCount = k_TruckWheels;
-        //            break;
-        //        case "FuelCar":
-        //            wheelsCount = k_CarWheels;
-        //            break;
-        //        case "ElectricCar":
-        //            wheelsCount = k_CarWheels;
-        //            break;
-        //        case "FuelMotorcycle":
-        //            wheelsCount = k_MotorcycleWheels;
-        //            break;
-        //        case "ElectricMotorcycle":
-        //            wheelsCount = k_MotorcycleWheels;
-        //            break;
-        //        default:
-        //            wheelsCount = 0;
-        //            break;
-        //    }
-
-        //    return wheelsCount;
-        //}
         private int getWheelCountForType(string i_Type, string i_LicensePlate = "temp", string i_ModelName = "temp")
         {
             Vehicle tempVehicle = VehicleCreator.CreateVehicle(i_Type, i_LicensePlate, i_ModelName);
+            
             return tempVehicle == null ? 0 : tempVehicle.GetNumberOfWheels();
         }
-
 
         private void collectTypeSpecificData(string[] io_VehicleData, string i_Type)
         {
