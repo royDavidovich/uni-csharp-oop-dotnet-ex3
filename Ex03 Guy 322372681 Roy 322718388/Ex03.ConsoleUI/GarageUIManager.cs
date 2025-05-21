@@ -183,6 +183,7 @@ namespace Ex03.ConsoleUI
             string userProvidedPlateNumber;
             string userProvidedFuelType;
             string userProvidedAmountToFuel;
+
             Console.WriteLine(k_ProvidePlateNumberMsg);
             userProvidedPlateNumber = Console.ReadLine();
             Console.WriteLine(@"Please provide your fuel type:
