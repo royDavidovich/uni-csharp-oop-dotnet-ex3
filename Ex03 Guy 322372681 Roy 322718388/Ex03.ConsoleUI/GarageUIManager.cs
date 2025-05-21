@@ -35,7 +35,7 @@ namespace Ex03.ConsoleUI
             {
                 try
                 {
-                    eUserOptions choice = askForOption();
+                    eUserOptions choice = getUserChoceOfAction();
                     handleUserChoice(choice);
                 }
                 catch (Exception ex)
@@ -47,7 +47,7 @@ namespace Ex03.ConsoleUI
             sayGoodbyeToUser();
         }
 
-        private eUserOptions askForOption()
+        private eUserOptions getUserChoceOfAction()
         {
             Console.WriteLine(@"Please choose your option:
 1. Load the Vehicles from our DataBase.
@@ -62,9 +62,9 @@ namespace Ex03.ConsoleUI
 
             string userInput = Console.ReadLine();
 
-            if (Enum.TryParse(userInput, out eUserOptions option) && Enum.IsDefined(typeof(eUserOptions), option))
+            if (Enum.TryParse(userInput, out eUserOptions userOption) && Enum.IsDefined(typeof(eUserOptions), userOption))
             {
-                return option;
+                return userOption;
             }
             else
             {
