@@ -105,10 +105,10 @@ namespace Ex03.ConsoleUI
                 case eUserOptions.InflateTiresToMax: //TODO 
                     inflateTiresToMax();
                     break;
-                case eUserOptions.RefuelFuelVehicle: //TODO
+                case eUserOptions.RefuelFuelVehicle: 
                     refuelVehicle();
                     break;
-                case eUserOptions.RechargeElectricVehicle: //TODO 
+                case eUserOptions.RechargeElectricVehicle: 
                     reChargeElectricVehicle();
                     break;
                 case eUserOptions.ShowFullVehicleData:
@@ -168,40 +168,54 @@ namespace Ex03.ConsoleUI
 
         private void reChargeElectricVehicle()
         {
-            string userProvidedPlateNumber = string.Empty; 
-            string userProvidedAmountToChargeInMinutes;
+            string userInput;
+            string exitCode = ((int)eUserOptions.Exit).ToString();
 
-            bool vehicleIsChargeable;
-            do
+            while (true)
             {
-                Console.WriteLine(k_ProvidePlateNumberMsg);
+                Console.WriteLine(
+                    $"{k_ProvidePlateNumberMsg} (or press {exitCode} to cancel)");
+                userInput = Console.ReadLine()?.Trim();
+
+                if (Enum.TryParse<eUserOptions>(userInput, out eUserOptions opt)
+                    && opt == eUserOptions.Exit)
+                {
+                    Console.WriteLine("Recharge cancelled. Returning to main menu.");
+                    return;
+                }
+
                 try
                 {
-                    userProvidedPlateNumber = Console.ReadLine();
-                    vehicleIsChargeable = r_GarageManager.IsRefuelable(userProvidedPlateNumber) ? true : false;
+                    if (r_GarageManager.IsRefuelable(userInput))  
+                    {
+                        Console.WriteLine(
+                            $"Vehicle '{userInput}' either doesn't exist or isn't electric. Try again.");
+                        continue;
+                    }
                 }
-                catch (Exception e)
+                catch (ArgumentException ex)
                 {
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine();
-                    vehicleIsChargeable = false;
+                    
+                    Console.WriteLine(ex.Message);
+                    continue;
                 }
+
+                break;
             }
-            while (!vehicleIsChargeable);
 
-            Console.WriteLine("Please provide your amount of minutes to be charge into the vehicle: ");
-            userProvidedAmountToChargeInMinutes = Console.ReadLine();
-
+            Console.WriteLine("Please provide minutes to charge:");
+            string minutes = Console.ReadLine();
             try
             {
-                r_GarageManager.RechargeVehicle(userProvidedPlateNumber, userProvidedAmountToChargeInMinutes);
-                Console.WriteLine("SUCCESS"); //TODO PROVIDE MORE DETAILS LATER
+                r_GarageManager.RechargeVehicle(userInput, minutes);
+                Console.WriteLine("Charge successful!");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine($"Error during charging: {ex.Message}");
             }
         }
+
 
         private void refuelVehicle()
         {
@@ -218,9 +232,9 @@ namespace Ex03.ConsoleUI
             while (!vehicleIsRefuelable);
 
             Console.WriteLine(@"Please provide your fuel type:
-Octan 95
-Octan 96
-Octan 98
+Octan95
+Octan96
+Octan98
 Soler");
             userProvidedFuelType = Console.ReadLine();
             Console.WriteLine(@"Please provide your chosen amount to be fueled: ");
