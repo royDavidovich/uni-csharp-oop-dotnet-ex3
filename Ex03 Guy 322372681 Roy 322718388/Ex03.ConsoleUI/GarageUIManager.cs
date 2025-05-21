@@ -122,8 +122,40 @@ namespace Ex03.ConsoleUI
 
         private void showLicensePlates()
         {
-            
+            Console.WriteLine("Would you like to filter the license plates by vehicle state? (yes/no): ");
+            string userChoice = Console.ReadLine()?.Trim().ToLower();
+
+            string stateFilter = null;
+
+            if (userChoice == "yes")
+            {
+                Console.WriteLine("Please enter the state to filter by (InRepair, Repaired, Paid): ");
+                stateFilter = Console.ReadLine();
+            }
+
+            try
+            {
+                List<string> licensePlates = r_GarageManager.r_MyGarage.GetVehiclesInGarageLicensePlates(stateFilter);
+
+                if (licensePlates.Count == 0)
+                {
+                    Console.WriteLine("No vehicles found with the specified filter.");
+                }
+                else
+                {
+                    Console.WriteLine("License plates in the garage:");
+                    foreach (string plate in licensePlates)
+                    {
+                        Console.WriteLine($"- {plate}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
         }
+
 
         private void reChargeElectricVehicle()
         {
