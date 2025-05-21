@@ -8,12 +8,20 @@ namespace Ex03.GarageLogic
     {
         protected ElectricVehicle m_Battery;
         protected const float k_MaxFuelAmount = 3.2f;
-        protected const int k_MaxAirPressure = 30;
+        protected const float k_MaxAirPressure = 30f;
 
         public ElectricMotorcycle(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
         {
             m_Battery = new ElectricVehicle(k_MaxFuelAmount);
+        }
+
+        protected override float MaxAirPressure
+        {
+            get
+            {
+                return k_MaxAirPressure;
+            }
         }
 
         protected override void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)
@@ -26,14 +34,6 @@ namespace Ex03.GarageLogic
             float hours = (energyPercentage / 100f * k_MaxFuelAmount);
 
             m_Battery.CurrentBatteryPower = hours;
-        }
-
-        protected override void InitVehiclesGalgalimList(string[] i_GalgalimData)
-        {
-            string manufacturer = i_GalgalimData[(int)eGeneralDataIndicesInFile.TierModel];
-            string pressureStr = i_GalgalimData[(int)eGeneralDataIndicesInFile.CurrAirPressure];
-
-            InitAndSetIdenticalWheelsFromDB(manufacturer, pressureStr, k_NumberOfWheels, k_MaxAirPressure);
         }
     }
 }

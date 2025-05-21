@@ -28,6 +28,14 @@ namespace Ex03.GarageLogic
         {
         }
 
+        protected override int NumberOfWheels
+        {
+            get
+            {
+                return k_NumberOfWheels;
+            }
+        }
+
         public int EngineVolume
         {
             get
