@@ -3,6 +3,10 @@ using System;
 
 namespace Ex03.GarageLogic
 {
+    internal interface IChargeable
+    {
+        void Recharge(float amountToAdd);
+    }
     internal class ElectricVehicle
     {
         private const float k_MinBatteryPower = 0;

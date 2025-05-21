@@ -168,13 +168,12 @@ namespace Ex03.ConsoleUI
 
         private void reChargeElectricVehicle()
         {
-            string userProvidedPlateNumber;
+            string userProvidedPlateNumber = string.Empty; 
             string userProvidedAmountToChargeInMinutes;
 
             bool vehicleIsChargeable;
             do
             {
-
                 Console.WriteLine(k_ProvidePlateNumberMsg);
                 try
                 {
@@ -193,7 +192,15 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Please provide your amount of minutes to be charge into the vehicle: ");
             userProvidedAmountToChargeInMinutes = Console.ReadLine();
 
-            //TODO RECHARGE METHOD IN GARAGE
+            try
+            {
+                r_GarageManager.RechargeVehicle(userProvidedPlateNumber, userProvidedAmountToChargeInMinutes);
+                Console.WriteLine("SUCCESS"); //TODO PROVIDE MORE DETAILS LATER
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         private void refuelVehicle()

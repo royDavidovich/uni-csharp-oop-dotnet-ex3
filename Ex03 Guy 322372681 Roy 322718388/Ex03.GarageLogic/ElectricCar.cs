@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    internal class ElectricCar : Car
+    internal class ElectricCar : Car , IChargeable
     {
         protected ElectricVehicle m_Battery;
         protected const float k_MaxFuelAmount = 4.8f;
@@ -33,6 +33,11 @@ namespace Ex03.GarageLogic
             float hours = (energyPercentage / 100f * k_MaxFuelAmount);
 
             m_Battery.CurrentBatteryPower = hours;
+        }
+
+        public void Recharge(float amountToAdd)
+        {
+            m_Battery.Recharge(amountToAdd);
         }
     }
 }

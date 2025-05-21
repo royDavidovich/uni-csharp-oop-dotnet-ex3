@@ -65,7 +65,6 @@ namespace Ex03.GarageLogic
         }
 
         public bool IsRefuelable(string i_LicensePlate)
-
         {
             if (!r_MyGarage.LocalGarage.ContainsKey(i_LicensePlate))
             {
@@ -74,11 +73,7 @@ namespace Ex03.GarageLogic
                     nameof(i_LicensePlate));
             }
 
-            Vehicle targetVehicle = r_MyGarage.LocalGarage[i_LicensePlate].Vehicle;
-
-            return targetVehicle is FuelCar
-                || targetVehicle is FuelMotorcycle
-                || targetVehicle is Truck;
+            return r_MyGarage.LocalGarage[i_LicensePlate].Vehicle is IFuelable;
         }
 
         public void RefuelVehicle(string i_LicensePlate, string i_AmountToAddStr, string i_FuelTypeStr)
@@ -95,6 +90,22 @@ namespace Ex03.GarageLogic
             }
 
             (r_MyGarage.LocalGarage[i_LicensePlate].Vehicle as IFuelable).Refuel(amountToAdd, i_FuelTypeStr);       
+        }
+
+        public void RechargeVehicle(string i_LicensePlate, string i_AmountToAddInMinutesStr)
+        {
+            if (!r_MyGarage.LocalGarage.ContainsKey(i_LicensePlate))
+            {
+                throw new ArgumentException(
+                    $"Unknown license plate: {i_LicensePlate}",
+                    nameof(i_LicensePlate));
+            }
+            if (!float.TryParse(i_AmountToAddInMinutesStr, out float amountToAdd))
+            {
+                throw new FormatException($"Invalid energy percentage: {i_AmountToAddInMinutesStr}");
+            }
+
+             (r_MyGarage.LocalGarage[i_LicensePlate].Vehicle as IChargeable).Recharge(amountToAdd);
         }
 
     }
