@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using static Ex03.GarageLogic.FuelVehicle;
 
 namespace Ex03.GarageLogic
 {
@@ -33,6 +35,39 @@ namespace Ex03.GarageLogic
         {
             GarageItem newVehicle = new GarageItem(i_OwnerName, i_OwnerPhone, i_Vehicle);
             this.m_GarageVehicles.Add(newVehicle.Vehicle.LicensePlate, newVehicle);
+        }
+
+        public List<string> GetVehiclesInGarageLicensePlates(string i_SpecificVehiclesState = null)
+        {
+            List<string> licensePlates = new List<string>(this.m_GarageVehicles.Count);
+            
+            if (i_SpecificVehiclesState == null)
+            {
+                licensePlates.AddRange(m_GarageVehicles.Keys);
+            }
+            else
+            {
+                this.getVehiclesInGarageLicensePlatesByState(licensePlates, i_SpecificVehiclesState);
+            }
+
+            return licensePlates;
+        }
+
+        private void getVehiclesInGarageLicensePlatesByState(List<string> i_LicensePlates, string i_VehiclesState)
+        {
+            if (!Enum.TryParse(i_VehiclesState, true, out GarageItem.eStateOfCar stateOfCar))
+            {
+                throw new ArgumentException($"Unknown vehicle state: {i_VehiclesState}", nameof(i_VehiclesState));
+            }
+
+            i_LicensePlates.Clear();
+            foreach (KeyValuePair<string, GarageItem> keyValuePair in m_GarageVehicles)
+            {
+                if (keyValuePair.Value.StateOfCar == stateOfCar)
+                {
+                    i_LicensePlates.Add(keyValuePair.Key);
+                }
+            }
         }
     }
 }
