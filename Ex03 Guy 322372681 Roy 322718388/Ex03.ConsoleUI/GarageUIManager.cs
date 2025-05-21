@@ -6,8 +6,7 @@ namespace Ex03.ConsoleUI
 {
     public class GarageUIManager
     {
-        private const string k_DBFilePath =
-            "C:\\Users\\royda\\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\\myRepos\\uni-csharp-oop-dotnet-ex3\\Ex03 Guy 322372681 Roy 322718388\\Vehicles.db";
+        private const string k_DBFilePath = "Vehicles.db";
         private readonly GarageManager r_GarageManager = new GarageManager();
         public bool UserDecidedToExit { get; set; }
 
@@ -230,16 +229,22 @@ namespace Ex03.ConsoleUI
             {
                 case "Truck":
                     wheelsCount = k_TruckWheels;
+                    break;
                 case "FuelCar":
                     wheelsCount = k_CarWheels;
+                    break;
                 case "ElectricCar":
                     wheelsCount = k_CarWheels;
+                    break;
                 case "FuelMotorcycle":
                     wheelsCount = k_MotorcycleWheels;
+                    break;
                 case "ElectricMotorcycle":
                     wheelsCount = k_MotorcycleWheels;
+                    break;
                 default:
                     wheelsCount = 0;
+                    break;
             }
             
             return wheelsCount;
