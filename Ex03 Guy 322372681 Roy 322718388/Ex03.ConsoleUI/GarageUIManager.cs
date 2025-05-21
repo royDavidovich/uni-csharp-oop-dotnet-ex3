@@ -85,47 +85,56 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Thank you for using our Garage, have a good day.");
         }
 
-        private void handleUserChoice(eUserOptions i_Choice)
+        private void handleUserChoice(eUserOptions i_Choice) //SPACES BETWEEN CASES?
         {
             switch (i_Choice)
             {
                 case eUserOptions.LoadVehiclesFromDb:
                     loadVehiclesFromDatabase();
                     break;
-
                 case eUserOptions.InsertNewVehicle:
                     insertNewVehicle();
                     break;
-
                 case eUserOptions.ShowLicensePlates:
                     showLicensePlates();
                     break;
                 case eUserOptions.ChangeVehicleStatus:
                     changeVehicleStatus();
                     break;
-                case eUserOptions.InflateTiresToMax:
-                case eUserOptions.RefuelFuelVehicle:
+                case eUserOptions.InflateTiresToMax: //TODO 
+                    inflateTiresToMax();
+                    break;
+                case eUserOptions.RefuelFuelVehicle: //TODO
                     refuelFuelVehicle();
                     break;
-                case eUserOptions.RechargeElectricVehicle:
+                case eUserOptions.RechargeElectricVehicle: //TODO 
                     reChargeElectricVehicle();
                     break;
                 case eUserOptions.ShowFullVehicleData:
-                    Console.WriteLine("This feature is under construction.");
+                    Console.WriteLine("This feature is under construction."); //TODO LONG!
                     break;
-
                 case eUserOptions.Exit:
                     UserDecidedToExit = true;
                     break;
             }
         }
 
+        private void inflateTiresToMax()
+        {
+            string userProvidedPlateNumber;
+            Console.WriteLine(k_ProvidePlateNumberMsg);
+            userProvidedPlateNumber = Console.ReadLine();
+
+            //TODO METHOD IN GARAGE
+        }
+
         private void showLicensePlates()
         {
-            Console.WriteLine("Would you like to filter the license plates by vehicle state? (yes/no): ");
-            string userChoice = Console.ReadLine()?.Trim().ToLower();
-
+            string userChoice;
             string stateFilter = null;
+
+            Console.WriteLine("Would you like to filter the license plates by vehicle state? (yes/no): ");
+            userChoice = Console.ReadLine()?.Trim().ToLower();
 
             if (userChoice == "yes")
             {
@@ -155,7 +164,6 @@ namespace Ex03.ConsoleUI
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
-
 
         private void reChargeElectricVehicle()
         {
@@ -187,10 +195,9 @@ Soler");
             userProvidedAmountToFuel = Console.ReadLine();
 
             //TODO - FUEL METHOD IN GARAGE
-
         }
 
-        private void changeVehicleStatus() //TODO: get vehicle name from the backend
+        private void changeVehicleStatus() 
         {
             string providedPlateNumber;
             string prvoidedNewState;
@@ -212,7 +219,6 @@ paid");
                 Console.WriteLine(e); 
             }       
         }
-
 
         private void loadVehiclesFromDatabase()
         {
