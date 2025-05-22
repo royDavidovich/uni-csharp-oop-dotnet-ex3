@@ -11,20 +11,27 @@ namespace Ex03.GarageLogic
     internal class ElectricVehicle
     {
         private const float k_MinBatteryPower = 0;
-        private float m_CurrentBatteryPower;
+        private float m_CurrentBatteryPowerInHours;
         private readonly float r_MaxBatteryPower;
 
         public ElectricVehicle(float i_MaxBatteryPower)
         {
-            m_CurrentBatteryPower = k_MinBatteryPower;
+            m_CurrentBatteryPowerInHours = k_MinBatteryPower;
             r_MaxBatteryPower = i_MaxBatteryPower;
         }
 
-        public float CurrentBatteryPower
+        private float ConvertMinutesToHours(float i_Minutes)
+        {
+            float hours = i_Minutes / 60f;
+
+            return hours;
+        }
+
+        public float CurrentBatteryPowerInHours
         {
             get
             {
-                return m_CurrentBatteryPower;
+                return m_CurrentBatteryPowerInHours;
             }
 
             set
@@ -37,22 +44,49 @@ namespace Ex03.GarageLogic
                         r_MaxBatteryPower);
                 }
 
-                m_CurrentBatteryPower = value;
+                m_CurrentBatteryPowerInHours = value;
             }
-
         }
 
         public float EnergyPercentage
         {
             get
             {
-                return ((CurrentBatteryPower / r_MaxBatteryPower) * 100);
+                return ((CurrentBatteryPowerInHours / r_MaxBatteryPower) * 100);
             }
         }
 
-        public void Recharge(float i_AmountToAdd)
+        public void Recharge(float i_AmountToAddInMinuets)
         {
-            CurrentBatteryPower += i_AmountToAdd;
+            if (i_AmountToAddInMinuets <= 0f)
+            {
+                throw new ValueRangeException(
+                    "Recharge amount must be a positive value.",
+                    k_MinBatteryPower,
+                    r_MaxBatteryPower);
+            }
+
+            if (CurrentBatteryPowerInHours >= r_MaxBatteryPower)
+            {
+                    throw new ValueRangeException(
+                        "Battery is already fully charged.",
+                        k_MinBatteryPower,
+                        r_MaxBatteryPower);
+            }
+
+            float amountToAddInHours = ConvertMinutesToHours(i_AmountToAddInMinuets);
+            float newLevel = CurrentBatteryPowerInHours + amountToAddInHours;
+
+            if (newLevel > r_MaxBatteryPower)
+            {
+                throw new ValueRangeException(
+                    $"Cannot recharge by {amountToAddInHours}h: would exceed capacity (current {CurrentBatteryPowerInHours}h, max {r_MaxBatteryPower}h).",
+                    k_MinBatteryPower,
+                    r_MaxBatteryPower);
+            }
+
+
+            CurrentBatteryPowerInHours += amountToAddInHours;
         }
     }
 }

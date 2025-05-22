@@ -219,7 +219,7 @@ namespace Ex03.ConsoleUI
                     if (r_GarageManager.IsRefillable(userInput))  
                     {
                         Console.WriteLine(
-                            $"Vehicle '{userInput}' either doesn't exist or isn't electric. Try again.");
+                            $"Vehicle number '{userInput}' either doesn't exist or isn't electric. Try again.");
                         continue;
                     }
                 }
