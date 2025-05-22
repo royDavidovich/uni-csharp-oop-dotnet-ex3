@@ -2,7 +2,7 @@
 
 namespace Ex03.GarageLogic
 {
-    internal interface IFuelable
+    internal interface IFillable
     {
         void Refuel(float amountToAdd, string fuelType);
     }
@@ -66,19 +66,44 @@ namespace Ex03.GarageLogic
 
         public void Refuel(float i_AmountToAdd, string i_FuelTypeStr)
         {
-            if (!Enum.TryParse(i_FuelTypeStr, out eGasType requestedType))
+            if (!Enum.TryParse(i_FuelTypeStr, out eGasType requestedFuelType))
             {
-                throw new ArgumentException($"Unknown fuel type: {i_FuelTypeStr}", i_FuelTypeStr);
+                throw new ArgumentException($"Unknown fuel type: {i_FuelTypeStr}");
             }
 
-            if (requestedType != r_GasType)
+            if (requestedFuelType != r_GasType)
             {
                 throw new ArgumentException(
-                    $"Cannot fill with {requestedType}; this engine requires {r_GasType}.",
-                    i_FuelTypeStr);
+                    $"Cannot fill with {requestedFuelType}; this vehicle requires {r_GasType}.");
             }
 
-            CurrentFuelLevel += i_AmountToAdd;
+            if (i_AmountToAdd <= 0f)
+            {
+                throw new ValueRangeException(
+                    "Refuel amount must be a positive value.",
+                    k_MinFuelLevel,
+                    r_MaxFuelLevel);
+            }
+
+            if (m_CurrentFuelLevel >= r_MaxFuelLevel)
+            {
+                throw new ValueRangeException(
+                    "Tank is already full.",
+                    k_MinFuelLevel,
+                    r_MaxFuelLevel);
+            }
+
+            float newLevel = m_CurrentFuelLevel + i_AmountToAdd;
+            
+            if (newLevel > r_MaxFuelLevel)
+            {
+                throw new ValueRangeException(
+                    $"Cannot refuel by {i_AmountToAdd}l: would exceed capacity (current {m_CurrentFuelLevel}l, max {r_MaxFuelLevel}l).",
+                    k_MinFuelLevel,
+                    r_MaxFuelLevel);
+            }
+
+            CurrentFuelLevel = newLevel;
         }
     }
 }

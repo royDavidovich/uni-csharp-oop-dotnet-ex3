@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    internal class Truck : Vehicle, IFuelable
+    internal class Truck : Vehicle, IFillable
     {
         public FuelVehicle m_FuelEngine;
         protected const int k_NumberOfWheels = 12;
@@ -23,7 +23,7 @@ namespace Ex03.GarageLogic
             m_FuelEngine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
         }
 
-        protected override int NumberOfWheels
+        public override int NumberOfWheels
         {
             get
             {

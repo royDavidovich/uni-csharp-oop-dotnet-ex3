@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    internal class FuelCar : Car, IFuelable
+    internal class FuelCar : Car, IFillable
     {
         public FuelVehicle m_FuelEngine;
         protected const float k_MaxFuelAmount = 48f;
@@ -23,7 +23,6 @@ namespace Ex03.GarageLogic
                 return k_MaxAirPressure;
             }
         }
-
 
         protected override void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)
         {

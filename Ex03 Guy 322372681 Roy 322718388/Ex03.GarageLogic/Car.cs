@@ -30,7 +30,7 @@ namespace Ex03.GarageLogic
         {
         }
 
-        protected override int NumberOfWheels
+        public override int NumberOfWheels
         {
             get
             {

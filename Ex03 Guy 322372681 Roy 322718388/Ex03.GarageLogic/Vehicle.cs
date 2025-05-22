@@ -36,7 +36,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        protected abstract int NumberOfWheels { get; }
+        public abstract int NumberOfWheels { get; }
 
         protected abstract float MaxAirPressure { get; }
 
@@ -118,7 +118,7 @@ namespace Ex03.GarageLogic
                     });
         }
 
-        protected void InflateAllWheelsToMaxAirPressure()
+        public void InflateAllWheelsToMaxAirPressure()
         {
             if (r_Wheels.Count == 0)
             {
@@ -133,9 +133,9 @@ namespace Ex03.GarageLogic
         }
 
         //GUY ADDED!!!!!!
-        public int GetNumberOfWheels()
-        {
-            return this.NumberOfWheels;
-        }
+        //public int GetNumberOfWheels()
+        //{
+        //    return this.NumberOfWheels;
+        //}
     }
 }
