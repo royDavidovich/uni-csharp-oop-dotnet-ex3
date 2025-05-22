@@ -103,7 +103,7 @@ namespace Ex03.ConsoleUI
                 case eUserOptions.ChangeVehicleStatus:
                     changeVehicleStatus();
                     break;
-                case eUserOptions.InflateTiresToMax: //TODO 
+                case eUserOptions.InflateTiresToMax:
                     inflateTiresToMax();
                     break;
                 case eUserOptions.RefuelFuelVehicle: 
