@@ -4,7 +4,7 @@ using static Ex03.GarageLogic.FuelVehicle;
 
 namespace Ex03.GarageLogic
 {
-    internal class FuelMotorcycle : Motorcycle, IFuelable
+    internal class FuelMotorcycle : Motorcycle, IFillable
     {
         public FuelVehicle m_FuelEngine;
         protected const float k_MaxFuelAmount = 5.8f;

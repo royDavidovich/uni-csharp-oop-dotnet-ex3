@@ -11,8 +11,8 @@ namespace Ex03.ConsoleUI
         private readonly GarageManager r_GarageManager = new GarageManager();
         public bool UserDecidedToExit { get; set; }
 
-        private const int k_CarWheels = 5;
         private const int k_MotorcycleWheels = 2;
+        private const int k_CarWheels = 5;
         private const int k_TruckWheels = 12;
         private const int k_FirstSpecialIndexInData = 8;
         private const int k_SecondSpecialIndexInData = 9;
@@ -32,7 +32,7 @@ namespace Ex03.ConsoleUI
 
         public void Run()
         {
-            Console.WriteLine("Hello, and welcome to \"Roy & Guy\'s\" Garage!");
+            Console.WriteLine("Hello, and welcome to \"Roy & Guy\'s\" Garage!\n");
 
             while (!UserDecidedToExit)
             {
@@ -41,9 +41,9 @@ namespace Ex03.ConsoleUI
                     eUserOptions choice = getUserChoiceOfAction();
                     handleUserChoice(choice);
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
-                    Console.WriteLine($"Error: {ex.Message}");
+                    Console.WriteLine($"Error: {e.Message}");
                 }
             }
 
@@ -61,7 +61,8 @@ namespace Ex03.ConsoleUI
 6. Refuel a fuel-able vehicle.
 7. Recharge an electric vehicle.
 8. Show all the data for a specific vehicle.
-9. Exit our Garage.");
+9. Exit our Garage.
+");
 
             eUserOptions userOption;
             bool isChoiceGood;
@@ -122,11 +123,40 @@ namespace Ex03.ConsoleUI
 
         private void inflateTiresToMax()
         {
-            string userProvidedPlateNumber;
-            Console.WriteLine(k_ProvidePlateNumberMsg);
-            userProvidedPlateNumber = Console.ReadLine();
+            bool finished = false;
+            string exitCode = ((int)eUserOptions.Exit).ToString();
 
-            //TODO METHOD IN GARAGE
+            while (!finished)
+            {
+                Console.WriteLine($"{k_ProvidePlateNumberMsg} (or press {exitCode} to cancel)");
+                string userInput = Console.ReadLine();
+                
+                userInput = userInput?.Trim();
+
+                if (string.IsNullOrWhiteSpace(userInput))
+                {
+                    Console.WriteLine("No plate entered—please try again.\n");
+                }
+                else if (userInput == exitCode)
+                {
+                    Console.WriteLine("Inflation cancelled. Returning to main menu.\n");
+                    finished = true;
+                }
+                else
+                {
+                    try
+                    {
+                        r_GarageManager.InflateAllWheelsToMaxAirPressure(userInput);
+                        Console.WriteLine("All tires have been inflated to maximum pressure.\n");
+                        finished = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.WriteLine();
+                    }
+                }
+            }
         }
 
         private void showLicensePlates()
@@ -160,9 +190,9 @@ namespace Ex03.ConsoleUI
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine($"Error: {e.Message}");
             }
         }
 
@@ -186,17 +216,17 @@ namespace Ex03.ConsoleUI
 
                 try
                 {
-                    if (r_GarageManager.IsRefuelable(userInput))  
+                    if (r_GarageManager.IsRefillable(userInput))  
                     {
                         Console.WriteLine(
                             $"Vehicle '{userInput}' either doesn't exist or isn't electric. Try again.");
                         continue;
                     }
                 }
-                catch (ArgumentException ex)
+                catch (ArgumentException e)
                 {
                     
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(e.Message);
                     continue;
                 }
 
@@ -210,9 +240,9 @@ namespace Ex03.ConsoleUI
                 r_GarageManager.RechargeVehicle(userInput, minutes);
                 Console.WriteLine("Charge successful!");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                Console.WriteLine($"Error during charging: {ex.Message}");
+                Console.WriteLine($"Error during charging: {e.Message}");
             }
         }
 
@@ -227,7 +257,7 @@ namespace Ex03.ConsoleUI
             {
                 Console.WriteLine(k_ProvidePlateNumberMsg);
                 userProvidedPlateNumber = Console.ReadLine();
-                vehicleIsRefuelable = r_GarageManager.IsRefuelable(userProvidedPlateNumber) ? true : false;
+                vehicleIsRefuelable = r_GarageManager.IsRefillable(userProvidedPlateNumber) ? true : false;
             }
             while (!vehicleIsRefuelable);
 
@@ -280,10 +310,12 @@ paid");
             try
             {
                 r_GarageManager.LoadVehiclesFromDB(k_DBFilePath);
+                Console.WriteLine("Database Loaded Successfully!");
+                Console.WriteLine();
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -297,9 +329,9 @@ paid");
                 r_GarageManager.LoadVehiclesFromUser(vehicleDataStr, wheelData);
                 Console.WriteLine("Vehicle added successfully!");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine($"Error: {e.Message}");
             }
         }
 
@@ -391,7 +423,7 @@ paid");
         {
             Vehicle tempVehicle = VehicleCreator.CreateVehicle(i_Type, i_LicensePlate, i_ModelName);
             
-            return tempVehicle == null ? 0 : tempVehicle.GetNumberOfWheels();
+            return tempVehicle?.NumberOfWheels ?? 0;
         }
 
         private void collectTypeSpecificData(string[] io_VehicleData, string i_Type)

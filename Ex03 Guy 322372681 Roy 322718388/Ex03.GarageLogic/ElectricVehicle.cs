@@ -7,6 +7,7 @@ namespace Ex03.GarageLogic
     {
         void Recharge(float amountToAdd);
     }
+
     internal class ElectricVehicle
     {
         private const float k_MinBatteryPower = 0;

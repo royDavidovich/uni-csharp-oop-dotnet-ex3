@@ -64,7 +64,7 @@ namespace Ex03.GarageLogic
             return r_MyGarage.GetLicensePlates(i_SpecificVehiclesState);
         }
 
-        public bool IsRefuelable(string i_LicensePlate)
+        public bool IsRefillable(string i_LicensePlate)
         {
             if (!r_MyGarage.LocalGarage.ContainsKey(i_LicensePlate))
             {
@@ -73,7 +73,7 @@ namespace Ex03.GarageLogic
                     nameof(i_LicensePlate));
             }
 
-            return r_MyGarage.LocalGarage[i_LicensePlate].Vehicle is IFuelable;
+            return r_MyGarage.LocalGarage[i_LicensePlate].Vehicle is IFillable;
         }
 
         public void RefuelVehicle(string i_LicensePlate, string i_AmountToAddStr, string i_FuelTypeStr)
@@ -89,24 +89,31 @@ namespace Ex03.GarageLogic
                 throw new FormatException($"Invalid energy percentage: {i_AmountToAddStr}");
             }
 
-            (r_MyGarage.LocalGarage[i_LicensePlate].Vehicle as IFuelable).Refuel(amountToAdd, i_FuelTypeStr);       
+            (r_MyGarage.LocalGarage[i_LicensePlate].Vehicle as IFillable).Refuel(amountToAdd, i_FuelTypeStr);       
         }
 
         public void RechargeVehicle(string i_LicensePlate, string i_AmountToAddInMinutesStr)
         {
             if (!r_MyGarage.LocalGarage.ContainsKey(i_LicensePlate))
             {
-                throw new ArgumentException(
-                    $"Unknown license plate: {i_LicensePlate}",
-                    nameof(i_LicensePlate));
+                throw new ArgumentException($"Unknown license plate: {i_LicensePlate}", nameof(i_LicensePlate));
             }
             if (!float.TryParse(i_AmountToAddInMinutesStr, out float amountToAdd))
             {
                 throw new FormatException($"Invalid energy percentage: {i_AmountToAddInMinutesStr}");
             }
 
-             (r_MyGarage.LocalGarage[i_LicensePlate].Vehicle as IChargeable).Recharge(amountToAdd);
+            (r_MyGarage.LocalGarage[i_LicensePlate].Vehicle as IChargeable).Recharge(amountToAdd);
         }
 
+        public void InflateAllWheelsToMaxAirPressure(string i_LicensePlate)
+        {
+            if (!r_MyGarage.LocalGarage.ContainsKey(i_LicensePlate))
+            {
+                throw new ArgumentException($"Unknown license plate: {i_LicensePlate}", nameof(i_LicensePlate));
+            }
+
+            r_MyGarage.LocalGarage[i_LicensePlate].Vehicle.InflateAllWheelsToMaxAirPressure();
+        }
     }
 }
