@@ -1,6 +1,6 @@
 ﻿using System;
 
-public static class InputValidator
+public class InputValidator
 {
     public static void ValidateNonEmptyString(string i_Input, string i_FieldName)
     {
