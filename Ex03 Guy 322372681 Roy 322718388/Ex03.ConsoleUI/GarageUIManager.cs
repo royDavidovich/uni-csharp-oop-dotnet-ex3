@@ -33,18 +33,18 @@ namespace Ex03.ConsoleUI
 
         public void Run()
         {
-            Console.WriteLine("Hello, and welcome to \"Roy & Guy\'s\" Garage!\n");
+            Console.WriteLine("Hello, and welcome to \"Roy & Guy's\" Garage!\n");
 
             while (!UserDecidedToExit)
             {
                 try
                 {
-                    eUserOptions choice = getUserChoiceOfAction();
-                    handleUserChoice(choice);
+                    eUserOptions userChoice = getUserChoiceOfAction(); 
+                    handleUserChoice(userChoice);
                 }
-                catch (Exception e)
+                catch (Exception ex) 
                 {
-                    Console.WriteLine($"Error: {e.Message}");
+                    Console.WriteLine($"Error: {ex.Message}");
                 }
             }
 
@@ -65,32 +65,30 @@ namespace Ex03.ConsoleUI
 9. Exit our Garage.
 ");
 
-            eUserOptions userOption;
-            bool isChoiceGood;
+            bool isValidChoice = false;
+            eUserOptions parsedOption = eUserOptions.Exit;
 
-            do
+            while (!isValidChoice)
             {
-                string userInput = Console.ReadLine();
+                string inputOption = Console.ReadLine();
+                InputValidator.ValidateNonEmptyString(inputOption, "Menu option"); 
 
-                if (Enum.TryParse(userInput, out userOption) && Enum.IsDefined(typeof(eUserOptions), userOption))
+                if (Enum.TryParse(inputOption, out parsedOption) && Enum.IsDefined(typeof(eUserOptions), parsedOption))
                 {
-                    isChoiceGood = true;
+                    isValidChoice = true;
                 }
                 else
                 {
                     Console.WriteLine("Invalid option. Please enter a number between 1 and 9.");
-                    isChoiceGood = false;
                 }
+            }
 
-            } while (!isChoiceGood);
-
-            return userOption;
+            return parsedOption;
         }
 
-
-        private void handleUserChoice(eUserOptions i_Choice) //SPACES BETWEEN CASES?
+        private void handleUserChoice(eUserOptions i_UserChoice)
         {
-            switch (i_Choice)
+            switch (i_UserChoice)
             {
                 case eUserOptions.LoadVehiclesFromDb:
                     loadVehiclesFromDatabase();
@@ -107,14 +105,14 @@ namespace Ex03.ConsoleUI
                 case eUserOptions.InflateTiresToMax:
                     inflateTiresToMax();
                     break;
-                case eUserOptions.RefuelFuelVehicle: 
+                case eUserOptions.RefuelFuelVehicle:
                     refuelVehicle();
                     break;
-                case eUserOptions.RechargeElectricVehicle: 
+                case eUserOptions.RechargeElectricVehicle:
                     reChargeElectricVehicle();
                     break;
                 case eUserOptions.ShowFullVehicleData:
-                    Console.WriteLine("This feature is under construction."); //TODO LONG!
+                    Console.WriteLine("This feature is under construction.");
                     break;
                 case eUserOptions.Exit:
                     UserDecidedToExit = true;
@@ -124,36 +122,31 @@ namespace Ex03.ConsoleUI
 
         private void inflateTiresToMax()
         {
-            bool finished = false;
+            bool isDone = false;
             string exitCode = ((int)eUserOptions.Exit).ToString();
 
-            while (!finished)
+            while (!isDone)
             {
                 Console.WriteLine($"{k_ProvidePlateNumberMsg} (or press {exitCode} to cancel)");
-                string userInput = Console.ReadLine();
-                
-                userInput = userInput?.Trim();
+                string licensePlateInput = Console.ReadLine()?.Trim();
 
-                if (string.IsNullOrWhiteSpace(userInput))
-                {
-                    Console.WriteLine("No plate entered—please try again.\n");
-                }
-                else if (userInput == exitCode)
+                if (licensePlateInput == exitCode)
                 {
                     Console.WriteLine("Inflation cancelled. Returning to main menu.\n");
-                    finished = true;
+                    isDone = true;
                 }
                 else
                 {
                     try
                     {
-                        r_GarageManager.InflateAllWheelsToMaxAirPressure(userInput);
+                        InputValidator.ValidateNonEmptyString(licensePlateInput, "License plate"); 
+                        r_GarageManager.InflateAllWheelsToMaxAirPressure(licensePlateInput);
                         Console.WriteLine("ALL TIRES HAVE BEEN INFLATED TO MAXIMUM PRESSURE\n");
-                        finished = true;
+                        isDone = true;
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        Console.WriteLine(e.Message);
+                        Console.WriteLine(ex.Message);
                         Console.WriteLine();
                     }
                 }
@@ -162,16 +155,17 @@ namespace Ex03.ConsoleUI
 
         private void showLicensePlates()
         {
-            string userChoice;
+            string filterChoice;
             string stateFilter = null;
 
             Console.WriteLine("Would you like to filter the license plates by vehicle state? (yes/no): ");
-            userChoice = Console.ReadLine()?.Trim().ToLower();
+            filterChoice = Console.ReadLine()?.Trim().ToLower();
 
-            if (userChoice == "yes")
+            if (filterChoice == "yes")
             {
                 Console.WriteLine("Please enter the state to filter by (InRepair, Repaired, Paid): ");
                 stateFilter = Console.ReadLine();
+                InputValidator.ValidateEnum(stateFilter, typeof(Garage.GarageItem.eStateOfCar), "Vehicle state"); 
             }
 
             try
@@ -191,62 +185,70 @@ namespace Ex03.ConsoleUI
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine($"Error: {e.Message}");
+                Console.WriteLine($"Error: {ex.Message}");
             }
         }
 
         private void reChargeElectricVehicle()
         {
-            string userInput;
+            bool isDone = false;
             string exitCode = ((int)eUserOptions.Exit).ToString();
+            string licensePlateInput = string.Empty;
 
-            while (true)
+            while (!isDone)
             {
-                Console.WriteLine(
-                    $"{k_ProvidePlateNumberMsg} (or press {exitCode} to cancel)");
-                userInput = Console.ReadLine()?.Trim();
+                Console.WriteLine($"{k_ProvidePlateNumberMsg} (or press {exitCode} to cancel)");
+                licensePlateInput = Console.ReadLine()?.Trim();
 
-                if (Enum.TryParse<eUserOptions>(userInput, out eUserOptions opt)
-                    && opt == eUserOptions.Exit)
+                if (licensePlateInput == exitCode)
                 {
                     Console.WriteLine("Recharge cancelled. Returning to main menu.");
-                    return;
+                    isDone = true;
                 }
+                else
+                {
+                    try
+                    {
+                        InputValidator.ValidateNonEmptyString(licensePlateInput, "License plate");
+                        r_GarageManager.IsRefillable(licensePlateInput);
+                        isDone = true;
+                    }
+                    catch (FormatException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine();
+                    }
+                    catch (Exception ex) 
+                    {
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine();
+                    }
+                }
+            }
+
+            if (licensePlateInput != exitCode)
+            {
+                Console.WriteLine("Please provide minutes to charge:");
+                string minutesInput = Console.ReadLine();
 
                 try
                 {
-                    if (r_GarageManager.IsRefillable(userInput))  
-                    {
-                        Console.WriteLine(
-                            $"Vehicle number '{userInput}' either doesn't exist or isn't electric. Try again.");
-                        continue;
-                    }
+                    InputValidator.ValidateNumber(minutesInput, "Charge minutes");
+                    r_GarageManager.RechargeVehicle(licensePlateInput, minutesInput);
+                    Console.WriteLine("Charge successful!");
                 }
-                catch (ArgumentException e)
+                catch (FormatException ex)
                 {
-                    
-                    Console.WriteLine(e.Message);
-                    continue;
+                    Console.WriteLine($"Input error: {ex.Message}");
                 }
-
-                break;
-            }
-
-            Console.WriteLine("Please provide minutes to charge:");
-            string minutes = Console.ReadLine();
-            try
-            {
-                r_GarageManager.RechargeVehicle(userInput, minutes);
-                Console.WriteLine("Charge successful!");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Error during charging: {e.Message}");
+                catch (Exception ex) 
+                {
+                    Console.WriteLine($"Error during charging: {ex.Message}");
+                }
             }
         }
-
 
         private void refuelVehicle()
         {
