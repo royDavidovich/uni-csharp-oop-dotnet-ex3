@@ -1,13 +1,14 @@
 using Ex03.GarageLogic;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Ex03.ConsoleUI
 {
     public class GarageUIManager
     {
         private const string k_DBFilePath = "Vehicles.db";
-        private const string k_ProvidePlateNumberMsg = "Please provide your wanted vehicle plate number: ";
+        private const string k_ProvidePlateNumberMsg = "Please provide your wanted vehicle plate's number: ";
         private readonly GarageManager r_GarageManager = new GarageManager();
         public bool UserDecidedToExit { get; set; }
 
@@ -57,8 +58,8 @@ namespace Ex03.ConsoleUI
 2. Insert a new vehicle to our Garage.
 3. Show all vehicles license plates.
 4. Change the status of a vehicle.
-5. Inflate tires.
-6. Refuel a fuel-able vehicle.
+5. Inflate tires (to max air pressure).
+6. Refuel a fuel vehicle.
 7. Recharge an electric vehicle.
 8. Show all the data for a specific vehicle.
 9. Exit our Garage.
@@ -147,7 +148,7 @@ namespace Ex03.ConsoleUI
                     try
                     {
                         r_GarageManager.InflateAllWheelsToMaxAirPressure(userInput);
-                        Console.WriteLine("All tires have been inflated to maximum pressure.\n");
+                        Console.WriteLine("ALL TIRES HAVE BEEN INFLATED TO MAXIMUM PRESSURE\n");
                         finished = true;
                     }
                     catch (Exception e)
@@ -262,10 +263,7 @@ namespace Ex03.ConsoleUI
             while (!vehicleIsRefuelable);
 
             Console.WriteLine(@"Please provide your fuel type:
-Octan95
-Octan96
-Octan98
-Soler");
+Octan95  /  Octan96  /  Octan98  /  Soler");
             userProvidedFuelType = Console.ReadLine();
             Console.WriteLine(@"Please provide your chosen amount to be fueled: ");
             userProvidedAmountToFuel = Console.ReadLine();
@@ -277,6 +275,7 @@ Soler");
             catch (Exception e) 
             {
                 Console.WriteLine(e.Message);
+                Console.WriteLine();
             }   
         }
 
@@ -288,14 +287,12 @@ Soler");
             Console.WriteLine(k_ProvidePlateNumberMsg);
             providedPlateNumber = Console.ReadLine();
             Console.WriteLine(@"Please provide your wanted state - 
-in repair
-repaired
-paid");
+in repair  /  repaired  /  paid");
             providedNewState = Console.ReadLine();
             try
             {
               //  r_GarageManager.UpdateVehicleStateInGarage(providedPlateNumber, providedNewState);
-                Console.WriteLine("Vehicle number {0} state was changed to {1} state!", providedPlateNumber, providedNewState);
+                Console.WriteLine($"Vehicle number {providedPlateNumber} state was changed to {providedNewState} state!");
             }
             catch (Exception e)
             { 
@@ -310,7 +307,7 @@ paid");
             try
             {
                 r_GarageManager.LoadVehiclesFromDB(k_DBFilePath);
-                Console.WriteLine("Database Loaded Successfully!");
+                Console.WriteLine("DATABASE LOADED SUCCESSFULLY!");
                 Console.WriteLine();
             }
             catch (Exception e)

@@ -24,7 +24,6 @@ namespace Ex03.GarageLogic
             }
         }
 
-
         protected override void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)
         {
             if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
