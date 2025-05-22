@@ -291,7 +291,7 @@ in repair  /  repaired  /  paid");
             providedNewState = Console.ReadLine();
             try
             {
-              //  r_GarageManager.UpdateVehicleStateInGarage(providedPlateNumber, providedNewState);
+                r_GarageManager.UpdateVehicleStateInGarage(providedPlateNumber, providedNewState);
                 Console.WriteLine($"Vehicle number {providedPlateNumber} state was changed to {providedNewState} state!");
             }
             catch (Exception e)

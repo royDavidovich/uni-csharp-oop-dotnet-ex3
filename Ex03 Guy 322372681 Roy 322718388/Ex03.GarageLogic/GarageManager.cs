@@ -115,5 +115,10 @@ namespace Ex03.GarageLogic
 
             r_MyGarage.LocalGarage[i_LicensePlate].Vehicle.InflateAllWheelsToMaxAirPressure();
         }
+
+        public void UpdateVehicleStateInGarage(string i_VehicleLicensePlate, string i_NewVehicleState)
+        {
+            r_MyGarage.UpdateVehicleState(i_VehicleLicensePlate, i_NewVehicleState);
+        }
     }
 }
