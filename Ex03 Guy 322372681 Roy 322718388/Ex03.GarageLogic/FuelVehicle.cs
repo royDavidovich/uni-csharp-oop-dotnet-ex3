@@ -5,7 +5,6 @@ namespace Ex03.GarageLogic
     public interface IFillable
     {
         void Refuel(float i_AmountToAdd, string i_FuelType);
-
         string GetFuelType();
     }
 
@@ -24,11 +23,11 @@ namespace Ex03.GarageLogic
             Octan98
         }
 
-        public FuelVehicle(float i_MaxFuelLevel, string i_GasType)
+        public FuelVehicle(float i_MaxFuelLevel, string i_FuelType)
         {
-            m_CurrentFuelLevel = 0;
+            m_CurrentFuelLevel = k_MinFuelLevel;
             r_MaxFuelLevel = i_MaxFuelLevel;
-            if (Enum.TryParse(i_GasType, out eGasType parsedGasType))
+            if (Enum.TryParse(i_FuelType, out eGasType parsedGasType))
             {
                 r_GasType = parsedGasType;
             }
@@ -37,7 +36,7 @@ namespace Ex03.GarageLogic
                 throw new FormatException("Invalid gas type");
             }
         }
-        
+
         public float CurrentFuelLevel
         {
             get
@@ -62,7 +61,7 @@ namespace Ex03.GarageLogic
         {
             get
             {
-                return ((m_CurrentFuelLevel / r_MaxFuelLevel) * 100);
+                return (m_CurrentFuelLevel / r_MaxFuelLevel) * 100;
             }
         }
 
@@ -96,7 +95,7 @@ namespace Ex03.GarageLogic
             }
 
             float newLevel = m_CurrentFuelLevel + i_AmountToAdd;
-            
+
             if (newLevel > r_MaxFuelLevel)
             {
                 throw new ValueRangeException(

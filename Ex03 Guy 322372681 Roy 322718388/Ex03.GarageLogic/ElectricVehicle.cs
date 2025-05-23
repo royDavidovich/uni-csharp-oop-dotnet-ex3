@@ -1,11 +1,12 @@
-﻿using static Ex03.GarageLogic.FuelVehicle;
-using System;
+﻿using System;
+
+using static Ex03.GarageLogic.FuelVehicle;
 
 namespace Ex03.GarageLogic
 {
     public interface IChargeable
     {
-        void Recharge(float i_AmountToAdd);
+        void Recharge(float i_AmountToAddInMinuets);
     }
 
     internal class ElectricVehicle
@@ -13,19 +14,6 @@ namespace Ex03.GarageLogic
         private const float k_MinBatteryPower = 0;
         private float m_CurrentBatteryPowerInHours;
         private readonly float r_MaxBatteryPower;
-
-        public ElectricVehicle(float i_MaxBatteryPower)
-        {
-            m_CurrentBatteryPowerInHours = k_MinBatteryPower;
-            r_MaxBatteryPower = i_MaxBatteryPower;
-        }
-
-        private float ConvertMinutesToHours(float i_Minutes)
-        {
-            float hours = i_Minutes / 60f;
-
-            return hours;
-        }
 
         public float CurrentBatteryPowerInHours
         {
@@ -52,8 +40,14 @@ namespace Ex03.GarageLogic
         {
             get
             {
-                return ((CurrentBatteryPowerInHours / r_MaxBatteryPower) * 100);
+                return (CurrentBatteryPowerInHours / r_MaxBatteryPower) * 100;
             }
+        }
+
+        public ElectricVehicle(float i_MaxBatteryPower)
+        {
+            m_CurrentBatteryPowerInHours = k_MinBatteryPower;
+            r_MaxBatteryPower = i_MaxBatteryPower;
         }
 
         public void Recharge(float i_AmountToAddInMinuets)
@@ -68,13 +62,13 @@ namespace Ex03.GarageLogic
 
             if (CurrentBatteryPowerInHours >= r_MaxBatteryPower)
             {
-                    throw new ValueRangeException(
-                        "Battery is already fully charged.",
-                        k_MinBatteryPower,
-                        r_MaxBatteryPower);
+                throw new ValueRangeException(
+                    "Battery is already fully charged.",
+                    k_MinBatteryPower,
+                    r_MaxBatteryPower);
             }
 
-            float amountToAddInHours = ConvertMinutesToHours(i_AmountToAddInMinuets);
+            float amountToAddInHours = convertMinutesToHours(i_AmountToAddInMinuets);
             float newLevel = CurrentBatteryPowerInHours + amountToAddInHours;
 
             if (newLevel > r_MaxBatteryPower)
@@ -85,8 +79,14 @@ namespace Ex03.GarageLogic
                     r_MaxBatteryPower);
             }
 
-
             CurrentBatteryPowerInHours += amountToAddInHours;
+        }
+
+        private static float convertMinutesToHours(float i_Minutes)
+        {
+            float hours = i_Minutes / 60f;
+
+            return hours;
         }
     }
 }

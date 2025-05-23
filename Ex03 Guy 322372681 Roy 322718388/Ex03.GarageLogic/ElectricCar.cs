@@ -5,15 +5,9 @@ namespace Ex03.GarageLogic
 {
     internal class ElectricCar : Car, IChargeable
     {
-        protected ElectricVehicle m_Battery;
         protected const float k_MaxFuelAmountInHours = 4.8f;
         protected const float k_MaxAirPressure = 32f;
-
-        public ElectricCar(string i_LicensePlate, string i_ModelName)
-            : base(i_LicensePlate, i_ModelName)
-        {
-            m_Battery = new ElectricVehicle(k_MaxFuelAmountInHours);
-        }
+        protected ElectricVehicle m_Battery;
 
         protected override float MaxAirPressure
         {
@@ -31,6 +25,17 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public ElectricCar(string i_LicensePlate, string i_ModelName)
+            : base(i_LicensePlate, i_ModelName)
+        {
+            m_Battery = new ElectricVehicle(k_MaxFuelAmountInHours);
+        }
+
+        public void Recharge(float i_AmountToAddInMinuets)
+        {
+            m_Battery.Recharge(i_AmountToAddInMinuets);
+        }
+
         protected override void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)
         {
             if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
@@ -41,11 +46,6 @@ namespace Ex03.GarageLogic
             float hours = (energyPercentage / 100f * k_MaxFuelAmountInHours);
 
             m_Battery.CurrentBatteryPowerInHours = hours;
-        }
-
-        public void Recharge(float amountToAdd)
-        {
-            m_Battery.Recharge(amountToAdd);
         }
     }
 }

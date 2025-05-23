@@ -44,6 +44,7 @@ namespace Ex03.GarageLogic
             {
                 return m_NumberOfDoors;
             }
+
             set
             {
                 if (value < k_MinNumOfDoors || value > k_MaxNumOfDoors)
@@ -60,7 +61,10 @@ namespace Ex03.GarageLogic
 
         protected eCarColor Color
         {
-            get { return e_Color; }
+            get
+            {
+                return e_Color;
+            }
         }
 
         protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
@@ -80,7 +84,7 @@ namespace Ex03.GarageLogic
         {
             if (Enum.TryParse(i_CarColorStr, out eCarColor carColor))
             {
-                this.e_Color = carColor;
+                e_Color = carColor;
             }
             else
             {
@@ -92,7 +96,7 @@ namespace Ex03.GarageLogic
         {
             if (int.TryParse(i_NumberOfDoorsStr, out int numDoors))
             {
-                this.NumberOfDoors = numDoors;
+                NumberOfDoors = numDoors;
             }
             else
             {
@@ -103,10 +107,10 @@ namespace Ex03.GarageLogic
         public Dictionary<string, object> GetDetails()
         {
             Dictionary<string, object> vehicleSpecificData = new Dictionary<string, object>
-                                                             {
-                                                                 { "Doors", NumberOfDoors },
-                                                                 { "Color", Color }
-                                                             };
+            {
+                { "Doors", NumberOfDoors },
+                { "Color", Color }
+            };
 
             return vehicleSpecificData;
         }

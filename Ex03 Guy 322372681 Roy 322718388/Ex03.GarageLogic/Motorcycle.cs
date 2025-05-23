@@ -38,7 +38,10 @@ namespace Ex03.GarageLogic
 
         protected ePermitTypes PermitType
         {
-            get { return e_PermitType; }
+            get
+            {
+                return e_PermitType;
+            }
         }
 
         public int EngineVolume
@@ -51,8 +54,7 @@ namespace Ex03.GarageLogic
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException(
-                        $"Engine volume must be a positive integer; you entered {value}.");
+                    throw new ArgumentException($"Engine volume must be a positive integer; you entered {value}.");
                 }
 
                 m_EngineVolume = value;
@@ -80,7 +82,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new FormatException($"Invalid Permit Type: {permitType}");
+                throw new FormatException($"Invalid Permit Type: {i_PermitTypeStr}");
             }
         }
 
@@ -92,17 +94,17 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new FormatException($"Invalid Engine Volume: {engineVolume}");
+                throw new FormatException($"Invalid Engine Volume: {i_EngineVolumeStr}");
             }
         }
 
         public Dictionary<string, object> GetDetails()
         {
             Dictionary<string, object> vehicleSpecificData = new Dictionary<string, object>
-                                                             {
-                                                                 { "Engine Volume", EngineVolume },
-                                                                 { "Permit Type", PermitType }
-                                                             };
+            {
+                { "Engine Volume", EngineVolume },
+                { "Permit Type", PermitType }
+            };
 
             return vehicleSpecificData;
         }

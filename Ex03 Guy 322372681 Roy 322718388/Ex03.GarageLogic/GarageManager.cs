@@ -11,20 +11,20 @@ namespace Ex03.GarageLogic
         public void LoadVehiclesFromDB(string i_FilePath)
         {
             string[] lines = File.ReadAllLines(i_FilePath);
+
             foreach (string line in lines)
             {
-                string[] vehicleInformation = line.Split(',');
-
                 if (string.IsNullOrWhiteSpace(line))
                 {
-                    continue;       //continue if empty line or doesn't fit format description
+                    continue;
                 }
 
+                string[] vehicleInformation = line.Split(',');
                 string currentVehicleTypeFromDB = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType];
 
-                if (!(VehicleCreator.SupportedTypes.Contains(currentVehicleTypeFromDB)))
+                if (!VehicleCreator.SupportedTypes.Contains(currentVehicleTypeFromDB))
                 {
-                    continue;       //continue if empty line or doesn't fit format description
+                    continue;
                 }
 
                 string currentVehicleOwnersName = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.OwnerName];
@@ -40,7 +40,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void LoadVehiclesFromUser(string i_CurrentUserVehicleData, List<string> Galgalim = null)
+        public void LoadVehiclesFromUser(string i_CurrentUserVehicleData, List<string> i_Galgalim = null)
         {
             string[] vehicleInformation = i_CurrentUserVehicleData.Split(',');
             string currentVehicleTypeFromDB = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType];
@@ -48,26 +48,21 @@ namespace Ex03.GarageLogic
             string currentVehicleOwnersPhone = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.OwnerPhone];
 
             if (string.IsNullOrWhiteSpace(i_CurrentUserVehicleData)
-                || !(VehicleCreator.SupportedTypes.Contains(currentVehicleTypeFromDB)))
+                || !VehicleCreator.SupportedTypes.Contains(currentVehicleTypeFromDB))
             {
                 throw new ArgumentException(
                     $"Unknown vehicle type: {currentVehicleTypeFromDB}",
                     currentVehicleTypeFromDB);
             }
 
-            Vehicle currentVehicleFromDB = VehicleCreator.CreateVehicle(
+            Vehicle currentVehicleFromDb = VehicleCreator.CreateVehicle(
                 currentVehicleTypeFromDB,
                 vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.LicensePlate],
                 vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.ModelName]);
 
-            currentVehicleFromDB.InitVehicleInformation(vehicleInformation, Galgalim);
-            r_MyGarage.AddGarageEntry(currentVehicleFromDB, currentVehicleOwnersName, currentVehicleOwnersPhone);
+            currentVehicleFromDb.InitVehicleInformation(vehicleInformation, i_Galgalim);
+            r_MyGarage.AddGarageEntry(currentVehicleFromDb, currentVehicleOwnersName, currentVehicleOwnersPhone);
         }
-
-        //public void AddUsersGarageEntry(Vehicle i_CurrentUserVehicle)
-        //{
-        //    r_MyGarage.AddGarageEntry(i_CurrentUserVehicle);
-        //}
 
         public List<string> GetVehiclesInGarageLicensePlates(string i_SpecificVehiclesState = null)
         {
@@ -76,38 +71,36 @@ namespace Ex03.GarageLogic
 
         public bool IsRefillable(string i_LicensePlate)
         {
-            if (!r_MyGarage.LocalGarage.ContainsKey(i_LicensePlate))
+            if (!r_MyGarage.LocalGarage.TryGetValue(i_LicensePlate, out Garage.GarageItem garageItem))
             {
-                throw new ArgumentException(
-                    $"Unknown license plate: {i_LicensePlate}",
-                    nameof(i_LicensePlate));
+                throw new ArgumentException($"Unknown license plate: {i_LicensePlate}", i_LicensePlate);
             }
 
-            return r_MyGarage.LocalGarage[i_LicensePlate].Vehicle is IFillable;
+            return garageItem.Vehicle is IFillable;
         }
 
         public void RefuelVehicle(string i_LicensePlate, string i_AmountToAddStr, string i_FuelTypeStr)
         {
             if (!r_MyGarage.LocalGarage.ContainsKey(i_LicensePlate))
             {
-                throw new ArgumentException(
-                    $"Unknown license plate: {i_LicensePlate}",
-                    nameof(i_LicensePlate));
+                throw new ArgumentException($"Unknown license plate: {i_LicensePlate}", i_LicensePlate);
             }
+
             if (!float.TryParse(i_AmountToAddStr, out float amountToAdd))
             {
                 throw new FormatException($"Invalid energy percentage: {i_AmountToAddStr}");
             }
 
-            (r_MyGarage.LocalGarage[i_LicensePlate].Vehicle as IFillable).Refuel(amountToAdd, i_FuelTypeStr);       
+            (r_MyGarage.LocalGarage[i_LicensePlate].Vehicle as IFillable).Refuel(amountToAdd, i_FuelTypeStr);
         }
 
         public void RechargeVehicle(string i_LicensePlate, string i_AmountToAddInMinutesStr)
         {
             if (!r_MyGarage.LocalGarage.ContainsKey(i_LicensePlate))
             {
-                throw new ArgumentException($"Unknown license plate: {i_LicensePlate}", nameof(i_LicensePlate));
+                throw new ArgumentException($"Unknown license plate: {i_LicensePlate}", i_LicensePlate);
             }
+
             if (!float.TryParse(i_AmountToAddInMinutesStr, out float amountToAdd))
             {
                 throw new FormatException($"Invalid energy percentage: {i_AmountToAddInMinutesStr}");
@@ -120,7 +113,7 @@ namespace Ex03.GarageLogic
         {
             if (!r_MyGarage.LocalGarage.ContainsKey(i_LicensePlate))
             {
-                throw new ArgumentException($"Unknown license plate: {i_LicensePlate}", nameof(i_LicensePlate));
+                throw new ArgumentException($"Unknown license plate: {i_LicensePlate}", i_LicensePlate);
             }
 
             r_MyGarage.LocalGarage[i_LicensePlate].Vehicle.InflateAllWheelsToMaxAirPressure();
@@ -135,7 +128,7 @@ namespace Ex03.GarageLogic
         {
             if (!r_MyGarage.LocalGarage.TryGetValue(i_LicensePlate, out Garage.GarageItem garageItem))
             {
-                throw new ArgumentException($"Unknown license plate: {i_LicensePlate}", nameof(i_LicensePlate));
+                throw new ArgumentException($"Unknown license plate: {i_LicensePlate}", i_LicensePlate);
             }
 
             return garageItem;
