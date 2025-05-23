@@ -8,7 +8,6 @@ namespace Ex03.GarageLogic
         protected const float k_MaxFuelAmount = 48f;
         protected const float k_MaxAirPressure = 32f;
         protected const string k_GasType = "Octan95";
-
         public FuelVehicle m_FuelEngine;
 
         protected override float MaxAirPressure

@@ -9,14 +9,13 @@ namespace Ex03.GarageLogic
         protected const float k_MaxFuelAmount = 135f;
         protected const float k_MaxAirPressure = 27f;
         protected const string k_GasType = "Soler";
+        public FuelVehicle m_FuelEngine;
 
         protected enum eSpecificDataIndicesInFile
         {
             IsHazardousCargoLoaded = 8,
             CargoVolume = 9
         }
-
-        public FuelVehicle m_FuelEngine;
 
         public Truck(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
