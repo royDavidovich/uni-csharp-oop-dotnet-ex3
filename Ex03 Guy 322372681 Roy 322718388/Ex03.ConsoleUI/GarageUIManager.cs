@@ -459,10 +459,25 @@ namespace Ex03.ConsoleUI
         private void collectWheelInfo(string[] io_VehicleData, out List<string> o_WheelData, int i_NumOfWheels)
         {
             o_WheelData = null;
-            Console.Write("Do you want to enter the same wheel info for all wheels? (yes/no): ");
-            string answer = Console.ReadLine()?.Trim().ToLower();
+            string answer = null;
+            bool validAnswer = false;
 
-            if (answer == "yes")
+            while (!validAnswer)
+            {
+                Console.Write("Do you want to enter the same wheel info for all wheels? <y/n>: ");
+                answer = Console.ReadLine()?.Trim().ToLower();
+
+                if (answer == "y" || answer == "n")
+                {
+                    validAnswer = true;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter y for yes or n for 'no'.");
+                }
+            }
+
+            if (answer == "y")
             {
                 Console.Write("Enter wheel manufacturer: ");
                 string manufacturer = Console.ReadLine();
@@ -494,6 +509,7 @@ namespace Ex03.ConsoleUI
                 }
             }
         }
+
 
         private void collectTypeSpecificData(string[] io_VehicleData, string i_Type)
         {
