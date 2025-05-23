@@ -6,16 +6,11 @@ namespace Ex03.GarageLogic
 {
     internal class FuelMotorcycle : Motorcycle, IFillable
     {
-        public FuelVehicle m_FuelEngine;
         protected const float k_MaxFuelAmount = 5.8f;
         protected const float k_MaxAirPressure = 30f;
         protected const string k_GasType = "Octan98";
 
-        public FuelMotorcycle(string i_LicensePlate, string i_ModelName)
-            : base(i_LicensePlate, i_ModelName)
-        {
-            m_FuelEngine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
-        }
+        public FuelVehicle m_FuelEngine;
 
         protected override float MaxAirPressure
         {
@@ -33,6 +28,23 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public FuelMotorcycle(string i_LicensePlate, string i_ModelName)
+            : base(i_LicensePlate, i_ModelName)
+        {
+            m_FuelEngine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
+        }
+
+        public void Refuel(float i_AmountToAdd, string i_FuelType)
+        {
+            m_FuelEngine.Refuel(i_AmountToAdd, i_FuelType);
+        }
+
+        public string GetFuelType()
+        {
+
+            return k_GasType;
+        }
+
         protected override void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)
         {
             if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
@@ -43,16 +55,6 @@ namespace Ex03.GarageLogic
             float liters = (energyPercentage / 100f * k_MaxFuelAmount);
 
             m_FuelEngine.CurrentFuelLevel = liters;
-        }
-
-        public void Refuel(float amountToAdd, string fuelType)
-        {
-            m_FuelEngine.Refuel(amountToAdd, fuelType);
-        }
-
-        public string GetFuelType()
-        {
-            return k_GasType;
         }
     }
 }
