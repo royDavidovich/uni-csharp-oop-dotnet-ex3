@@ -6,6 +6,11 @@ using System.Security.Permissions;
 
 namespace Ex03.GarageLogic
 {
+    public interface IDetailedVehicle
+    {
+        Dictionary<string, object> GetDetails();
+    }
+
     public abstract class Vehicle
     {
         public enum eGeneralDataIndicesInFile
@@ -36,9 +41,24 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public string ModelName
+        {
+            get
+            {
+                return r_ModelName;
+            }
+        }
+
+        public IReadOnlyList<Wheel> Wheels
+        {
+            get { return r_Wheels.AsReadOnly(); }
+        }
+
         public abstract int NumberOfWheels { get; }
 
         protected abstract float MaxAirPressure { get; }
+
+        public abstract float EnergyPercentage { get; }
 
         protected Vehicle(string i_LicensePlate, string i_ModelName)
         {

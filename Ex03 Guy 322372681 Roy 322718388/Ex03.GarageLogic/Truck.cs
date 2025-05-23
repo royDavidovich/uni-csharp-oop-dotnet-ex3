@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    internal class Truck : Vehicle, IFillable
+    internal class Truck : Vehicle, IFillable, IDetailedVehicle
     {
         public FuelVehicle m_FuelEngine;
         protected const int k_NumberOfWheels = 12;
@@ -42,6 +42,14 @@ namespace Ex03.GarageLogic
         public bool IsHazardousCargoLoaded { get; set; }
 
         public float CargoVolume { get; set; }
+
+        public override float EnergyPercentage
+        {
+            get
+            {
+                return m_FuelEngine.EnergyPercentage;
+            }
+        }
 
         protected override void InitVehicleSpecificInformation(string[] i_VehicleData)
         {
@@ -93,6 +101,22 @@ namespace Ex03.GarageLogic
         public void Refuel(float amountToAdd, string fuelType)
         {
             m_FuelEngine.Refuel(amountToAdd, fuelType);
+        }
+
+        public string GetFuelType()
+        {
+            return k_GasType;
+        }
+
+        public Dictionary<string, object> GetDetails()
+        {
+            Dictionary<string, object> vehicleSpecificData = new Dictionary<string, object>
+                                                             {
+                                                                 { "Is Hazardous Cargo Loaded", IsHazardousCargoLoaded},
+                                                                 { "Cargo Volume", CargoVolume }
+                                                             };
+
+            return vehicleSpecificData;
         }
     }
 }

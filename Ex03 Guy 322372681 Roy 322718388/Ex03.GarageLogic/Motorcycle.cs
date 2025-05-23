@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    internal abstract class Motorcycle : Vehicle
+    internal abstract class Motorcycle : Vehicle, IDetailedVehicle
     {
         protected const int k_NumberOfWheels = 2;
         private int m_EngineVolume;
-        protected ePermitTypes m_PermitType;
+        protected ePermitTypes e_PermitType;
 
         protected enum ePermitTypes
         {
@@ -34,6 +34,11 @@ namespace Ex03.GarageLogic
             {
                 return k_NumberOfWheels;
             }
+        }
+
+        protected ePermitTypes PermitType
+        {
+            get { return e_PermitType; }
         }
 
         public int EngineVolume
@@ -71,7 +76,7 @@ namespace Ex03.GarageLogic
         {
             if (Enum.TryParse(i_PermitTypeStr, out ePermitTypes permitType))
             {
-                this.m_PermitType = permitType;
+                this.e_PermitType = permitType;
             }
             else
             {
@@ -89,6 +94,17 @@ namespace Ex03.GarageLogic
             {
                 throw new FormatException($"Invalid Engine Volume: {engineVolume}");
             }
+        }
+
+        public Dictionary<string, object> GetDetails()
+        {
+            Dictionary<string, object> vehicleSpecificData = new Dictionary<string, object>
+                                                             {
+                                                                 { "Engine Volume", EngineVolume },
+                                                                 { "Permit Type", PermitType }
+                                                             };
+
+            return vehicleSpecificData;
         }
     }
 }

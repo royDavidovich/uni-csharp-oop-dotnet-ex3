@@ -2,9 +2,11 @@
 
 namespace Ex03.GarageLogic
 {
-    internal interface IFillable
+    public interface IFillable
     {
         void Refuel(float i_AmountToAdd, string i_FuelType);
+
+        string GetFuelType();
     }
 
     internal class FuelVehicle

@@ -24,6 +24,14 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public override float EnergyPercentage
+        {
+            get
+            {
+                return m_Battery.EnergyPercentage;
+            }
+        }
+
         protected override void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)
         {
             if (!float.TryParse(i_CurrentPercentageStr, out float energyPercentage))
@@ -36,9 +44,9 @@ namespace Ex03.GarageLogic
             m_Battery.CurrentBatteryPowerInHours = hours;
         }
 
-        public void Recharge(float amountToAdd)
+        public void Recharge(float i_AmountToAdd)
         {
-            m_Battery.Recharge(amountToAdd);
+            m_Battery.Recharge(i_AmountToAdd);
         }
     }
 }

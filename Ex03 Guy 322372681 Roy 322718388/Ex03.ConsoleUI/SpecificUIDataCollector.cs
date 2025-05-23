@@ -13,7 +13,7 @@ namespace Ex03.ConsoleUI
             InputValidator.ValidateNonEmptyString(hazardous, "Hazardous cargo flag");
             io_VehicleData[k_FirstSpecialIndexInData] = hazardous;
 
-            string volume = GetValidatedNumberInput("Enter cargo volume: ", "Cargo volume");
+            string volume = ValidatedFloatNumberInput("Enter cargo volume: ", "Cargo volume");
             io_VehicleData[k_SecondSpecialIndexInData] = volume;
         }
     }
@@ -27,7 +27,7 @@ namespace Ex03.ConsoleUI
             InputValidator.ValidateEnum(color, typeof(eCarColorUI), "Car color");
             io_VehicleData[k_FirstSpecialIndexInData] = color;
 
-            string doors = GetValidatedNumberInput("Enter number of doors (2–5): ", "Number of doors");
+            string doors = ValidatedFloatNumberInput("Enter number of doors (2–5): ", "Number of doors");
             io_VehicleData[k_SecondSpecialIndexInData] = doors;
         }
     }
@@ -41,9 +41,8 @@ namespace Ex03.ConsoleUI
             InputValidator.ValidateEnum(permit, typeof(ePermitTypeUI), "Permit type");
             io_VehicleData[k_FirstSpecialIndexInData] = permit;
 
-            string volume = GetValidatedNumberInput("Enter engine volume: ", "Engine volume");
+            string volume = ValidatedFloatNumberInput("Enter engine volume: ", "Engine volume");
             io_VehicleData[k_SecondSpecialIndexInData] = volume;
         }
-
     }
 }

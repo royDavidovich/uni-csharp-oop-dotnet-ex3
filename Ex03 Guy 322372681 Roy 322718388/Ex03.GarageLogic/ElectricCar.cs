@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    internal class ElectricCar : Car , IChargeable
+    internal class ElectricCar : Car, IChargeable
     {
         protected ElectricVehicle m_Battery;
         protected const float k_MaxFuelAmountInHours = 4.8f;
@@ -20,6 +20,14 @@ namespace Ex03.GarageLogic
             get
             {
                 return k_MaxAirPressure;
+            }
+        }
+
+        public override float EnergyPercentage
+        {
+            get
+            {
+                return m_Battery.EnergyPercentage;
             }
         }
 
