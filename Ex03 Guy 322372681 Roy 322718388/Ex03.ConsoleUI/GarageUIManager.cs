@@ -6,6 +6,11 @@ using System.Threading;
 
 namespace Ex03.ConsoleUI
 {
+    public interface IUITypeDataCollector
+    {
+        void CollectData(string[] io_VehicleData);
+    }
+
     public class GarageUIManager
     {
         public enum eFuelTypeUI
@@ -35,13 +40,22 @@ namespace Ex03.ConsoleUI
         private const string k_DBFilePath = "Vehicles.db";
         private const string k_ProvidePlateNumberMsg = "Please provide your wanted vehicle plate's number: ";
         private readonly GarageManager r_GarageManager = new GarageManager();
+
+
+        // A dictionary used to delegate vehicle-specific data collection, promoting polymorphic behavior and separation of concerns.
+        private readonly Dictionary<string, IUITypeDataCollector> r_DataCollectors = new Dictionary<string, IUITypeDataCollector>
+{
+    { "FuelCar", new CarUIDataCollector() },
+    { "ElectricCar", new CarUIDataCollector() },
+    { "FuelMotorcycle", new MotorcycleUIDataCollector() },
+    { "ElectricMotorcycle", new MotorcycleUIDataCollector() },
+    { "Truck", new TruckUIDataCollector() }
+};
+
         public bool UserDecidedToExit { get; set; }
 
-        private const int k_MotorcycleWheels = 2;
-        private const int k_CarWheels = 5;
-        private const int k_TruckWheels = 12;
-        private const int k_FirstSpecialIndexInData = 8;
-        private const int k_SecondSpecialIndexInData = 9;
+        public const int k_FirstSpecialIndexInData = 8;
+        public const int k_SecondSpecialIndexInData = 9;
 
         private enum eUserOptions
         {
@@ -255,7 +269,7 @@ namespace Ex03.ConsoleUI
             return validatedPlate;
         }
 
-        private string getValidatedNumberInput(string i_Prompt, string i_FieldName)
+        public static string GetValidatedNumberInput(string i_Prompt, string i_FieldName)
         {
             Console.WriteLine(i_Prompt);
             string userInput = Console.ReadLine();
@@ -272,7 +286,7 @@ namespace Ex03.ConsoleUI
             {
                 try
                 {
-                    string minutes = getValidatedNumberInput("Please provide minutes to charge:", "Charge minutes");
+                    string minutes = GetValidatedNumberInput("Please provide minutes to charge:", "Charge minutes");
                     r_GarageManager.RechargeVehicle(licensePlate, minutes);
                     Console.WriteLine("Charge successful!");
                 }
@@ -456,7 +470,7 @@ namespace Ex03.ConsoleUI
                 io_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.TierModel] = manufacturer;
 
                 string pressurePrompt = "Enter current air pressure: ";
-                string airPressure = getValidatedNumberInput(pressurePrompt, "Current air pressure");
+                string airPressure = GetValidatedNumberInput(pressurePrompt, "Current air pressure");
                 io_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.CurrAirPressure] = airPressure;
             }
             else
@@ -475,7 +489,7 @@ namespace Ex03.ConsoleUI
                     o_WheelData.Add(manufacturer);
 
                     string pressurePrompt = "Enter current air pressure: ";
-                    string airPressure = getValidatedNumberInput(pressurePrompt, $"Air pressure (Wheel {i + 1})");
+                    string airPressure = GetValidatedNumberInput(pressurePrompt, $"Air pressure (Wheel {i + 1})");
                     o_WheelData.Add(airPressure);
                 }
             }
@@ -483,38 +497,13 @@ namespace Ex03.ConsoleUI
 
         private void collectTypeSpecificData(string[] io_VehicleData, string i_Type)
         {
-            if (i_Type == "FuelCar" || i_Type == "ElectricCar")
+            if (r_DataCollectors.TryGetValue(i_Type, out IUITypeDataCollector collector))
             {
-                Console.Write("Enter car color (Yellow, Black, White, Silver): ");
-                string color = Console.ReadLine();
-                InputValidator.ValidateEnum(color, typeof(eCarColorUI), "Car color");
-                io_VehicleData[k_FirstSpecialIndexInData] = color;
-
-                string doorsPrompt = "Enter number of doors (2–5): ";
-                string doors = getValidatedNumberInput(doorsPrompt, "Number of doors");
-                io_VehicleData[k_SecondSpecialIndexInData] = doors;
+                collector.CollectData(io_VehicleData);
             }
-            else if (i_Type == "FuelMotorcycle" || i_Type == "ElectricMotorcycle")
+            else
             {
-                Console.Write("Enter permit type (A, A2, AB, B2): ");
-                string permit = Console.ReadLine();
-                InputValidator.ValidateEnum(permit, typeof(ePermitTypeUI), "Permit type");
-                io_VehicleData[k_FirstSpecialIndexInData] = permit;
-
-                string enginePrompt = "Enter engine volume: ";
-                string volume = getValidatedNumberInput(enginePrompt, "Engine volume");
-                io_VehicleData[k_SecondSpecialIndexInData] = volume;
-            }
-            else if (i_Type == "Truck")
-            {
-                Console.Write("Is hazardous cargo loaded? (true/false): ");
-                string hazardous = Console.ReadLine();
-                InputValidator.ValidateNonEmptyString(hazardous, "Hazardous cargo flag");
-                io_VehicleData[k_FirstSpecialIndexInData] = hazardous;
-
-                string cargoPrompt = "Enter cargo volume: ";
-                string cargo = getValidatedNumberInput(cargoPrompt, "Cargo volume");
-                io_VehicleData[k_SecondSpecialIndexInData] = cargo;
+                Console.WriteLine("No specific data collector found for this vehicle type.");
             }
         }
 
