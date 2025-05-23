@@ -5,7 +5,6 @@ namespace Ex03.GarageLogic
 {
     internal class Truck : Vehicle, IFillable, IDetailedVehicle
     {
-        public FuelVehicle m_FuelEngine;
         protected const int k_NumberOfWheels = 12;
         protected const float k_MaxFuelAmount = 135f;
         protected const float k_MaxAirPressure = 27f;
@@ -16,6 +15,8 @@ namespace Ex03.GarageLogic
             IsHazardousCargoLoaded = 8,
             CargoVolume = 9
         }
+
+        public FuelVehicle m_FuelEngine;
 
         public Truck(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
@@ -76,31 +77,27 @@ namespace Ex03.GarageLogic
 
         private void parseAndSetIsHazardousCargo(string i_IsHazardousStr)
         {
-            if (bool.TryParse(i_IsHazardousStr, out bool isHazardous))
-            {
-                this.IsHazardousCargoLoaded = isHazardous;
-            }
-            else
+            if(!bool.TryParse(i_IsHazardousStr, out bool isHazardous))
             {
                 throw new FormatException($"Invalid Hazardous Cargo value: {i_IsHazardousStr}");
             }
+
+            this.IsHazardousCargoLoaded = isHazardous;
         }
 
         private void parseAndSetCargoVolume(string i_CargoVolumeStr)
         {
-            if (float.TryParse(i_CargoVolumeStr, out float volume))
-            {
-                this.CargoVolume = volume;
-            }
-            else
+            if(!float.TryParse(i_CargoVolumeStr, out float volume))
             {
                 throw new FormatException($"Invalid Cargo Volume: {i_CargoVolumeStr}");
             }
+
+            this.CargoVolume = volume;
         }
 
-        public void Refuel(float amountToAdd, string fuelType)
+        public void Refuel(float i_AmountToAdd, string i_FuelType)
         {
-            m_FuelEngine.Refuel(amountToAdd, fuelType);
+            m_FuelEngine.Refuel(i_AmountToAdd, i_FuelType);
         }
 
         public string GetFuelType()
@@ -111,10 +108,10 @@ namespace Ex03.GarageLogic
         public Dictionary<string, object> GetDetails()
         {
             Dictionary<string, object> vehicleSpecificData = new Dictionary<string, object>
-                                                             {
-                                                                 { "Is Hazardous Cargo Loaded", IsHazardousCargoLoaded},
-                                                                 { "Cargo Volume", CargoVolume }
-                                                             };
+            {
+                { "Is Hazardous Cargo Loaded", IsHazardousCargoLoaded },
+                { "Cargo Volume", CargoVolume }
+            };
 
             return vehicleSpecificData;
         }
