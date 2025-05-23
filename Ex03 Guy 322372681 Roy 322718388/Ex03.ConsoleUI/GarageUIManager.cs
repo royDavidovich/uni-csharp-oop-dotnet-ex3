@@ -82,7 +82,7 @@ namespace Ex03.ConsoleUI
                 }
                 catch (Exception ex) 
                 {
-                    Console.WriteLine($"Error: {ex.Message}");
+                    Console.WriteLine($"Error: {ex.Message}\n");
                 }
             }
 
@@ -197,11 +197,10 @@ namespace Ex03.ConsoleUI
 
         private void showLicensePlates()
         {
-            string filterChoice;
             string stateFilter = null;
 
             Console.WriteLine("Would you like to filter the license plates by vehicle state? (yes/no): ");
-            filterChoice = Console.ReadLine()?.Trim().ToLower();
+            string filterChoice = Console.ReadLine()?.Trim().ToLower();
 
             if (filterChoice == "yes")
             {
@@ -362,7 +361,8 @@ namespace Ex03.ConsoleUI
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}\n");
+                Console.WriteLine($@"Error: {ex.Message}
+");
             }
 
             Console.WriteLine();
@@ -421,7 +421,8 @@ namespace Ex03.ConsoleUI
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine($@"Error: {ex.Message}
+");
                 }
 
                 Console.WriteLine();
@@ -438,7 +439,17 @@ namespace Ex03.ConsoleUI
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                if(e is ArgumentException && e.Message.StartsWith("An item"))
+                {
+                    Console.WriteLine(@"You tried to load an exiting vehicle.
+Please try again.
+");
+                }
+                else
+                {
+                    Console.WriteLine($@"{e.Message}
+");
+                }
             }
         }
 

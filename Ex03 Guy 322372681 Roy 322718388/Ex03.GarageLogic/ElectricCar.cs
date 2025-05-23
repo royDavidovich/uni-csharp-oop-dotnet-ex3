@@ -31,9 +31,9 @@ namespace Ex03.GarageLogic
             m_Battery = new ElectricVehicle(k_MaxFuelAmountInHours);
         }
 
-        public void Recharge(float amountToAdd)
+        public void Recharge(float i_AmountToAddInMinuets)
         {
-            m_Battery.Recharge(amountToAdd);
+            m_Battery.Recharge(i_AmountToAddInMinuets);
         }
 
         protected override void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)

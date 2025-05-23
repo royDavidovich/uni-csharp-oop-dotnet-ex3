@@ -6,7 +6,7 @@ public class InputValidator
     {
         if (string.IsNullOrWhiteSpace(i_Input))
         {
-            throw new FormatException($"{i_FieldName} cannot be empty or whitespace."); 
+            throw new FormatException($"{i_FieldName} cannot be empty or whitespace.");
         }
     }
 
@@ -14,7 +14,7 @@ public class InputValidator
     {
         if (!float.TryParse(i_Input, out _))
         {
-            throw new FormatException($"{i_FieldName} must be a valid number."); 
+            throw new FormatException($"{i_FieldName} must be a valid number.");
         }
     }
 
