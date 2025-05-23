@@ -103,6 +103,11 @@ namespace Ex03.GarageLogic
             m_FuelEngine.Refuel(amountToAdd, fuelType);
         }
 
+        public string GetFuelType()
+        {
+            return k_GasType;
+        }
+
         public Dictionary<string, object> GetDetails()
         {
             Dictionary<string, object> vehicleSpecificData = new Dictionary<string, object>

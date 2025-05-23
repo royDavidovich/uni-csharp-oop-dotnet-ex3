@@ -48,5 +48,10 @@ namespace Ex03.GarageLogic
         {
             m_FuelEngine.Refuel(amountToAdd, fuelType);
         }
+
+        public string GetFuelType()
+        {
+            return k_GasType;
+        }
     }
 }

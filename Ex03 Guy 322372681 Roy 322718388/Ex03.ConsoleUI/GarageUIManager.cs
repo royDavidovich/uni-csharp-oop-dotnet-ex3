@@ -331,8 +331,13 @@ namespace Ex03.ConsoleUI
                 // Basic info
                 Console.WriteLine();
                 Console.WriteLine($"License Plate: {garageItem.Vehicle.LicensePlate}");
+                Console.WriteLine($"Model: {garageItem.Vehicle.ModelName}");
                 Console.WriteLine($"Owner: {garageItem.OwnerName} ({garageItem.OwnerPhoneNumber})");
                 Console.WriteLine($"Status: {garageItem.StateOfCar}");
+                if(garageItem.Vehicle is IFillable fuelGarageItemVehicle)
+                {
+                    Console.WriteLine($"Fuel type: {fuelGarageItemVehicle.GetFuelType()}");
+                }
 
                 Console.WriteLine($"Energy Remaining: {garageItem.Vehicle.EnergyPercentage:0.##}%");
 
@@ -401,14 +406,14 @@ namespace Ex03.ConsoleUI
 
             if (licensePlate != null)
             {
-                Console.WriteLine("Please provide your wanted state - in repair / repaired / paid");
+                Console.WriteLine("Please provide your wanted state - InRepair  /  Repaired  /  Paid");
                 string stateInput = Console.ReadLine();
 
                 try
                 {
                     InputValidator.ValidateEnum(stateInput, typeof(Garage.GarageItem.eStateOfCar), "Vehicle state");
                     r_GarageManager.UpdateVehicleStateInGarage(licensePlate, stateInput);
-                    Console.WriteLine($"Vehicle number {licensePlate} state was changed to {stateInput} state!");
+                    Console.WriteLine($"Vehicle number {licensePlate} state was changed to \"{stateInput}\" state!");
                 }
                 catch (FormatException ex)
                 {

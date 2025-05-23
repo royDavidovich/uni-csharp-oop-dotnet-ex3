@@ -41,6 +41,14 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public string ModelName
+        {
+            get
+            {
+                return r_ModelName;
+            }
+        }
+
         public IReadOnlyList<Wheel> Wheels
         {
             get { return r_Wheels.AsReadOnly(); }

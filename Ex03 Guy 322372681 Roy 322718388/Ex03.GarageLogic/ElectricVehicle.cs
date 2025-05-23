@@ -3,7 +3,7 @@ using System;
 
 namespace Ex03.GarageLogic
 {
-    internal interface IChargeable
+    public interface IChargeable
     {
         void Recharge(float i_AmountToAdd);
     }
