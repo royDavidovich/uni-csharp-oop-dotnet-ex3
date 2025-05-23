@@ -12,7 +12,6 @@ namespace Ex03.GarageLogic
     internal class ElectricVehicle
     {
         private const float k_MinBatteryPower = 0;
-
         private float m_CurrentBatteryPowerInHours;
         private readonly float r_MaxBatteryPower;
 
@@ -70,7 +69,6 @@ namespace Ex03.GarageLogic
             }
 
             float amountToAddInHours = convertMinutesToHours(i_AmountToAddInMinuets);
-
             float newLevel = CurrentBatteryPowerInHours + amountToAddInHours;
 
             if (newLevel > r_MaxBatteryPower)

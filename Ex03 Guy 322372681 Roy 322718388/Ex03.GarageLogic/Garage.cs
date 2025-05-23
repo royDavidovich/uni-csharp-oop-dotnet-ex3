@@ -1,24 +1,28 @@
 using System;
 using System.Collections.Generic;
+
 using static Ex03.GarageLogic.FuelVehicle;
 
 namespace Ex03.GarageLogic
 {
     public class Garage
     {
-        public class GarageItem // Changed from private to public
+        public class GarageItem
         {
-            public string OwnerName { get; private set; }
-            public string OwnerPhoneNumber { get; private set; }
-            public eStateOfCar StateOfCar { get; set; }
-            public Vehicle Vehicle { get; private set; }
-
             public enum eStateOfCar
             {
                 InRepair,
                 Repaired,
                 Paid
             }
+
+            public string OwnerName { get; private set; }
+
+            public string OwnerPhoneNumber { get; private set; }
+
+            public eStateOfCar StateOfCar { get; set; }
+
+            public Vehicle Vehicle { get; private set; }
 
             public GarageItem(string i_OwnerName, string i_OwnerPhoneNumber, Vehicle i_Vehicle)
             {
@@ -29,16 +33,20 @@ namespace Ex03.GarageLogic
             }
         }
 
-        private Dictionary<string, GarageItem> m_GarageVehicles = new Dictionary<string, GarageItem>();
+        private readonly Dictionary<string, GarageItem> m_GarageVehicles = new Dictionary<string, GarageItem>();
 
         public Dictionary<string, GarageItem> LocalGarage
         {
-            get { return m_GarageVehicles; }
+            get
+            {
+                return m_GarageVehicles;
+            }
         }
 
         public void AddGarageEntry(Vehicle i_Vehicle, string i_OwnerName = "", string i_OwnerPhone = "")
         {
             GarageItem newVehicle = new GarageItem(i_OwnerName, i_OwnerPhone, i_Vehicle);
+
             this.m_GarageVehicles.Add(newVehicle.Vehicle.LicensePlate, newVehicle);
         }
 
