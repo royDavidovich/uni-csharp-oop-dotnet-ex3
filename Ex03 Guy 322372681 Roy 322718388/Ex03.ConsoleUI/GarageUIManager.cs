@@ -41,19 +41,18 @@ namespace Ex03.ConsoleUI
         private const string k_ProvidePlateNumberMsg = "Please provide your wanted vehicle plate's number: ";
         private readonly GarageManager r_GarageManager = new GarageManager();
 
-
         // A dictionary used to delegate vehicle-specific data collection, promoting polymorphic behavior and separation of concerns.
-        private readonly Dictionary<string, IUITypeDataCollector> r_DataCollectors = new Dictionary<string, IUITypeDataCollector>
-{
-    { "FuelCar", new CarUIDataCollector() },
-    { "ElectricCar", new CarUIDataCollector() },
-    { "FuelMotorcycle", new MotorcycleUIDataCollector() },
-    { "ElectricMotorcycle", new MotorcycleUIDataCollector() },
-    { "Truck", new TruckUIDataCollector() }
-};
+        private readonly Dictionary<string, IUITypeDataCollector> r_DataCollectors =
+            new Dictionary<string, IUITypeDataCollector>
+                {
+                    { "FuelCar", new CarUIDataCollector() },
+                    { "ElectricCar", new CarUIDataCollector() },
+                    { "FuelMotorcycle", new MotorcycleUIDataCollector() },
+                    { "ElectricMotorcycle", new MotorcycleUIDataCollector() },
+                    { "Truck", new TruckUIDataCollector() }
+                };
 
         public bool UserDecidedToExit { get; set; }
-
         public const int k_FirstSpecialIndexInData = 8;
         public const int k_SecondSpecialIndexInData = 9;
 
@@ -511,7 +510,6 @@ namespace Ex03.ConsoleUI
                 }
             }
         }
-
 
         private void collectTypeSpecificData(string[] io_VehicleData, string i_Type)
         {
