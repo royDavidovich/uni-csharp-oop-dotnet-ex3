@@ -5,7 +5,7 @@ namespace Ex03.GarageLogic
 {
     internal interface IChargeable
     {
-        void Recharge(float amountToAdd);
+        void Recharge(float i_AmountToAdd);
     }
 
     internal class ElectricVehicle

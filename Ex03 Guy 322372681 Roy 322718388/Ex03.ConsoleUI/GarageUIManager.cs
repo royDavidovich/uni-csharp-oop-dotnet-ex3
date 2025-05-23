@@ -220,7 +220,7 @@ namespace Ex03.ConsoleUI
                     Console.WriteLine("License plates in the garage:");
                     foreach (string plate in licensePlates)
                     {
-                        Console.WriteLine($"- {plate}");
+                        Console.WriteLine($"* {plate}");
                     }
                 }
             }
@@ -228,6 +228,8 @@ namespace Ex03.ConsoleUI
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
+
+            Console.WriteLine();
         }
 
         private string getValidatedLicensePlateWithExit(string i_ExitCode, string i_ActionLabel)

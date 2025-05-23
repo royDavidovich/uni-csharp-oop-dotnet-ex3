@@ -4,7 +4,7 @@ namespace Ex03.GarageLogic
 {
     internal interface IFillable
     {
-        void Refuel(float amountToAdd, string fuelType);
+        void Refuel(float i_AmountToAdd, string i_FuelType);
     }
 
     internal class FuelVehicle
@@ -35,7 +35,7 @@ namespace Ex03.GarageLogic
                 throw new FormatException("Invalid gas type");
             }
         }
-
+        
         public float CurrentFuelLevel
         {
             get
