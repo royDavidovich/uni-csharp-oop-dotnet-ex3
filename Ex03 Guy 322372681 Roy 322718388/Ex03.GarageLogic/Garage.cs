@@ -75,7 +75,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void UpdateVehicleStateInGarage(string i_VehicleLicensePlate, string i_NewVehicleState)
+        public void UpdateVehicleState(string i_VehicleLicensePlate, string i_NewVehicleState)
         {
             if (!Enum.TryParse(i_NewVehicleState, true, out GarageItem.eStateOfCar newStateOfVehicle))
             {

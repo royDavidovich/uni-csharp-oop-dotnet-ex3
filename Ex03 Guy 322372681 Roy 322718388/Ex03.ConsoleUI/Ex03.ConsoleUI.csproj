@@ -40,7 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GarageUIManager.cs" />
+    <Compile Include="InputValidator.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="SpecificUIDataCollector.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ex03.GarageLogic\Ex03.GarageLogic.csproj">
