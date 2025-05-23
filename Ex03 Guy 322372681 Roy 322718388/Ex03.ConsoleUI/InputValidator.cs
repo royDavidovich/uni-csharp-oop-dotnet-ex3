@@ -10,7 +10,7 @@ public class InputValidator
         }
     }
 
-    public static void ValidateNumber(string i_Input, string i_FieldName)
+    public static void ValidateFloat(string i_Input, string i_FieldName)
     {
         if (!float.TryParse(i_Input, out _))
         {

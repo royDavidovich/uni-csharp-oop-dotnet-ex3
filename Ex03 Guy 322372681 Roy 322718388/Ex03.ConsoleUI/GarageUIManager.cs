@@ -147,13 +147,17 @@ namespace Ex03.ConsoleUI
                     refuelVehicle();
                     break;
                 case eUserOptions.RechargeElectricVehicle:
-                    reChargeElectricVehicle();
+                    rechargeElectricVehicle();
                     break;
                 case eUserOptions.ShowFullVehicleData:
-                    Console.WriteLine("This feature is under construction.");
+                    getAndShowFullVehicleData();
                     break;
                 case eUserOptions.Exit:
                     UserDecidedToExit = true;
+                    break;
+                default:
+                    Console.WriteLine("Please enter a valid choice between 1-9.");
+                    Console.WriteLine();
                     break;
             }
         }
@@ -212,14 +216,16 @@ namespace Ex03.ConsoleUI
 
                 if (licensePlates.Count == 0)
                 {
-                    Console.WriteLine("No vehicles found with the specified filter.");
+                    Console.WriteLine($"No vehicles found with \"{stateFilter}\" filter.");
                 }
                 else
                 {
                     Console.WriteLine("License plates in the garage:");
+                    int index = 1;
                     foreach (string plate in licensePlates)
                     {
-                        Console.WriteLine($"* {plate}");
+                        Console.WriteLine($"{index}) {plate}");
+                        index++;
                     }
                 }
             }
@@ -270,15 +276,15 @@ namespace Ex03.ConsoleUI
             return validatedPlate;
         }
 
-        public static string GetValidatedNumberInput(string i_Prompt, string i_FieldName)
+        public static string ValidatedFloatNumberInput(string i_Prompt, string i_FieldName)
         {
             Console.WriteLine(i_Prompt);
             string userInput = Console.ReadLine();
-            InputValidator.ValidateNumber(userInput, i_FieldName);
+            InputValidator.ValidateFloat(userInput, i_FieldName);
             return userInput;
         }
 
-        private void reChargeElectricVehicle()
+        private void rechargeElectricVehicle()
         {
             string exitCode = ((int)eUserOptions.Exit).ToString();
             string licensePlate = getValidatedLicensePlateWithExit(exitCode, "Recharge");
@@ -287,9 +293,9 @@ namespace Ex03.ConsoleUI
             {
                 try
                 {
-                    string minutes = GetValidatedNumberInput("Please provide minutes to charge:", "Charge minutes");
+                    string minutes = ValidatedFloatNumberInput("Please provide minutes to charge:", "Charge minutes");
                     r_GarageManager.RechargeVehicle(licensePlate, minutes);
-                    Console.WriteLine("Charge successful!");
+                    Console.WriteLine("Recharge successful!");
                 }
                 catch (FormatException ex)
                 {
@@ -297,9 +303,64 @@ namespace Ex03.ConsoleUI
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error during charging: {ex.Message}");
+                    Console.WriteLine($"Error during recharging: {ex.Message}");
                 }
             }
+        }
+
+        private void getAndShowFullVehicleData()
+        {
+            string exitCode = ((int)eUserOptions.Exit).ToString();
+            Console.WriteLine(
+                $"{k_ProvidePlateNumberMsg}(or press {exitCode} to cancel)");
+            string input = Console.ReadLine()?.Trim();
+
+            if (input == exitCode)
+            {
+                Console.WriteLine("Operation cancelled.\n");
+                return;
+            }
+
+            try
+            {
+                InputValidator.ValidateNonEmptyString(input, "License plate");
+
+                // Retrieve the full garage entry
+                Garage.GarageItem garageItem = r_GarageManager.GetGarageItem(input);
+
+                // Basic info
+                Console.WriteLine();
+                Console.WriteLine($"License Plate: {garageItem.Vehicle.LicensePlate}");
+                Console.WriteLine($"Owner: {garageItem.OwnerName} ({garageItem.OwnerPhoneNumber})");
+                Console.WriteLine($"Status: {garageItem.StateOfCar}");
+
+                Console.WriteLine($"Energy Remaining: {garageItem.Vehicle.EnergyPercentage:0.##}%");
+
+                // Print each wheel
+                Console.WriteLine("Wheels:");
+                foreach (Wheel wheel in garageItem.Vehicle.Wheels)
+                {
+                    Console.WriteLine(
+                        $"   {wheel.Manufacturer} — {wheel.CurrentAirPressure}/{wheel.MaxAirPressure}");
+                }
+
+                // Print any subtype-specific details
+                if (garageItem.Vehicle is IDetailedVehicle detailed)
+                {
+                    Dictionary<string, object> vehicleSpecificData = detailed.GetDetails();
+
+                    foreach (string specificDetail in vehicleSpecificData.Keys)
+                    {
+                        Console.WriteLine($"{specificDetail}: {vehicleSpecificData[specificDetail]}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}\n");
+            }
+
+            Console.WriteLine();
         }
 
         private void refuelVehicle()
@@ -317,7 +378,7 @@ namespace Ex03.ConsoleUI
                 try
                 {
                     InputValidator.ValidateEnum(fuelTypeInput, typeof(eFuelTypeUI), "Fuel type");
-                    InputValidator.ValidateNumber(fuelAmountInput, "Fuel amount");
+                    InputValidator.ValidateFloat(fuelAmountInput, "Fuel amount");
                     r_GarageManager.RefuelVehicle(plateNumber, fuelAmountInput, fuelTypeInput);
                     Console.WriteLine("SUCCESS");
                 }
@@ -486,7 +547,7 @@ namespace Ex03.ConsoleUI
                 io_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.TierModel] = manufacturer;
 
                 string pressurePrompt = "Enter current air pressure: ";
-                string airPressure = GetValidatedNumberInput(pressurePrompt, "Current air pressure");
+                string airPressure = ValidatedFloatNumberInput(pressurePrompt, "Current air pressure");
                 io_VehicleData[(int)Vehicle.eGeneralDataIndicesInFile.CurrAirPressure] = airPressure;
             }
             else
@@ -505,7 +566,7 @@ namespace Ex03.ConsoleUI
                     o_WheelData.Add(manufacturer);
 
                     string pressurePrompt = "Enter current air pressure: ";
-                    string airPressure = GetValidatedNumberInput(pressurePrompt, $"Air pressure (Wheel {i + 1})");
+                    string airPressure = ValidatedFloatNumberInput(pressurePrompt, $"Air pressure (Wheel {i + 1})");
                     o_WheelData.Add(airPressure);
                 }
             }

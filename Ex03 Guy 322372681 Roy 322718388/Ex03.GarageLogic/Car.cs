@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    internal abstract class Car : Vehicle
+    internal abstract class Car : Vehicle, IDetailedVehicle
     {
         protected const int k_NumberOfWheels = 5;
         protected const int k_MinNumOfDoors = 2;
@@ -98,6 +98,17 @@ namespace Ex03.GarageLogic
             {
                 throw new FormatException($"Invalid Number Of Doors: {i_NumberOfDoorsStr}");
             }
+        }
+
+        public Dictionary<string, object> GetDetails()
+        {
+            Dictionary<string, object> vehicleSpecificData = new Dictionary<string, object>
+                                                             {
+                                                                 { "Doors", NumberOfDoors },
+                                                                 { "Color", Color }
+                                                             };
+
+            return vehicleSpecificData;
         }
     }
 }

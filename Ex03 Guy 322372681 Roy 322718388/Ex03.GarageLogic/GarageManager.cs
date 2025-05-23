@@ -14,13 +14,21 @@ namespace Ex03.GarageLogic
             foreach (string line in lines)
             {
                 string[] vehicleInformation = line.Split(',');
-                string currentVehicleTypeFromDB = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType];
 
-                if (string.IsNullOrWhiteSpace(line)
-                   || !(VehicleCreator.SupportedTypes.Contains(currentVehicleTypeFromDB)))
+                if (string.IsNullOrWhiteSpace(line))
                 {
                     continue;       //continue if empty line or doesn't fit format description
                 }
+
+                string currentVehicleTypeFromDB = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType];
+
+                if (!(VehicleCreator.SupportedTypes.Contains(currentVehicleTypeFromDB)))
+                {
+                    continue;       //continue if empty line or doesn't fit format description
+                }
+
+                string currentVehicleOwnersName = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.OwnerName];
+                string currentVehicleOwnersPhone = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.OwnerPhone];
 
                 Vehicle currentVehicleFromDb = VehicleCreator.CreateVehicle(
                     currentVehicleTypeFromDB,
@@ -28,7 +36,7 @@ namespace Ex03.GarageLogic
                     vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.ModelName]);
 
                 currentVehicleFromDb.InitVehicleInformation(vehicleInformation);
-                r_MyGarage.AddGarageEntry(currentVehicleFromDb);
+                r_MyGarage.AddGarageEntry(currentVehicleFromDb, currentVehicleOwnersName, currentVehicleOwnersPhone);
             }
         }
 
@@ -36,6 +44,8 @@ namespace Ex03.GarageLogic
         {
             string[] vehicleInformation = i_CurrentUserVehicleData.Split(',');
             string currentVehicleTypeFromDB = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.VehicleType];
+            string currentVehicleOwnersName = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.OwnerName];
+            string currentVehicleOwnersPhone = vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.OwnerPhone];
 
             if (string.IsNullOrWhiteSpace(i_CurrentUserVehicleData)
                 || !(VehicleCreator.SupportedTypes.Contains(currentVehicleTypeFromDB)))
@@ -51,13 +61,13 @@ namespace Ex03.GarageLogic
                 vehicleInformation[(int)Vehicle.eGeneralDataIndicesInFile.ModelName]);
 
             currentVehicleFromDB.InitVehicleInformation(vehicleInformation, Galgalim);
-            AddUsersGarageEntry(currentVehicleFromDB);
+            r_MyGarage.AddGarageEntry(currentVehicleFromDB, currentVehicleOwnersName, currentVehicleOwnersPhone);
         }
 
-        public void AddUsersGarageEntry(Vehicle i_CurrentUserVehicle)
-        {
-            r_MyGarage.AddGarageEntry(i_CurrentUserVehicle);
-        }
+        //public void AddUsersGarageEntry(Vehicle i_CurrentUserVehicle)
+        //{
+        //    r_MyGarage.AddGarageEntry(i_CurrentUserVehicle);
+        //}
 
         public List<string> GetVehiclesInGarageLicensePlates(string i_SpecificVehiclesState = null)
         {
@@ -119,6 +129,16 @@ namespace Ex03.GarageLogic
         public void UpdateVehicleStateInGarage(string i_VehicleLicensePlate, string i_NewVehicleState)
         {
             r_MyGarage.UpdateVehicleState(i_VehicleLicensePlate, i_NewVehicleState);
+        }
+
+        public Garage.GarageItem GetGarageItem(string i_LicensePlate)
+        {
+            if (!r_MyGarage.LocalGarage.TryGetValue(i_LicensePlate, out Garage.GarageItem garageItem))
+            {
+                throw new ArgumentException($"Unknown license plate: {i_LicensePlate}", nameof(i_LicensePlate));
+            }
+
+            return garageItem;
         }
     }
 }
