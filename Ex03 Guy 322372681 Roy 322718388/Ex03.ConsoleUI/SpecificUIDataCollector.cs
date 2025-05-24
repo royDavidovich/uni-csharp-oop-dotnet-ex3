@@ -1,5 +1,4 @@
-﻿using Ex03.ConsoleUI;
-using System;
+﻿using System;
 using static Ex03.ConsoleUI.GarageUIManager;
 
 namespace Ex03.ConsoleUI

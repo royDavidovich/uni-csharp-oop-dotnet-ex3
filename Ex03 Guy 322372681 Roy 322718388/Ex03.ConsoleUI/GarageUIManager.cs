@@ -1,8 +1,6 @@
 using Ex03.GarageLogic;
 using System;
 using System.Collections.Generic;
-using System.Runtime.ConstrainedExecution;
-using System.Threading;
 
 namespace Ex03.ConsoleUI
 {
