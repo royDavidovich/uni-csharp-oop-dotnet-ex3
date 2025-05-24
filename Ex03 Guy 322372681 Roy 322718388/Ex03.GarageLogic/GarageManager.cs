@@ -80,7 +80,7 @@ namespace Ex03.GarageLogic
         }
 
         public void RefuelVehicle(string i_LicensePlate, string i_AmountToAddStr, string i_FuelTypeStr)
-        {
+        { 
             if (!r_MyGarage.LocalGarage.ContainsKey(i_LicensePlate))
             {
                 throw new ArgumentException($"Unknown license plate: {i_LicensePlate}", i_LicensePlate);
@@ -90,7 +90,7 @@ namespace Ex03.GarageLogic
             {
                 throw new FormatException($"Invalid energy percentage: {i_AmountToAddStr}");
             }
-
+            
             (r_MyGarage.LocalGarage[i_LicensePlate].Vehicle as IFillable).Refuel(amountToAdd, i_FuelTypeStr);
         }
 

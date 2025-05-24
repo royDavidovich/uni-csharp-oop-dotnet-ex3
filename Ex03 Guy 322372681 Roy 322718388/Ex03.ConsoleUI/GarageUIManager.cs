@@ -236,7 +236,7 @@ namespace Ex03.ConsoleUI
             Console.WriteLine();
         }
 
-        private string getValidatedLicensePlateWithExit(string i_ExitCode, string i_ActionLabel)
+        private string getValidatedLicensePlateWithExit(string i_ExitCode, string i_ActionLabel, bool i_RequireRefillable = false, bool i_RequireRechargeable = false)
         {
             string validatedPlate = null;
             bool isDone = false;
@@ -256,9 +256,22 @@ namespace Ex03.ConsoleUI
                     try
                     {
                         InputValidator.ValidateNonEmptyString(input, "License plate");
-                        r_GarageManager.IsRefillable(input);
-                        validatedPlate = input;
-                        isDone = true;
+
+                        Vehicle vehicle = r_GarageManager.GetGarageItem(input).Vehicle;
+
+                        if (i_RequireRefillable && !(vehicle is IFillable))
+                        {
+                            Console.WriteLine("This vehicle is not a fuel-based vehicle and cannot be refueled.");
+                        }
+                        else if (i_RequireRechargeable && !(vehicle is IChargeable))
+                        {
+                            Console.WriteLine("This vehicle is not an electric vehicle and cannot be recharged.");
+                        }
+                        else
+                        {
+                            validatedPlate = input;
+                            isDone = true;
+                        }
                     }
                     catch (FormatException ex)
                     {
@@ -268,6 +281,7 @@ namespace Ex03.ConsoleUI
                     {
                         Console.WriteLine(ex.Message);
                     }
+
                     Console.WriteLine();
                 }
             }
@@ -286,7 +300,7 @@ namespace Ex03.ConsoleUI
         private void rechargeElectricVehicle()
         {
             string exitCode = ((int)eUserOptions.Exit).ToString();
-            string licensePlate = getValidatedLicensePlateWithExit(exitCode, "Recharge");
+            string licensePlate = getValidatedLicensePlateWithExit(exitCode, "Recharge", i_RequireRechargeable: true);
 
             if (licensePlate != null)
             {
@@ -371,7 +385,7 @@ namespace Ex03.ConsoleUI
         private void refuelVehicle()
         {
             string exitCode = ((int)eUserOptions.Exit).ToString();
-            string plateNumber = getValidatedLicensePlateWithExit(exitCode, "Refuel");
+            string plateNumber = getValidatedLicensePlateWithExit(exitCode, "Refuel", i_RequireRefillable: true);
 
             if (plateNumber != null)
             {
