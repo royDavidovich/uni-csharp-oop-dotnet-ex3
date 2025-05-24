@@ -205,16 +205,6 @@ namespace Ex03.ConsoleUI
             string stateFilter = null;
             string filterChoice = string.Empty;
 
-            //Console.WriteLine("Would you like to filter the license plates by vehicle state? <y/n>: ");
-            //string filterChoice = Console.ReadLine()?.Trim().ToLower();
-
-            //if (filterChoice == "yes")
-            //{
-            //    Console.WriteLine("Please enter the state to filter by (InRepair, Repaired, Paid): ");
-            //    stateFilter = Console.ReadLine();
-            //    InputValidator.ValidateEnum(stateFilter, typeof(Garage.GarageItem.eStateOfCar), "Vehicle state"); 
-            //}
-
             while (!validAnswer)
             {
                 Console.WriteLine("Would you like to filter the license plates by vehicle state? <y/n>: ");
