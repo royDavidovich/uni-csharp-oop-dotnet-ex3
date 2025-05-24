@@ -71,7 +71,8 @@ namespace Ex03.ConsoleUI
 
         public void Run()
         {
-            Console.WriteLine("Hello, and welcome to \"Roy & Guy's\" Garage!\n");
+            Console.WriteLine(@"Hello, and welcome to Roy & Guy's Garage!
+");
 
             while (!UserDecidedToExit)
             {
@@ -82,7 +83,8 @@ namespace Ex03.ConsoleUI
                 }
                 catch (Exception ex) 
                 {
-                    Console.WriteLine($"Error: {ex.Message}\n");
+                    Console.WriteLine($@"Error: {ex.Message}
+");
                 }
             }
 
@@ -174,7 +176,8 @@ namespace Ex03.ConsoleUI
 
                 if (licensePlateInput == exitCode)
                 {
-                    Console.WriteLine("Inflation cancelled. Returning to main menu.\n");
+                    Console.WriteLine(@"Inflation cancelled. Returning to main menu.
+");
                     isDone = true;
                 }
                 else
@@ -183,7 +186,8 @@ namespace Ex03.ConsoleUI
                     {
                         InputValidator.ValidateNonEmptyString(licensePlateInput, "License plate"); 
                         r_GarageManager.InflateAllWheelsToMaxAirPressure(licensePlateInput);
-                        Console.WriteLine("ALL TIRES HAVE BEEN INFLATED TO MAXIMUM PRESSURE\n");
+                        Console.WriteLine(@"ALL TIRES HAVE BEEN INFLATED TO MAXIMUM PRESSURE
+");
                         isDone = true;
                     }
                     catch (Exception ex)
@@ -197,16 +201,52 @@ namespace Ex03.ConsoleUI
 
         private void showLicensePlates()
         {
+            bool validAnswer = false;
             string stateFilter = null;
+            string filterChoice = string.Empty;
 
-            Console.WriteLine("Would you like to filter the license plates by vehicle state? (yes/no): ");
-            string filterChoice = Console.ReadLine()?.Trim().ToLower();
+            //Console.WriteLine("Would you like to filter the license plates by vehicle state? <y/n>: ");
+            //string filterChoice = Console.ReadLine()?.Trim().ToLower();
 
-            if (filterChoice == "yes")
+            //if (filterChoice == "yes")
+            //{
+            //    Console.WriteLine("Please enter the state to filter by (InRepair, Repaired, Paid): ");
+            //    stateFilter = Console.ReadLine();
+            //    InputValidator.ValidateEnum(stateFilter, typeof(Garage.GarageItem.eStateOfCar), "Vehicle state"); 
+            //}
+
+            while (!validAnswer)
             {
-                Console.WriteLine("Please enter the state to filter by (InRepair, Repaired, Paid): ");
-                stateFilter = Console.ReadLine();
-                InputValidator.ValidateEnum(stateFilter, typeof(Garage.GarageItem.eStateOfCar), "Vehicle state"); 
+                Console.WriteLine("Would you like to filter the license plates by vehicle state? <y/n>: ");
+                filterChoice = Console.ReadLine()?.Trim().ToLower();
+
+                if (filterChoice == "y" || filterChoice == "n")
+                {
+                    validAnswer = true;
+                    if (filterChoice == "y")
+                    {
+                        validAnswer = false;
+                        while(!validAnswer)
+                        {
+                            Console.WriteLine("Please enter the state to filter by (InRepair, Repaired, Paid): ");
+                            stateFilter = Console.ReadLine();
+                            if(stateFilter == "InRepair" || stateFilter == "Repaired" || stateFilter == "Paid")
+                            {
+                                validAnswer = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Entered unknown state");
+                            }
+                        }
+
+                        InputValidator.ValidateEnum(stateFilter, typeof(Garage.GarageItem.eStateOfCar), "Vehicle state");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter y for 'YES' or n for 'NO'.");
+                }
             }
 
             try
@@ -248,7 +288,8 @@ namespace Ex03.ConsoleUI
 
                 if (input == i_ExitCode)
                 {
-                    Console.WriteLine($"{i_ActionLabel} cancelled. Returning to main menu.");
+                    Console.WriteLine($@"{i_ActionLabel} cancelled. Returning to main menu.
+");
                     isDone = true;
                 }
                 else
@@ -293,7 +334,9 @@ namespace Ex03.ConsoleUI
         {
             Console.WriteLine(i_Prompt);
             string userInput = Console.ReadLine();
+
             InputValidator.ValidateFloat(userInput, i_FieldName);
+
             return userInput;
         }
 
@@ -330,7 +373,8 @@ namespace Ex03.ConsoleUI
 
             if (input == exitCode)
             {
-                Console.WriteLine("Operation cancelled.\n");
+                Console.WriteLine(@"Operation cancelled.
+");
                 return;
             }
 
@@ -391,7 +435,7 @@ namespace Ex03.ConsoleUI
             {
                 Console.WriteLine("Please provide your fuel type: Octan95 / Octan96 / Octan98 / Soler");
                 string fuelTypeInput = Console.ReadLine();
-                Console.WriteLine("Please provide your chosen amount to be fueled:");
+                Console.WriteLine("Please provide your chosen amount to be fueled (Liters):");
                 string fuelAmountInput = Console.ReadLine();
 
                 try
@@ -417,11 +461,26 @@ namespace Ex03.ConsoleUI
         {
             string exitCode = ((int)eUserOptions.Exit).ToString();
             string licensePlate = getValidatedLicensePlateWithExit(exitCode, "Status Change");
+            string stateInput = string.Empty;
 
             if (licensePlate != null)
             {
-                Console.WriteLine("Please provide your wanted state - InRepair  /  Repaired  /  Paid");
-                string stateInput = Console.ReadLine();
+                bool validAnswer = false;
+
+                while (!validAnswer)
+                {
+                    Console.WriteLine("Please provide your wanted state - InRepair  /  Repaired  /  Paid");
+                    stateInput = Console.ReadLine();
+
+                    if(stateInput == "InRepair" || stateInput == "Repaired" || stateInput == "Paid")
+                    {
+                        validAnswer = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Entered unknown state.");
+                    }
+                }
 
                 try
                 {
@@ -565,7 +624,7 @@ Please try again.
                 }
                 else
                 {
-                    Console.WriteLine("Invalid input. Please enter y for yes or n for 'no'.");
+                    Console.WriteLine("Invalid input. Please enter y for 'YES' or n for 'NO'.");
                 }
             }
 
