@@ -296,6 +296,7 @@ namespace Ex03.ConsoleUI
                 {
                     try
                     {
+                        isDone = false;
                         InputValidator.ValidateNonEmptyString(input, "License plate");
 
                         Vehicle vehicle = r_GarageManager.GetGarageItem(input).Vehicle;
