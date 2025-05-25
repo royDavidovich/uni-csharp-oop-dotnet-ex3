@@ -7,7 +7,7 @@ namespace Ex03.GarageLogic
     {
         protected const float k_MaxFuelAmount = 48f;
         protected const float k_MaxAirPressure = 32f;
-        protected const string k_GasType = "Octan95";
+        protected const FuelVehicle.eGasType m_GasType = FuelVehicle.eGasType.Octan95;
         public FuelVehicle m_FuelEngine;
 
         protected override float MaxAirPressure
@@ -29,7 +29,7 @@ namespace Ex03.GarageLogic
         public FuelCar(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
         {
-            m_FuelEngine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
+            m_FuelEngine = new FuelVehicle(k_MaxFuelAmount, m_GasType);
         }
 
         public void Refuel(float i_AmountToAdd, string i_FuelType)
@@ -39,7 +39,7 @@ namespace Ex03.GarageLogic
 
         public string GetFuelType()
         {
-            return k_GasType;
+            return m_GasType.ToString();
         }
 
         protected override void SetCurrentEnergyFromPercentage(string i_CurrentPercentageStr)

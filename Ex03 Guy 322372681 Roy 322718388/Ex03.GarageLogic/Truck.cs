@@ -8,7 +8,7 @@ namespace Ex03.GarageLogic
         protected const int k_NumberOfWheels = 12;
         protected const float k_MaxFuelAmount = 135f;
         protected const float k_MaxAirPressure = 27f;
-        protected const string k_GasType = "Soler";
+        protected const FuelVehicle.eGasType m_GasType = FuelVehicle.eGasType.Soler;
         public FuelVehicle m_FuelEngine;
 
         protected enum eSpecificDataIndicesInFile
@@ -20,7 +20,7 @@ namespace Ex03.GarageLogic
         public Truck(string i_LicensePlate, string i_ModelName)
             : base(i_LicensePlate, i_ModelName)
         {
-            m_FuelEngine = new FuelVehicle(k_MaxFuelAmount, k_GasType);
+            m_FuelEngine = new FuelVehicle(k_MaxFuelAmount, m_GasType);
         }
 
         public override int NumberOfWheels
@@ -101,7 +101,7 @@ namespace Ex03.GarageLogic
 
         public string GetFuelType()
         {
-            return k_GasType;
+            return m_GasType.ToString();
         }
 
         public Dictionary<string, object> GetDetails()

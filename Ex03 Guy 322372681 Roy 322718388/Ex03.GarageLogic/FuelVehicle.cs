@@ -23,18 +23,11 @@ namespace Ex03.GarageLogic
             Octan98
         }
 
-        public FuelVehicle(float i_MaxFuelLevel, string i_FuelType)
+        public FuelVehicle(float i_MaxFuelLevel, eGasType i_FuelType)
         {
             m_CurrentFuelLevel = k_MinFuelLevel;
             r_MaxFuelLevel = i_MaxFuelLevel;
-            if (Enum.TryParse(i_FuelType, out eGasType parsedGasType))
-            {
-                r_GasType = parsedGasType;
-            }
-            else
-            {
-                throw new FormatException("Invalid gas type");
-            }
+            r_GasType = i_FuelType;
         }
 
         public float CurrentFuelLevel

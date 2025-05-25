@@ -1,8 +1,4 @@
-﻿using System;
-
-using static Ex03.GarageLogic.FuelVehicle;
-
-namespace Ex03.GarageLogic
+﻿namespace Ex03.GarageLogic
 {
     public interface IChargeable
     {
